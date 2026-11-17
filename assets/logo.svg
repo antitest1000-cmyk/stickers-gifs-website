@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 40" width="204" height="40" fill="none">
+  <defs>
+    <!-- Hot-Pink to Magenta Brand Gradient -->
+    <linearGradient id="logoBrandGrad" x1="2" y1="2" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF007A"/>
+      <stop offset="60%" stop-color="#FF2E83"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+
+    <!-- Neon Cyan Peeling Corner Gradient -->
+    <linearGradient id="logoPeelGrad" x1="26" y1="2" x2="38" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="100%" stop-color="#00C8FF"/>
+    </linearGradient>
+
+    <!-- Hot Pink Text Gradient -->
+    <linearGradient id="logoTextPink" x1="0" y1="0" x2="60" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF007A"/>
+      <stop offset="100%" stop-color="#FF2E83"/>
+    </linearGradient>
+
+    <!-- Subtle Brand Glow for Emblem -->
+    <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#FF007A" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- 3D Peel Sticker Mark (Left) -->
+  <g class="brand-mark" transform="translate(2, 2)">
+    <!-- Main Sticker Body with Folded Top-Right Corner -->
+    <path d="M8 3 H26 L36 13 V31 A4 4 0 0 1 32 35 H8 A4 4 0 0 1 4 31 V7 A4 4 0 0 1 8 3 Z" fill="url(#logoBrandGrad)" filter="url(#logoGlow)"/>
+
+    <!-- Peeling Corner Flap with 3D Depth Shadow -->
+    <path d="M26 3 L36 13 H29 A3 3 0 0 1 26 10 V3 Z" fill="url(#logoPeelGrad)"/>
+    <path d="M26 3 L36 13 H29 A3 3 0 0 1 26 10 V3 Z" fill="#000000" fill-opacity="0.16"/>
+
+    <!-- Sharp Pencil Nib / Stylus inside Sticker -->
+    <path d="M12 28 L11 29 L14.5 28 L24.5 18 A2 2 0 0 0 24.5 15.2 L23.8 14.5 A2 2 0 0 0 21 14.5 L11 24.5 L10 29.5 L15 28.5 Z" fill="#FFFFFF"/>
+    <polygon points="10,29.5 12.5,28.5 11.5,27.5" fill="#00F0FF"/>
+    <line x1="13" y1="25" x2="22" y2="16" stroke="#FF007A" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Clean Unified Brand Typography (Right) - No Subtitle Clutter -->
+  <g class="brand-typography">
+    <text x="46" y="27" font-family="'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" letter-spacing="-0.035em" fill="#FFFFFF">Sticker<tspan fill="url(#logoTextPink)">Penc<tspan fill="#00F0FF">i</tspan>l</tspan></text>
+  </g>
+</svg>

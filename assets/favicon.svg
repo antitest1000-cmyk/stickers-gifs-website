@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <!-- Brand Vibrant Neon Gradients -->
+    <linearGradient id="favBrandGrad" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF007A"/>
+      <stop offset="50%" stop-color="#FF2E83"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="favPeelGrad" x1="40" y1="4" x2="60" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="100%" stop-color="#00C8FF"/>
+    </linearGradient>
+    <filter id="favGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#FF007A" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Deep Obsidian Container for High Contrast on any browser theme -->
+  <rect width="64" height="64" rx="16" fill="#0B0D12"/>
+
+  <!-- Sticker Body with Folded Top-Right Corner -->
+  <path d="M14 8 H42 L56 22 V50 A6 6 0 0 1 50 56 H14 A6 6 0 0 1 8 50 V14 A6 6 0 0 1 14 8 Z" fill="url(#favBrandGrad)" filter="url(#favGlow)"/>
+
+  <!-- Peeling Sticker Corner with 3D Depth -->
+  <path d="M42 8 L56 22 H46 A4 4 0 0 1 42 18 V8 Z" fill="url(#favPeelGrad)"/>
+  <path d="M42 8 L56 22 H46 A4 4 0 0 1 42 18 V8 Z" fill="#000000" fill-opacity="0.16"/>
+
+  <!-- Iconic Sharp Stylus / Pencil Nib inside Sticker -->
+  <path d="M20 44 L18 46 L24 44 L40 28 A3 3 0 0 0 40 23.5 L38.5 22 A3 3 0 0 0 34 22 L18 38 L16 46 L24 44 Z" fill="#FFFFFF"/>
+  <polygon points="16,46 20,44.5 18,42.5" fill="#00F0FF"/>
+  <line x1="22" y1="38" x2="36" y2="24" stroke="#FF007A" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+

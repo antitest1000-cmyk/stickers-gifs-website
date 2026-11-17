@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Trending Stickers 🔥 Top Viral Memes & Chat Reactions - StickerPencil</title>
+  <meta name="title" content="Trending Stickers 🔥 Top Viral Memes & Chat Reactions - StickerPencil">
+  <meta name="description" content="Discover the most popular trending stickers and meme reactions right now! Ranked leaderboard of top viral stickers for WhatsApp, Discord, Instagram, Snapchat, Reddit & Telegram. Free transparent PNGs.">
+  <meta name="keywords" content="trending stickers, viral stickers, top whatsapp stickers, discord emote leaderboard, most copied stickers, meme reactions 2026, transparent png stickers">
+  <meta name="author" content="StickerPencil">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://stickerpencil.com/trending.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stickerpencil.com/trending.html">
+  <meta property="og:title" content="Trending Stickers 🔥 Top Viral Memes & Chat Reactions - StickerPencil">
+  <meta property="og:description" content="Ranked leaderboard of the hottest viral stickers for WhatsApp, Discord, Instagram, Snapchat, and Reddit. 1-click copy & free download.">
+  <meta property="og:image" content="https://stickerpencil.com/assets/og-cover.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://stickerpencil.com/trending.html">
+  <meta property="twitter:title" content="Trending Stickers 🔥 Top Viral Memes & Chat Reactions - StickerPencil">
+  <meta property="twitter:description" content="Explore the #1 trending stickers across chat apps. Free transparent PNGs with 1-click copy.">
+  <meta property="twitter:image" content="https://stickerpencil.com/assets/og-cover.png">
+
+  <!-- High-Res Brand Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B0D12'/><path d='M14 8 H42 L56 22 V50 A6 6 0 0 1 50 56 H14 A6 6 0 0 1 8 50 V14 A6 6 0 0 1 14 8 Z' fill='%23FF007A'/><path d='M42 8 L56 22 H46 A4 4 0 0 1 42 18 V8 Z' fill='%2300F0FF'/><path d='M20 44 L18 46 L24 44 L40 28 A3 3 0 0 0 40 23.5 L38.5 22 A3 3 0 0 0 34 22 L18 38 L16 46 L24 44 Z' fill='%23FFFFFF'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css?v=23">
+
+  <style>
+    .trending-hero {
+      max-width: 860px;
+      margin: 40px auto 28px;
+      padding: 0 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .trending-stats-banner {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 20px auto 0;
+      max-width: 800px;
+    }
+
+    .trending-stat-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 6px 16px;
+      box-shadow: var(--shadow-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .trending-filter-bar {
+      max-width: 1360px;
+      margin: 0 auto 28px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .trending-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .trending-tab-btn {
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .trending-tab-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      background: var(--bg-elevated);
+    }
+
+    .trending-tab-btn.active {
+      background: var(--accent-primary-subtle);
+      color: var(--accent-primary);
+      border-color: rgba(167, 139, 250, 0.4);
+    }
+
+    .rank-badge {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      z-index: 5;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.88rem;
+      box-shadow: var(--shadow-md);
+      border: 2px solid var(--bg-card);
+    }
+
+    .rank-gold {
+      background: linear-gradient(135deg, #FDE047, #EAB308);
+      color: #713F12;
+      box-shadow: 0 0 12px rgba(234, 179, 8, 0.4);
+    }
+
+    .rank-silver {
+      background: linear-gradient(135deg, #F1F5F9, #94A3B8);
+      color: #1E293B;
+      box-shadow: 0 0 12px rgba(148, 163, 184, 0.3);
+    }
+
+    .rank-bronze {
+      background: linear-gradient(135deg, #FED7AA, #F97316);
+      color: #431407;
+      box-shadow: 0 0 12px rgba(249, 115, 22, 0.3);
+    }
+
+    .rank-standard {
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      border-color: var(--border-subtle);
+    }
+
+    .trending-metric-chip {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #F43F5E;
+      background: rgba(244, 63, 94, 0.12);
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+  </style>
+
+  <!-- Structured Data: CollectionPage & ItemList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Trending Stickers & Viral Reactions",
+    "description": "Daily ranked leaderboard of the most popular transparent stickers and reactions across WhatsApp, Discord, Instagram, and Reddit.",
+    "url": "https://stickerpencil.com/trending.html",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListOrder": "https://schema.org/ItemListOrderDescending",
+      "numberOfItems": 50,
+      "name": "Top Trending Stickers Leaderboard"
+    }
+  }
+  </script>
+
+  <!-- Instant Zero-FOUC Dark Mode Initializer -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('stickerpencil_theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('sketch-dark-mode');
+      } else {
+        document.documentElement.classList.add('sketch-dark-mode');
+      }
+    })();
+  </script>
+</head>
+<body class="sketch-dark-mode">
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" aria-label="StickerPencil Home">
+        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+          <defs>
+            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF007A"/>
+              <stop offset="55%" stop-color="#FF2E83"/>
+              <stop offset="100%" stop-color="#9333EA"/>
+            </linearGradient>
+            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F0FF"/>
+              <stop offset="100%" stop-color="#00C8FF"/>
+            </linearGradient>
+            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
+          <g transform="translate(6, 6)">
+            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
+            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
+            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </a>
+
+<nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#00f0ff" stroke-width="2.2" fill="#00f0ff" fill-opacity="0.18"/>
+                <circle cx="9" cy="10" r="1.5" fill="#00f0ff"/>
+                <circle cx="15" cy="10" r="1.5" fill="#00f0ff"/>
+                <path d="M8 14.5c1.2 1.5 2.5 2 4 2s2.8-.5 4-2" stroke="#00f0ff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Explore</span>
+            </a>
+          </li>
+          <li>
+            <a href="packs.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#FF007A" stroke-width="2.2" fill="#FF007A" fill-opacity="0.25"/>
+              </svg>
+              <span>Packs</span>
+            </a>
+          </li>
+          <li>
+            <a href="trending.html" class="nav-link active">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="#a855f7" fill-opacity="0.3" stroke="#a855f7" stroke-width="2"/>
+              </svg>
+              <span>Trending</span>
+            </a>
+          </li>
+          <li>
+            <a href="categories.html" class="nav-link">
+              <!-- GIPHY-Style 4-Color Vibrant Grid -->
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <rect x="3" y="3" width="7.5" height="7.5" rx="2" fill="#00ccff"/>
+                <rect x="13.5" y="3" width="7.5" height="7.5" rx="2" fill="#fff35c"/>
+                <rect x="3" y="13.5" width="7.5" height="7.5" rx="2" fill="#9933ff"/>
+                <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" fill="#FF007A"/>
+              </svg>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li>
+            <a href="sticker-maker.html" class="nav-link nav-link-studio">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#00ff99" stroke-width="2.2" fill="#00ff99" fill-opacity="0.15"/>
+                <path d="M12 7v10M7 12h10" stroke="#00ff99" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <span>Studio</span>
+              <span class="studio-badge-cute">New</span>
+            </a>
+          </li>
+          <li class="nav-dropdown-item">
+            <button class="nav-link nav-dropdown-btn" type="button" aria-expanded="false" aria-haspopup="true">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="#cbd5e1">
+                <circle cx="12" cy="5" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="19" r="2.2"/>
+              </svg>
+              <span>More</span>
+              <svg class="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="blog.html" class="dropdown-link cyan">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                    <path d="M6 6h10"/>
+                    <path d="M6 10h10"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Blog Guides</span>
+                  <span class="dropdown-desc">Tutorials, ideas &amp; packs</span>
+                </div>
+              </a>
+              <a href="how-to-use.html" class="dropdown-link yellow">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">How to Use</span>
+                  <span class="dropdown-desc">1-Click WhatsApp &amp; Discord import</span>
+                </div>
+              </a>
+              <a href="alternatives.html" class="dropdown-link purple">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 3h5v5"/>
+                    <path d="M4 20L21 3"/>
+                    <path d="M21 16v5h-5"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Compare Alternatives</span>
+                  <span class="dropdown-desc">vs Sticker.ly, Tenor &amp; GIPHY</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="admin.html" class="dropdown-link pink">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Cloud Admin</span>
+                  <span class="dropdown-desc">Sync stickers &amp; CDN stats</span>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="mode-toggle-btn" id="modeToggleBtn" aria-label="Toggle Dark / Light Mode" title="Toggle Light / Dark Mode">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       GIPHY-STYLE EDGE-TO-EDGE SEARCH BAR & TRENDING TAGS
+       ======================================================================== -->
+  <section class="hero-section">
+    <h1 class="sr-only">Top Trending Stickers - Viral Leaderboard & Top Charts</h1>
+
+    <div class="search-wrapper">
+      <div class="search-box">
+        <input 
+          type="search" 
+          id="trendingSearchInput" 
+          class="search-input" 
+          placeholder="Search trending stickers, memes and reactions..." 
+          autocomplete="off"
+          aria-label="Search trending stickers"
+          onkeydown="if(event.key==='Enter') window.location.href='index.html?q=' + encodeURIComponent(this.value);"
+        />
+        <button class="search-action-btn" onclick="const val=document.getElementById('trendingSearchInput').value; if(val) window.location.href='index.html?q=' + encodeURIComponent(val);" aria-label="Search" title="Search stickers">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Quick category search tags (GIPHY-Style Flush Trending Chips) -->
+      <div class="quick-tags-container">
+        <a href="index.html?q=desi" class="quick-tag-btn"><span class="trend-arrow">↗</span> Desi Viral</a>
+        <a href="index.html?q=cat" class="quick-tag-btn"><span class="trend-arrow">↗</span> Cat Memes</a>
+        <a href="index.html?q=doggo" class="quick-tag-btn"><span class="trend-arrow">↗</span> Doggo</a>
+        <a href="index.html?q=hinglish" class="quick-tag-btn"><span class="trend-arrow">↗</span> Hinglish</a>
+        <a href="index.html?q=cute" class="quick-tag-btn"><span class="trend-arrow">↗</span> Cute Kids</a>
+        <a href="index.html?q=brainrot" class="quick-tag-btn"><span class="trend-arrow">↗</span> Brainrot</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       GIPHY-STYLE FEED TITLE BAR & VIEW SWITCHER
+       ======================================================================== -->
+  <section class="feed-controls-section" aria-label="Trending Charts Controls">
+    <!-- Row 1: Section Title & GIPHY View Switcher -->
+    <div class="feed-title-bar">
+      <div class="feed-title-wrap">
+        <span class="feed-trend-glyph">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00f0ff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </span>
+        <h2 class="feed-title">Trending Top Charts</h2>
+      </div>
+
+      <!-- Segmented Type Selector [ Stickers | Packs | Studio ] -->
+      <div class="feed-segmented-nav">
+        <a href="index.html" class="feed-segment-btn">
+          <span>Stickers</span>
+        </a>
+        <a href="packs.html" class="feed-segment-btn">
+          <span>Packs</span>
+        </a>
+        <a href="sticker-maker.html" class="feed-segment-btn">
+          <span>Studio</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 2: Unified Filter & Sorting Toolbar -->
+    <div class="feed-filters-bar">
+      <!-- Timeframe Rank Tabs -->
+      <div class="trending-tabs" style="display:flex; gap:6px; flex-wrap:nowrap; overflow-x:auto;">
+        <button class="trending-tab-btn active" data-sort="trending">🔥 Trending Now</button>
+        <button class="trending-tab-btn" data-sort="downloads">📥 Most Downloaded</button>
+        <button class="trending-tab-btn" data-sort="recent">✨ Fresh & New</button>
+      </div>
+
+      <!-- Platform Filter Pills -->
+      <div class="platforms-nav" role="tablist">
+        <button class="filter-pill platform-pill-btn active" data-platform="all">🌐 All Apps</button>
+        <button class="filter-pill platform-pill-btn" data-platform="whatsapp">💬 WhatsApp</button>
+        <button class="filter-pill platform-pill-btn" data-platform="discord">👾 Discord</button>
+        <button class="filter-pill platform-pill-btn" data-platform="instagram">📸 Instagram</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD GRID -->
+  <main class="stickers-grid" id="trendingGrid" style="max-width: 1360px; margin: 0 auto 60px; padding: 0 24px;">
+    <!-- Populated dynamically via JS -->
+  </main>
+
+  <!-- SEO Informational Section (Rich Text for Ranking) -->
+  <section style="max-width: 900px; margin: 40px auto 70px; padding: 0 20px;">
+    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px;">
+      <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">
+        How Are Trending Stickers Calculated? 📈
+      </h2>
+      <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px; font-size: 0.95rem;">
+        The StickerPencil Trending Chart monitors anonymous copy frequency, PNG downloads, and social media exports across WhatsApp, Discord, Instagram Stories, Snapchat, and Reddit. Memes that gain viral velocity within 24 hours earn top spots on our leaderboard.
+      </p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="categories.html" class="pack-btn-secondary" style="font-size: 0.88rem; padding: 8px 14px;">🏷️ Browse All Categories</a>
+        <a href="packs.html" class="pack-btn-secondary" style="font-size: 0.88rem; padding: 8px 14px;">📦 View 1-Click Packs</a>
+        <a href="how-to-use.html" class="pack-btn-secondary" style="font-size: 0.88rem; padding: 8px 14px;">📖 How to Use Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" aria-label="StickerPencil">
+        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+          <defs>
+            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF007A"/>
+              <stop offset="55%" stop-color="#FF2E83"/>
+              <stop offset="100%" stop-color="#9333EA"/>
+            </linearGradient>
+            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F0FF"/>
+              <stop offset="100%" stop-color="#00C8FF"/>
+            </linearGradient>
+            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
+          <g transform="translate(6, 6)">
+            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
+            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
+            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        </svg>
+        </a>
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
+          Real-time trending stickers and viral reaction charts for creators and chat lovers.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Platforms</h4>
+        <ul class="footer-links-list">
+          <li><a href="whatsapp-stickers.html" class="footer-link">WhatsApp Stickers</a></li>
+          <li><a href="discord-stickers.html" class="footer-link">Discord Emotes</a></li>
+          <li><a href="index.html?platform=instagram" class="footer-link">Instagram Stories</a></li>
+          <li><a href="index.html?platform=snapchat" class="footer-link">Snapchat Snaps</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Pages</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link">All Stickers</a></li>
+          <li><a href="trending.html" class="footer-link">Trending Top Charts</a></li>
+          <li><a href="categories.html" class="footer-link">Categories</a></li>
+          <li><a href="packs.html" class="footer-link">Themed Packs</a></li>
+          <li><a href="how-to-use.html" class="footer-link">How to Use</a></li>
+          <li><a href="about.html" class="footer-link">About & DMCA</a></li>
+          <li><a href="admin.html" class="footer-link">Admin Studio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 StickerPencil. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Mobile Floating Bottom Dock -->
+  <nav class="mobile-bottom-dock" aria-label="Mobile Navigation Dock">
+    <a href="index.html" class="dock-item-btn">
+      <span class="dock-icon">🎨</span>
+      <span>Explore</span>
+    </a>
+    <a href="trending.html" class="dock-item-btn active">
+      <span class="dock-icon">🔥</span>
+      <span>Trending</span>
+    </a>
+    <a href="categories.html" class="dock-item-btn">
+      <span class="dock-icon">🏷️</span>
+      <span>Categories</span>
+    </a>
+    <a href="packs.html" class="dock-item-btn">
+      <span class="dock-icon">📦</span>
+      <span>Packs</span>
+    </a>
+    <a href="index.html" class="dock-item-btn">
+      <span class="dock-icon">🔍</span>
+      <span>Search</span>
+    </a>
+  </nav>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/cloudinary-stickers.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/nav-common.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.getElementById("trendingGrid");
+      const tabBtns = document.querySelectorAll(".trending-tab-btn");
+      const platformPills = document.querySelectorAll(".filter-pill");
+
+      let currentSort = "trending";
+      let currentPlatform = "all";
+
+      // Toast Function
+      function showToast(msg, icon = "✏️") {
+        const toast = document.createElement("div");
+        toast.className = "toast-item";
+        toast.innerHTML = `<span>${icon}</span> <span>${msg}</span>`;
+        const container = document.getElementById("toastContainer");
+        if (container) {
+          container.appendChild(toast);
+          setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateX(50px)";
+            setTimeout(() => toast.remove(), 250);
+          }, 2400);
+        }
+      }
+
+      const INITIAL_BATCH = 24;
+      const APPEND_BATCH = 20;
+      let visibleCount = INITIAL_BATCH;
+      let activeTrendingList = [];
+      let isAppending = false;
+      let imageObserver = null;
+      let scrollObserver = null;
+
+      function getSortedStickers() {
+        let list = [...getStickers()];
+
+        if (currentPlatform !== "all") {
+          list = list.filter(s => Array.isArray(s.platforms) && s.platforms.includes(currentPlatform));
+        }
+
+        if (currentSort === "trending") {
+          // Weight downloads + featured flag
+          list.sort((a, b) => {
+            const scoreA = (a.downloads || 0) * (a.featured ? 2.5 : 1);
+            const scoreB = (b.downloads || 0) * (b.featured ? 2.5 : 1);
+            return scoreB - scoreA;
+          });
+        } else if (currentSort === "downloads") {
+          list.sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+        } else if (currentSort === "recent") {
+          list.reverse();
+        }
+
+        return list;
+      }
+
+      function buildTrendingCard(s, idx) {
+        const rank = idx + 1;
+        let rankClass = "rank-standard";
+        let rankIcon = `#${rank}`;
+        if (rank === 1) { rankClass = "rank-gold"; rankIcon = "🥇"; }
+        else if (rank === 2) { rankClass = "rank-silver"; rankIcon = "🥈"; }
+        else if (rank === 3) { rankClass = "rank-bronze"; rankIcon = "🥉"; }
+
+        const giphyColors = ['#00ccff', '#fff35c', '#9933ff', '#00ff99', '#ff2e83', '#ff6600'];
+        const cardColor = giphyColors[idx % giphyColors.length];
+        const lowResThumb = getLowResThumbnailUrl(s.imageUrl);
+        const isEager = idx < 12;
+        const srcAttr = isEager
+          ? `src="${lowResThumb}" fetchpriority="high"`
+          : `src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3C/svg%3E" data-src="${lowResThumb}" loading="lazy"`;
+
+        const packEmoji = (function(pack) {
+          if (!pack) return "✨";
+          const p = pack.toLowerCase();
+          if (p.includes("cat") || p.includes("billi")) return "🐱";
+          if (p.includes("dog") || p.includes("doggo")) return "🐶";
+          if (p.includes("desi") || p.includes("hinglish")) return "🔥";
+          if (p.includes("kid") || p.includes("baby")) return "👶";
+          if (p.includes("brainrot") || p.includes("goof")) return "🤪";
+          if (p.includes("jolochip") || p.includes("spicy")) return "🌶️";
+          if (p.includes("diva") || p.includes("queen")) return "💅";
+          if (p.includes("pop") || p.includes("aesthetic")) return "✨";
+          return "📦";
+        })(s.pack);
+
+        return `
+          <article class="sticker-card" data-id="${s.id}" onclick="window.location.href='index.html?sticker=${s.id}'" style="cursor: pointer;">
+            <div class="rank-badge ${rankClass}" title="Rank #${rank}">
+              ${rankIcon}
+            </div>
+
+            <div class="sticker-preview-box" title="Click to view details & download">
+              <div class="sticker-skeleton" style="--card-color: ${cardColor};">
+                <div class="skeleton-shimmer"></div>
+              </div>
+              <img ${srcAttr} 
+                   alt="${s.title}" 
+                   class="sticker-img" 
+                   width="160" 
+                   height="160" 
+                   decoding="async" 
+                   onload="this.classList.add('loaded');"
+                   onerror="this.classList.add('loaded');" />
+              <div class="pin-hover-overlay" onclick="event.stopPropagation()">
+                <div class="pin-top-actions">
+                  <button class="pin-btn-copy" onclick="window.location.href='index.html?sticker=${s.id}'; event.stopPropagation();" title="1-Click Copy">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <div class="pin-bottom-bar">
+                  <span class="pin-overlay-tag">🔥 #${rank} Viral</span>
+                  <div class="pin-bottom-actions">
+                    <a href="sticker-maker.html?sticker=${encodeURIComponent(s.id)}" class="pin-btn-icon" title="Animate & Edit in Studio" onclick="event.stopPropagation()">
+                      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Pinterest Card Details Footer -->
+            <div class="pin-card-info">
+              <h3 class="pin-card-title" title="${s.title}">${s.title}</h3>
+              <div class="pin-card-meta">
+                <span class="pin-pack-badge"><span class="pin-pack-icon">${packEmoji}</span> <span class="pin-pack-name">${s.pack || 'Curated Pack'}</span></span>
+                <span class="pin-chip">🔥 #${rank}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      function setupLazyImages() {
+        const lazyImages = document.querySelectorAll("img[data-src]");
+        if (!lazyImages.length) return;
+
+        if (!window.IntersectionObserver) {
+          lazyImages.forEach(img => {
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute("data-src");
+            }
+          });
+          return;
+        }
+
+        if (!imageObserver) {
+          imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                  img.src = img.dataset.src;
+                  img.removeAttribute("data-src");
+                }
+                observer.unobserve(img);
+              }
+            });
+          }, { rootMargin: "350px 0px" });
+        }
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+      }
+
+      function setupInfiniteScroll() {
+        if (scrollObserver) {
+          scrollObserver.disconnect();
+        }
+        const trigger = document.getElementById("loadMoreContainer");
+        if (!trigger || !window.IntersectionObserver) return;
+
+        scrollObserver = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            window.loadMoreTrending();
+          }
+        }, { rootMargin: "300px" });
+
+        scrollObserver.observe(trigger);
+      }
+
+      window.loadMoreTrending = function() {
+        if (isAppending) return;
+        if (visibleCount >= activeTrendingList.length) return;
+        isAppending = true;
+        const prevCount = visibleCount;
+        visibleCount += APPEND_BATCH;
+
+        const newItems = activeTrendingList.slice(prevCount, visibleCount);
+        if (newItems.length > 0) {
+          const newHtml = newItems.map((s, i) => buildTrendingCard(s, prevCount + i)).join("");
+          const trigger = document.getElementById("loadMoreContainer");
+          if (trigger) {
+            trigger.insertAdjacentHTML("beforebegin", newHtml);
+            if (visibleCount >= activeTrendingList.length) {
+              trigger.remove();
+            } else {
+              const btn = document.getElementById("loadMoreBtn");
+              if (btn) {
+                btn.textContent = `Load More Stickers (${Math.min(visibleCount, activeTrendingList.length).toLocaleString()} of ${activeTrendingList.length.toLocaleString()})`;
+              }
+            }
+          } else {
+            grid.insertAdjacentHTML("beforeend", newHtml);
+          }
+        }
+
+        setupLazyImages();
+        setupInfiniteScroll();
+        setTimeout(() => { isAppending = false; }, 200);
+      };
+
+      function renderTrending(reset = true) {
+        if (reset) {
+          visibleCount = INITIAL_BATCH;
+          activeTrendingList = getSortedStickers();
+        }
+
+        if (activeTrendingList.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+              <div style="font-size: 3rem;">🔍</div>
+              <h3 style="font-family: var(--font-sketch); font-size: 1.6rem; margin-top: 10px;">No stickers found for this filter</h3>
+              <p style="color: var(--pencil-mid);">Try selecting 'All Apps' or another ranking tab.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const visibleItems = activeTrendingList.slice(0, visibleCount);
+        const cardsHtml = visibleItems.map((s, idx) => buildTrendingCard(s, idx)).join("");
+
+        let loadMoreHtml = "";
+        if (visibleCount < activeTrendingList.length) {
+          loadMoreHtml = `
+            <div class="load-more-container" id="loadMoreContainer" style="grid-column: 1/-1; text-align: center; padding: 32px 0;">
+              <button class="btn-sketch btn-sketch-primary" id="loadMoreBtn" onclick="window.loadMoreTrending()" style="padding: 12px 32px; font-size: 1rem; font-weight: 700; border-radius: 9999px; background: #FF007A; color: #ffffff; border: none; cursor: pointer; box-shadow: 0 4px 18px rgba(255, 0, 122, 0.4);">
+                Load More Stickers (${visibleItems.length.toLocaleString()} of ${activeTrendingList.length.toLocaleString()})
+              </button>
+            </div>
+          `;
+        }
+
+        grid.innerHTML = cardsHtml + loadMoreHtml;
+        setupLazyImages();
+        setupInfiniteScroll();
+      }
+
+      // Event Listeners for Tabs
+      tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentSort = btn.getAttribute("data-sort");
+          renderTrending();
+        });
+      });
+
+      // Event Listeners for Platforms
+      platformPills.forEach(pill => {
+        pill.addEventListener("click", () => {
+          platformPills.forEach(p => p.classList.remove("active"));
+          pill.classList.add("active");
+          currentPlatform = pill.getAttribute("data-platform");
+          renderTrending();
+        });
+      });
+
+      // Global Actions
+      window.copySticker = async function(id) {
+        const stickers = getStickers();
+        const sticker = stickers.find(s => s.id === id);
+        if (!sticker) return;
+
+        showToast(`📋 Copied "${sticker.title}" to clipboard!`, "✨");
+        
+        // Also update download counter
+        sticker.downloads = (sticker.downloads || 0) + 1;
+        updateSticker(id, { downloads: sticker.downloads });
+      };
+
+      window.downloadSticker = function(id) {
+        const stickers = getStickers();
+        const sticker = stickers.find(s => s.id === id);
+        if (!sticker) return;
+
+        const a = document.createElement("a");
+        a.href = getFullQualityImageUrl(sticker.imageUrl);
+        a.download = `${sticker.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        showToast(`📥 Downloading "${sticker.title}" PNG...`, "💾");
+        sticker.downloads = (sticker.downloads || 0) + 1;
+        updateSticker(id, { downloads: sticker.downloads });
+      };
+
+      // Initial Render
+      renderTrending();
+    });
+  </script>
+</body>
+</html>
+

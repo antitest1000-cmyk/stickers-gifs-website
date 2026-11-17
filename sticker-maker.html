@@ -1,0 +1,3636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Sticker Studio & GIF Maker ✏️ Custom Transparent Stickers & Animations - StickerPencil</title>
+  <meta name="title" content="Sticker Studio & GIF Maker ✏️ Custom Transparent Stickers & Animations - StickerPencil">
+  <meta name="description" content="Create custom stickers and animated GIFs online! Add any sticker from our 1,970+ meme gallery, upload photos, draw doodles, add meme captions, animate, and export transparent PNGs or GIFs for WhatsApp & Discord.">
+  <meta name="keywords" content="online sticker maker, gif sticker maker, animated whatsapp stickers, custom discord emote maker, draw stickers in browser, animate stickers, transparent png doodle maker">
+  <meta name="author" content="StickerPencil">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://stickerpencil.com/sticker-maker.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stickerpencil.com/sticker-maker.html">
+  <meta property="og:title" content="Sticker Studio & GIF Maker ✏️ Free Transparent Stickers & Animations">
+  <meta property="og:description" content="Draw, customize, animate, and export stickers as PNG or animated GIF for WhatsApp, Discord, and Telegram.">
+  <meta property="og:image" content="https://stickerpencil.com/assets/og-cover.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://stickerpencil.com/sticker-maker.html">
+  <meta property="twitter:title" content="Sticker Studio & GIF Maker ✏️ Free Transparent Stickers & Animations">
+  <meta property="twitter:description" content="Draw, customize, animate, and export stickers as PNG or animated GIF.">
+  <meta property="twitter:image" content="https://stickerpencil.com/assets/og-cover.png">
+
+  <!-- High-Res Brand Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B0D12'/><path d='M14 8 H42 L56 22 V50 A6 6 0 0 1 50 56 H14 A6 6 0 0 1 8 50 V14 A6 6 0 0 1 14 8 Z' fill='%23FF007A'/><path d='M42 8 L56 22 H46 A4 4 0 0 1 42 18 V8 Z' fill='%2300F0FF'/><path d='M20 44 L18 46 L24 44 L40 28 A3 3 0 0 0 40 23.5 L38.5 22 A3 3 0 0 0 34 22 L18 38 L16 46 L24 44 Z' fill='%23FFFFFF'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css?v=23">
+
+  <style>
+    /* Studio Layout & Mobile-First Styling */
+    .studio-hero {
+      max-width: 900px;
+      margin: 36px auto 20px;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .studio-container {
+      max-width: 1360px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 959px) {
+      .studio-stage-card {
+        order: 1;
+      }
+      .studio-toolbar-card {
+        order: 2;
+      }
+      .studio-container {
+        padding: 0 12px;
+        gap: 16px;
+      }
+      .studio-stage-card, .studio-toolbar-card {
+        padding: 14px;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .studio-container {
+        grid-template-columns: 380px 1fr;
+        align-items: start;
+      }
+      .studio-stage-card {
+        order: 2;
+      }
+      .studio-toolbar-card {
+        order: 1;
+      }
+    }
+
+    /* Mobile Tool Tabs Bar */
+    .studio-tab-bar {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding: 4px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 16px;
+    }
+    .studio-tab-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .studio-tab-btn {
+      flex: 1;
+      min-width: 64px;
+      padding: 8px 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: var(--transition-fast);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .studio-tab-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .studio-tab-btn.active {
+      background: var(--accent-primary-subtle);
+      color: var(--accent-primary);
+      border-color: rgba(167, 139, 250, 0.35);
+      font-weight: 600;
+    }
+
+    /* Tab Panes */
+    .studio-tab-pane {
+      display: none;
+      animation: fadeInPane 0.18s ease-in-out;
+    }
+    .studio-tab-pane.active {
+      display: block;
+    }
+    @keyframes fadeInPane {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Controls Toolbar Card */
+    .studio-toolbar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .tool-group-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 16px 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .tool-group-title:first-child {
+      margin-top: 0;
+    }
+
+    /* Color Swatches */
+    .color-swatches-grid {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .color-swatch-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--border-subtle);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+      padding: 0;
+    }
+    .color-swatch-btn:hover,
+    .color-swatch-btn.active {
+      transform: scale(1.15);
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 2px var(--accent-primary-glow);
+    }
+
+    /* Brush Size Pills */
+    .size-buttons-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .size-btn {
+      flex: 1;
+      padding: 7px 0;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xs);
+      color: var(--text-secondary);
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition-fast);
+    }
+
+    .size-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .size-btn.active {
+      background: var(--accent-primary-subtle);
+      color: var(--accent-primary);
+      border-color: rgba(167, 139, 250, 0.4);
+      font-weight: 700;
+    }
+
+    /* Canvas Stage Card */
+    .studio-stage-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Stage Header bar */
+    .stage-top-bar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stage-badge-resolution {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      border-radius: var(--radius-full);
+      background: var(--accent-primary-subtle);
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    /* Quick Layer Selector Strip on Stage */
+    .stage-quick-layers-strip {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .stage-quick-layers-strip::-webkit-scrollbar { display: none; }
+    .quick-layer-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+    .quick-layer-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: nowrap;
+    }
+    .quick-layer-pill-btn {
+      padding: 4px 12px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: var(--transition-fast);
+      user-select: none;
+    }
+    .quick-layer-pill-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+    .quick-layer-pill-btn.selected {
+      background: var(--accent-primary-subtle);
+      color: var(--accent-primary);
+      font-weight: 600;
+      border-color: rgba(167, 139, 250, 0.4);
+    }
+
+    /* Canvas Checkerboard Wrapper */
+    .canvas-viewport-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Stage Interactive Transform Toolbar */
+    .stage-transform-bar {
+      width: 100%;
+      max-width: 460px;
+      margin: 12px auto 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-sizing: border-box;
+      animation: fadeInScale 0.16s ease-out;
+    }
+    .stb-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+    }
+    .stb-layer-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent-primary);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .stb-actions {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .stb-mini-btn {
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xs);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      transition: var(--transition-fast);
+      user-select: none;
+    }
+    .stb-mini-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+    .stb-mini-btn.stb-delete-btn:hover {
+      background: rgba(248, 113, 113, 0.15);
+      color: var(--accent-danger);
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+    .stb-controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 540px) {
+      .stb-controls-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+    .stb-control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.03);
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    body.sketch-dark-mode .stb-control-group {
+      background: #141418;
+      border-color: #27272a;
+    }
+    .stb-control-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-sketch);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .stb-val-badge {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: 1px 6px;
+      background: #fef08a;
+      color: #18181b;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .stb-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stb-step-btn {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper-bg);
+      border: 1.5px solid var(--pencil-black);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      user-select: none;
+      transition: all var(--trans-fast);
+    }
+    body.sketch-dark-mode .stb-step-btn {
+      background: #27272a;
+      border-color: #52525b;
+      color: #f4f4f5;
+    }
+    .stb-step-btn:hover {
+      background: #fef08a;
+      color: #18181b;
+    }
+    .stb-step-btn:active {
+      transform: scale(0.92);
+    }
+    .stb-slider {
+      flex: 1;
+      height: 8px;
+      border-radius: 4px;
+      background: #e4e4e7;
+      outline: none;
+      cursor: pointer;
+      accent-color: #f59e0b;
+    }
+    body.sketch-dark-mode .stb-slider {
+      background: #3f3f46;
+    }
+    .stb-quick-chips {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-top: 2px;
+    }
+    .stb-quick-chips::-webkit-scrollbar { display: none; }
+    .stb-chip {
+      padding: 2px 7px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: transparent;
+      border: 1px solid var(--pencil-black);
+      border-radius: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--trans-fast);
+      user-select: none;
+    }
+    body.sketch-dark-mode .stb-chip {
+      border-color: #52525b;
+      color: #a1a1aa;
+    }
+    .stb-chip:hover {
+      background: #fef08a;
+      color: #18181b;
+      border-color: #fef08a;
+    }
+
+    .canvas-checkerboard-wrapper {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 1 / 1;
+      box-sizing: border-box;
+      border: 3px dashed var(--pencil-black);
+      border-radius: 12px;
+      background-image: 
+        linear-gradient(45deg, #e5e5e5 25%, transparent 25%), 
+        linear-gradient(-45deg, #e5e5e5 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #e5e5e5 75%), 
+        linear-gradient(-45deg, transparent 75%, #e5e5e5 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    body.sketch-dark-mode .canvas-checkerboard-wrapper {
+      background-image: 
+        linear-gradient(45deg, #24242e 25%, transparent 25%), 
+        linear-gradient(-45deg, #24242e 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #24242e 75%), 
+        linear-gradient(-45deg, transparent 75%, #24242e 75%);
+      background-color: #1a1a22;
+      border-color: #52525b;
+    }
+
+    #drawingCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      touch-action: none;
+    }
+
+    /* Visual Layers List & Stack Styling */
+    .layers-stack-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 260px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-bottom: 12px;
+    }
+
+    .layer-card-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      background: var(--paper-bg);
+      border: 2px solid var(--pencil-black);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--trans-fast);
+      user-select: none;
+    }
+    body.sketch-dark-mode .layer-card-item {
+      background: #202026;
+      border-color: #3f3f46;
+    }
+    .layer-card-item.selected {
+      border-color: #f59e0b;
+      background: rgba(254, 240, 138, 0.15);
+      box-shadow: 2px 3px 0px #f59e0b;
+    }
+    body.sketch-dark-mode .layer-card-item.selected {
+      border-color: #fef08a;
+      background: rgba(254, 240, 138, 0.12);
+      box-shadow: 2px 3px 0px #fef08a;
+    }
+
+    .layer-thumb-preview {
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      border: 1.5px solid var(--pencil-black);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+    body.sketch-dark-mode .layer-thumb-preview {
+      background: #18181c;
+      border-color: #52525b;
+    }
+    .layer-thumb-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .layer-info-col {
+      flex: 1;
+      min-width: 0;
+    }
+    .layer-name-title {
+      font-family: var(--font-sketch);
+      font-size: 1.05rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+    }
+    .layer-type-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--pencil-mid);
+    }
+
+    .layer-btn-actions {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .layer-action-icon-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1.5px solid var(--pencil-black);
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all var(--trans-fast);
+      padding: 0;
+    }
+    body.sketch-dark-mode .layer-action-icon-btn {
+      border-color: #52525b;
+      color: #f4f4f5;
+    }
+    .layer-action-icon-btn:hover {
+      background: #fef08a;
+      color: #18181b;
+      border-color: #fef08a;
+    }
+
+    /* Directional Nudge D-Pad */
+    .dpad-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .dpad-grid {
+      display: grid;
+      grid-template-columns: 46px 46px 46px;
+      grid-template-rows: 46px 46px 46px;
+      gap: 5px;
+      justify-content: center;
+      align-items: center;
+    }
+    .dpad-btn {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      background: var(--paper-bg);
+      border: 2px solid var(--pencil-black);
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--pencil-black);
+      transition: all var(--trans-fast);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body.sketch-dark-mode .dpad-btn {
+      background: #202026;
+      border-color: #3f3f46;
+      box-shadow: 2px 2px 0px #09090b;
+      color: #f4f4f5;
+    }
+    .dpad-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--pencil-black);
+      background: #fef08a;
+      color: #18181b;
+    }
+    .dpad-up { grid-column: 2; grid-row: 1; }
+    .dpad-left { grid-column: 1; grid-row: 2; }
+    .dpad-center { grid-column: 2; grid-row: 2; background: #fef08a; color: #18181b; font-weight: 700; }
+    body.sketch-dark-mode .dpad-center { background: #fef08a; color: #18181b; }
+    .dpad-right { grid-column: 3; grid-row: 2; }
+    .dpad-down { grid-column: 2; grid-row: 3; }
+
+    /* Active Layer Sliders */
+    .layer-controls-box {
+      background: var(--paper-bg);
+      border: 2px solid var(--pencil-black);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+    body.sketch-dark-mode .layer-controls-box {
+      background: #202026;
+      border-color: #3f3f46;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .slider-row label {
+      font-family: var(--font-sketch);
+      font-size: 0.95rem;
+      width: 75px;
+      flex-shrink: 0;
+    }
+    .slider-row input[type="range"] {
+      flex: 1;
+      accent-color: #f59e0b;
+    }
+    .slider-val {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      width: 38px;
+      text-align: right;
+    }
+
+    /* Animation Presets Grid */
+    .animation-presets-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .anim-preset-btn {
+      padding: 8px 10px;
+      font-family: var(--font-sketch);
+      font-size: 1.05rem;
+      background: var(--paper-bg);
+      border: 2px solid var(--pencil-black);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--trans-fast);
+      text-align: left;
+    }
+    body.sketch-dark-mode .anim-preset-btn {
+      background: #202026;
+      border-color: #3f3f46;
+      color: #f4f4f5;
+    }
+    .anim-preset-btn:hover,
+    .anim-preset-btn.active {
+      background: #fef08a;
+      color: #18181b;
+      border-color: var(--pencil-black);
+      font-weight: 700;
+      transform: translateY(-2px);
+      box-shadow: 2px 2px 0px var(--pencil-black);
+    }
+    body.sketch-dark-mode .anim-preset-btn.active {
+      background: #fef08a;
+      color: #18181b;
+      border-color: #fef08a;
+      box-shadow: 2px 2px 0px #09090b;
+    }
+
+    /* Stage Bottom Actions */
+    .stage-actions-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .stage-actions-row .btn-sketch {
+      padding: 8px 4px;
+      font-size: 0.92rem;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    /* Sticker Modal / Drawer Picker */
+    .sticker-picker-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(5px);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .sticker-picker-modal.active {
+      display: flex;
+    }
+
+    .sticker-picker-card {
+      background: var(--paper-card);
+      border: 3px solid var(--pencil-black);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sketch-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    body.sketch-dark-mode .sticker-picker-card {
+      background: #18181c;
+      border-color: #3f3f46;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+    }
+
+    .picker-header {
+      padding: 14px 18px;
+      border-bottom: 2px solid var(--pencil-black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    body.sketch-dark-mode .picker-header {
+      border-color: #3f3f46;
+    }
+
+    .picker-search-bar {
+      padding: 10px 18px;
+      border-bottom: 2px solid var(--pencil-black);
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+    }
+    body.sketch-dark-mode .picker-search-bar {
+      border-color: #3f3f46;
+    }
+
+    .picker-pills-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .picker-pills-row::-webkit-scrollbar { display: none; }
+
+    .picker-pill-btn {
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      border: 1.5px solid var(--pencil-black);
+      border-radius: 12px;
+      background: var(--paper-bg);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--trans-fast);
+    }
+    body.sketch-dark-mode .picker-pill-btn {
+      background: #202026;
+      border-color: #3f3f46;
+      color: #f4f4f5;
+    }
+    .picker-pill-btn.active {
+      background: #fef08a;
+      color: #18181b;
+      font-weight: 700;
+      border-color: var(--pencil-black);
+    }
+
+    .picker-grid {
+      padding: 16px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: 12px;
+      flex: 1;
+    }
+
+    .picker-item-btn {
+      background: var(--paper-bg);
+      border: 2px solid var(--pencil-black);
+      border-radius: 10px;
+      padding: 8px;
+      cursor: pointer;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--trans-bounce), box-shadow var(--trans-fast);
+      position: relative;
+    }
+    body.sketch-dark-mode .picker-item-btn {
+      background: #202026;
+      border-color: #3f3f46;
+    }
+    .picker-item-btn:hover,
+    .picker-item-btn:active {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 2px 3px 0px var(--pencil-black);
+      border-color: #f59e0b;
+    }
+    .picker-item-btn img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    /* Live Animation Progress Overlay */
+    .export-progress-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 400;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .export-progress-modal.active {
+      display: flex;
+    }
+    .export-progress-box {
+      background: var(--paper-card);
+      border: 3px solid var(--pencil-black);
+      border-radius: 14px;
+      padding: 28px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-sketch-lg);
+    }
+    body.sketch-dark-mode .export-progress-box {
+      background: #18181c;
+      border-color: #3f3f46;
+    }
+    .export-progress-bar-bg {
+      width: 100%;
+      height: 14px;
+      background: #e4e4e7;
+      border: 2px solid var(--pencil-black);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 16px 0 8px;
+    }
+    body.sketch-dark-mode .export-progress-bar-bg {
+      background: #27272a;
+      border-color: #52525b;
+    }
+    .export-progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #22c55e;
+      transition: width 0.15s ease;
+    }
+
+    /* Drop Zone Overlay */
+    .drop-zone-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(254, 240, 138, 0.88);
+      border: 3px dashed #18181b;
+      border-radius: 10px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: var(--font-sketch);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #18181b;
+      pointer-events: none;
+      z-index: 20;
+    }
+    .canvas-checkerboard-wrapper.drag-over .drop-zone-overlay {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="sketch-dark-mode">
+
+  <!-- ========================================================================
+       TOP HEADER NAVIGATION BAR
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" aria-label="StickerPencil Home">
+        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+          <defs>
+            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF007A"/>
+              <stop offset="55%" stop-color="#FF2E83"/>
+              <stop offset="100%" stop-color="#9333EA"/>
+            </linearGradient>
+            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F0FF"/>
+              <stop offset="100%" stop-color="#00C8FF"/>
+            </linearGradient>
+            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
+          <g transform="translate(6, 6)">
+            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
+            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
+            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#00f0ff" stroke-width="2.2" fill="#00f0ff" fill-opacity="0.18"/>
+                <circle cx="9" cy="10" r="1.5" fill="#00f0ff"/>
+                <circle cx="15" cy="10" r="1.5" fill="#00f0ff"/>
+                <path d="M8 14.5c1.2 1.5 2.5 2 4 2s2.8-.5 4-2" stroke="#00f0ff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Explore</span>
+            </a>
+          </li>
+          <li>
+            <a href="packs.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#FF007A" stroke-width="2.2" fill="#FF007A" fill-opacity="0.25"/>
+              </svg>
+              <span>Packs</span>
+            </a>
+          </li>
+          <li>
+            <a href="trending.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="#a855f7" fill-opacity="0.3" stroke="#a855f7" stroke-width="2"/>
+              </svg>
+              <span>Trending</span>
+            </a>
+          </li>
+          <li>
+            <a href="categories.html" class="nav-link">
+              <!-- GIPHY-Style 4-Color Vibrant Grid -->
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <rect x="3" y="3" width="7.5" height="7.5" rx="2" fill="#00ccff"/>
+                <rect x="13.5" y="3" width="7.5" height="7.5" rx="2" fill="#fff35c"/>
+                <rect x="3" y="13.5" width="7.5" height="7.5" rx="2" fill="#9933ff"/>
+                <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" fill="#FF007A"/>
+              </svg>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li>
+            <a href="sticker-maker.html" class="nav-link nav-link-studio active">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#00ff99" stroke-width="2.2" fill="#00ff99" fill-opacity="0.15"/>
+                <path d="M12 7v10M7 12h10" stroke="#00ff99" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <span>Studio</span>
+              <span class="studio-badge-cute">New</span>
+            </a>
+          </li>
+          <li class="nav-dropdown-item">
+            <button class="nav-link nav-dropdown-btn" type="button" aria-expanded="false" aria-haspopup="true">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="#cbd5e1">
+                <circle cx="12" cy="5" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="19" r="2.2"/>
+              </svg>
+              <span>More</span>
+              <svg class="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+              <svg class="nav-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/><circle cx="5" cy="12" r="1.5"/>
+              </svg>
+              More
+              <svg class="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="blog.html" class="dropdown-link cyan">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                    <path d="M6 6h10"/>
+                    <path d="M6 10h10"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Blog Guides</span>
+                  <span class="dropdown-desc">Tutorials, ideas &amp; packs</span>
+                </div>
+              </a>
+              <a href="how-to-use.html" class="dropdown-link yellow">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">How to Use</span>
+                  <span class="dropdown-desc">1-Click WhatsApp &amp; Discord import</span>
+                </div>
+              </a>
+              <a href="alternatives.html" class="dropdown-link purple">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 3h5v5"/>
+                    <path d="M4 20L21 3"/>
+                    <path d="M21 16v5h-5"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Compare Alternatives</span>
+                  <span class="dropdown-desc">vs Sticker.ly, Tenor &amp; GIPHY</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="admin.html" class="dropdown-link pink">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Cloud Admin</span>
+                  <span class="dropdown-desc">Sync stickers &amp; CDN stats</span>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="mode-toggle-btn" id="modeToggleBtn" aria-label="Toggle Dark / Light Mode" title="Toggle Light / Dark Mode">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO BANNER
+       ======================================================================== -->
+  <section class="studio-hero">
+    <div class="hero-badge-pill">✨ Advanced Studio & GIF Maker</div>
+    <h1 class="hero-title" style="margin-top: 12px; margin-bottom: 12px;">
+      Sticker & Animated GIF Studio 🎬
+    </h1>
+    <p class="hero-subtitle" style="color: var(--text-secondary); max-width: 720px; margin: 0 auto;">
+      Add any sticker from our 1,970+ gallery, upload your own photos, doodle, stamp captions, animate, and export transparent PNGs or GIFs for WhatsApp & Discord!
+    </p>
+  </section>
+
+  <!-- ========================================================================
+       STUDIO MAIN ENGINE
+       ======================================================================== -->
+  <main class="studio-container">
+
+    <!-- Controls Toolbar Column -->
+    <aside class="studio-toolbar-card">
+
+      <!-- Mobile Tool Tabs -->
+      <nav class="studio-tab-bar" aria-label="Studio Tools">
+        <button class="studio-tab-btn active" data-tab="tab-draw">
+          <span>🎨</span>
+          <span>Doodle</span>
+        </button>
+        <button class="studio-tab-btn" data-tab="tab-stickers">
+          <span>🖼️</span>
+          <span>Stickers</span>
+        </button>
+        <button class="studio-tab-btn" data-tab="tab-photo">
+          <span>📷</span>
+          <span>Photo</span>
+        </button>
+        <button class="studio-tab-btn" data-tab="tab-text">
+          <span>💬</span>
+          <span>Caption</span>
+        </button>
+        <button class="studio-tab-btn" data-tab="tab-layers">
+          <span>📚</span>
+          <span>Layers <b id="tabLayersCountBadge">(1)</b></span>
+        </button>
+        <button class="studio-tab-btn" data-tab="tab-animate">
+          <span>🎬</span>
+          <span>Animate</span>
+        </button>
+        <button class="studio-tab-btn" data-tab="tab-export">
+          <span>💾</span>
+          <span>Export</span>
+        </button>
+      </nav>
+
+      <!-- TAB 1: DOODLE / DRAWING -->
+      <div class="studio-tab-pane active" id="tab-draw">
+        <div class="tool-group-title"><span>🎨</span> Ink Colors</div>
+        <div class="color-swatches-grid" id="colorSwatches">
+          <button class="color-swatch-btn active" style="background: #18181b;" data-color="#18181b" title="Charcoal Black"></button>
+          <button class="color-swatch-btn" style="background: #ffffff;" data-color="#ffffff" title="Paper White"></button>
+          <button class="color-swatch-btn" style="background: #fef08a;" data-color="#fef08a" title="Highlighter Yellow"></button>
+          <button class="color-swatch-btn" style="background: #f43f5e;" data-color="#f43f5e" title="Neon Rose"></button>
+          <button class="color-swatch-btn" style="background: #22c55e;" data-color="#22c55e" title="WhatsApp Mint"></button>
+          <button class="color-swatch-btn" style="background: #38bdf8;" data-color="#38bdf8" title="Sky Cyan"></button>
+          <button class="color-swatch-btn" style="background: #818cf8;" data-color="#818cf8" title="Discord Blurple"></button>
+          <button class="color-swatch-btn" style="background: #f97316;" data-color="#f97316" title="Reddit Orange"></button>
+        </div>
+
+        <div class="tool-group-title"><span>✏️</span> Pen Thickness</div>
+        <div class="size-buttons-row">
+          <button class="size-btn" data-size="4">Fine (4px)</button>
+          <button class="size-btn active" data-size="8">Medium (8px)</button>
+          <button class="size-btn" data-size="16">Thick (16px)</button>
+          <button class="size-btn" data-size="28">Marker (28px)</button>
+        </div>
+
+        <div class="tool-group-title"><span>🛠️</span> Brush Mode</div>
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <button class="btn-sketch btn-sketch-sm active" id="penToolBtn" style="flex: 1;">✏️ Pen</button>
+          <button class="btn-sketch btn-sketch-sm" id="eraserToolBtn" style="flex: 1;">🧹 Eraser</button>
+        </div>
+
+        <div class="tool-group-title"><span>⭐</span> Click-to-Stamp Emojis</div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;">
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="✨">✨</button>
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="💖">💖</button>
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="🔥">🔥</button>
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="🐱">🐱</button>
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="👑">👑</button>
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="😂">😂</button>
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="💀">💀</button>
+          <button class="btn-sketch btn-sketch-sm stamp-btn" data-stamp="🕶️">🕶️</button>
+        </div>
+
+        <button class="btn-sketch btn-sketch-sm" id="clearDoodleBtn" style="width: 100%; border-color: #ef4444; color: #ef4444;">
+          🧹 Clear Doodles Only
+        </button>
+      </div>
+
+      <!-- TAB 2: WEBSITE STICKERS (1978 Cloudinary Stickers) -->
+      <div class="studio-tab-pane" id="tab-stickers">
+        <div class="tool-group-title">
+          <span>🖼️</span>
+          <span>Gallery Stickers</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--pencil-mid); margin-bottom: 12px;">
+          Pick any sticker from our 1,970+ desi, cat, doggo, and meme collection to drop onto the canvas!
+        </p>
+
+        <button class="btn-sketch btn-sketch-primary" id="openStickerPickerBtn" style="width: 100%; margin-bottom: 12px; font-size: 1.15rem; padding: 10px;">
+          🔍 Browse 1,970+ Stickers
+        </button>
+
+        <div class="tool-group-title"><span>⚡</span> Quick Picks</div>
+        <div id="studioQuickStickersGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px;">
+          <!-- Dynamically populated from real stickers -->
+        </div>
+      </div>
+
+      <!-- TAB 3: PHOTO / IMAGE UPLOAD -->
+      <div class="studio-tab-pane" id="tab-photo">
+        <div class="tool-group-title">
+          <span>📷</span>
+          <span>Upload Custom Photo</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--pencil-mid); margin-bottom: 12px;">
+          Upload any picture from your camera roll, drag & drop directly onto the canvas, or press <b>Ctrl+V</b> to paste!
+        </p>
+
+        <input type="file" id="photoFileInput" accept="image/*" style="display: none;" />
+        <button class="btn-sketch btn-sketch-primary" id="choosePhotoBtn" style="width: 100%; margin-bottom: 10px; padding: 12px; font-size: 1.15rem;">
+          📁 Choose Image / Photo
+        </button>
+
+        <div class="layer-controls-box" id="activeImageControlsBox" style="display: none;">
+          <div style="font-family: var(--font-sketch); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #f59e0b;">
+            ✏️ Selected Photo Controls
+          </div>
+          <div class="slider-row">
+            <label>Scale:</label>
+            <input type="range" id="layerScaleSlider" min="0.2" max="2.5" step="0.05" value="1.0" />
+            <span class="slider-val" id="layerScaleVal">1.0x</span>
+          </div>
+          <div class="slider-row">
+            <label>Rotate:</label>
+            <input type="range" id="layerRotateSlider" min="-180" max="180" step="1" value="0" />
+            <span class="slider-val" id="layerRotateVal">0°</span>
+          </div>
+          <div style="display: flex; gap: 6px; margin-top: 8px;">
+            <button class="btn-sketch btn-sketch-sm" id="layerFlipXBtn" style="flex: 1;">↔️ Flip</button>
+            <button class="btn-sketch btn-sketch-sm" id="layerCenterBtn" style="flex: 1;">🎯 Center</button>
+            <button class="btn-sketch btn-sketch-sm" id="layerDeleteBtn" style="flex: 1; border-color: #ef4444; color: #ef4444;">🗑️ Remove</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MEME CAPTION & TEXT -->
+      <div class="studio-tab-pane" id="tab-text">
+        <div class="tool-group-title">
+          <span>💬</span>
+          <span>Meme Caption</span>
+        </div>
+        
+        <input 
+          type="text" 
+          id="captionTextInput" 
+          class="auth-input" 
+          placeholder="e.g. Bruh, Chup Kar, Mood..." 
+          style="padding: 10px; font-size: 1.1rem; margin-bottom: 10px;" 
+        />
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+          <div>
+            <label style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pencil-mid);">Font Style:</label>
+            <select id="captionFontSelect" class="auth-input" style="padding: 6px; font-size: 0.9rem;">
+              <option value="'Plus Jakarta Sans', sans-serif" selected>Plus Jakarta Sans</option>
+              <option value="'Inter', sans-serif">Inter Clean</option>
+              <option value="'Impact', sans-serif">Meme Impact</option>
+              <option value="'Space Mono', monospace">Retro Mono</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pencil-mid);">Text Color:</label>
+            <div style="display: flex; gap: 6px; align-items: center; margin-top: 4px;">
+              <input type="color" id="captionColorPicker" value="#ffffff" style="width: 38px; height: 34px; border: 2px solid var(--pencil-black); border-radius: 6px; cursor: pointer; padding: 0;" />
+              <input type="color" id="captionStrokeColorPicker" value="#000000" style="width: 38px; height: 34px; border: 2px solid var(--pencil-black); border-radius: 6px; cursor: pointer; padding: 0;" title="Outline / Stroke Color" />
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-sketch btn-sketch-primary" id="addCaptionBtn" style="width: 100%; margin-bottom: 12px; padding: 10px; font-size: 1.15rem;">
+          ➕ Stamp Caption onto Canvas
+        </button>
+
+        <div class="layer-controls-box" id="activeTextControlsBox" style="display: none;">
+          <div style="font-family: var(--font-sketch); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #f59e0b;">
+            💬 Selected Text Controls
+          </div>
+          <div class="slider-row">
+            <label>Size:</label>
+            <input type="range" id="textSizeSlider" min="16" max="96" step="2" value="38" />
+            <span class="slider-val" id="textSizeVal">38px</span>
+          </div>
+          <div class="slider-row">
+            <label>Rotate:</label>
+            <input type="range" id="textRotateSlider" min="-180" max="180" step="1" value="0" />
+            <span class="slider-val" id="textRotateVal">0°</span>
+          </div>
+          <button class="btn-sketch btn-sketch-sm" id="textDeleteBtn" style="width: 100%; border-color: #ef4444; color: #ef4444; margin-top: 6px;">
+            🗑️ Delete Text
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 5: LAYERS SYSTEM & REORDERING & EASY MOVE -->
+      <div class="studio-tab-pane" id="tab-layers">
+        <div class="tool-group-title">
+          <span>📚</span>
+          <span>Layers Stack</span>
+          <button class="btn-sketch btn-sketch-sm" id="deselectLayerBtn" style="font-size: 0.8rem; padding: 3px 8px;">Deselect</button>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--pencil-mid); margin-bottom: 10px;">
+          Click any layer to select it. Reorder with ⬆️/⬇️, hide with 👁️, or lock with 🔒.
+        </p>
+
+        <!-- Dynamic Layer List -->
+        <div class="layers-stack-list" id="layersStackList">
+          <!-- Injected dynamically -->
+        </div>
+
+        <!-- Selected Layer Movement & Transform D-Pad -->
+        <div class="layer-controls-box" id="layerTransformPad" style="display: none; margin-top: 14px; border-color: #f59e0b;">
+          <div class="tool-group-title" style="margin-top: 0; color: #f59e0b;">
+            <span>🕹️</span>
+            <span id="transformPadTitle">Move Selected Layer</span>
+          </div>
+          <div style="font-size: 0.82rem; color: var(--pencil-mid); margin-bottom: 6px; text-align: center;">
+            Touch / click D-Pad arrows to move with precision:
+          </div>
+
+          <!-- 4-Way Precision D-Pad -->
+          <div class="dpad-wrapper">
+            <div class="dpad-grid">
+              <button class="dpad-btn dpad-up" id="nudgeUpBtn" title="Nudge Up (8px)">⬆️</button>
+              <button class="dpad-btn dpad-left" id="nudgeLeftBtn" title="Nudge Left (8px)">⬅️</button>
+              <button class="dpad-btn dpad-center" id="nudgeCenterBtn" title="Center Layer (x:256, y:256)">🎯</button>
+              <button class="dpad-btn dpad-right" id="nudgeRightBtn" title="Nudge Right (8px)">➡️</button>
+              <button class="dpad-btn dpad-down" id="nudgeDownBtn" title="Nudge Down (8px)">⬇️</button>
+            </div>
+          </div>
+
+          <!-- Quick Scale, Rotate & Flip Buttons -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 10px 0 8px;">
+            <button class="btn-sketch btn-sketch-sm" id="quickZoomInBtn" title="Scale Up (+10%)">➕ Bigger</button>
+            <button class="btn-sketch btn-sketch-sm" id="quickZoomOutBtn" title="Scale Down (-10%)">➖ Smaller</button>
+            <button class="btn-sketch btn-sketch-sm" id="quickRotateLeftBtn" title="Rotate Counter-Clockwise (-15°)">⟲ -15°</button>
+            <button class="btn-sketch btn-sketch-sm" id="quickRotateRightBtn" title="Rotate Clockwise (+15°)">⟳ +15°</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+            <button class="btn-sketch btn-sketch-sm" id="padFlipXBtn">↔️ Flip</button>
+            <button class="btn-sketch btn-sketch-sm" id="padDuplicateBtn">📋 Clone</button>
+            <button class="btn-sketch btn-sketch-sm" id="padDeleteBtn" style="border-color: #ef4444; color: #ef4444;">🗑️ Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 6: ANIMATION & GIF STUDIO -->
+      <div class="studio-tab-pane" id="tab-animate">
+        <div class="tool-group-title">
+          <span>🎬</span>
+          <span>Animation Effect</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--pencil-mid); margin-bottom: 12px;">
+          Choose an animation preset. Your sticker will dance and can be saved as an animated GIF!
+        </p>
+
+        <div class="animation-presets-grid" id="animPresetsGrid">
+          <button class="anim-preset-btn active" data-anim="none">
+            <span>⏹️</span> Static (None)
+          </button>
+          <button class="anim-preset-btn" data-anim="bounce">
+            <span>💥</span> Bounce Jump
+          </button>
+          <button class="anim-preset-btn" data-anim="pulse">
+            <span>💓</span> Pulse Beat
+          </button>
+          <button class="anim-preset-btn" data-anim="wobble">
+            <span>🌀</span> Jiggle Wobble
+          </button>
+          <button class="anim-preset-btn" data-anim="spin">
+            <span>🔄</span> Spin 360°
+          </button>
+          <button class="anim-preset-btn" data-anim="shake">
+            <span>⚡</span> Comedy Shake
+          </button>
+          <button class="anim-preset-btn" data-anim="float">
+            <span>👻</span> Floating Ghost
+          </button>
+          <button class="anim-preset-btn" data-anim="rainbow">
+            <span>🌈</span> Rainbow Shift
+          </button>
+        </div>
+
+        <div class="slider-row" style="margin-top: 8px;">
+          <label>Speed:</label>
+          <input type="range" id="animSpeedSlider" min="0.5" max="2.5" step="0.25" value="1.0" />
+          <span class="slider-val" id="animSpeedVal">1.0x</span>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 12px;">
+          <button class="btn-sketch btn-sketch-primary" id="togglePlayBtn" style="flex: 1; padding: 10px; font-size: 1.15rem;">
+            ▶ Play Animation
+          </button>
+          <button class="btn-sketch" id="resetAnimBtn" style="padding: 10px;">
+            🔄 Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 7: EXPORT & SAVE -->
+      <div class="studio-tab-pane" id="tab-export">
+        <div class="tool-group-title">
+          <span>💾</span>
+          <span>Export Formats</span>
+        </div>
+
+        <button class="btn-sketch btn-sketch-primary" id="downloadGifBtn" style="width: 100%; margin-bottom: 10px; padding: 12px; font-size: 1.15rem; background: #22c55e; color: #ffffff; border-color: #15803d;">
+          🎬 Export Animated GIF (.gif)
+        </button>
+
+        <button class="btn-sketch" id="downloadPngBtn" style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 1.1rem;">
+          📥 Download Transparent PNG (512x512)
+        </button>
+
+        <button class="btn-sketch" id="copyClipboardBtn" style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 1.1rem;">
+          📋 1-Click Copy Image (WhatsApp/Discord)
+        </button>
+
+        <div class="sketch-callout" style="width: 100%; text-align: center; margin-top: 12px; font-size: 0.82rem; padding: 10px 14px; box-sizing: border-box;">
+          💡 Tip: GIFs work anywhere! Transparent PNGs can be imported into Sticker.ly or sent directly on WhatsApp & Discord.
+        </div>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid var(--border-subtle); margin: 18px 0;" />
+
+      <button class="btn-sketch btn-sketch-sm" id="resetCanvasEntirelyBtn" style="width: 100%; border-color: #ef4444; color: #ef4444;">
+        ⚠️ Reset Entire Stage
+      </button>
+    </aside>
+
+    <!-- Canvas Drawing Stage -->
+    <section class="studio-stage-card">
+      
+      <!-- Stage Header -->
+      <div class="stage-top-bar">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-family: var(--font-sketch); font-size: 1.25rem; font-weight: 700;">Stage Canvas</span>
+          <span class="stage-badge-resolution">512 × 512 px</span>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <button class="btn-sketch btn-sketch-sm" id="stagePlayPauseBtn" title="Play or Pause live animation">
+            ▶ Animate
+          </button>
+          <button class="btn-sketch btn-sketch-sm" id="undoBtn" title="Undo last doodle stroke">
+            ↩ Undo
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Layer Selector Strip -->
+      <div class="stage-quick-layers-strip" id="stageQuickLayersStrip">
+        <span class="quick-layer-label">Layers:</span>
+        <div class="quick-layer-pills" id="quickLayerPills">
+          <!-- Dynamically populated layer pills: [ 🎨 Doodles ] [ 🖼️ Cat #1 ★ ] -->
+        </div>
+      </div>
+
+      <!-- Checkerboard Viewport -->
+      <div class="canvas-viewport-container">
+        <div class="canvas-checkerboard-wrapper" id="checkerboardWrapper">
+          <canvas id="drawingCanvas" width="512" height="512"></canvas>
+          <div class="drop-zone-overlay">
+            <span>📷</span>
+            <span>Drop image to add to canvas!</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Transform & Resize / Rotate Bar on Stage (Visible when a layer is selected) -->
+      <div class="stage-transform-bar" id="stageTransformBar" style="display: none;">
+        <!-- Header: Layer Name & Quick Utilities -->
+        <div class="stb-header">
+          <div class="stb-layer-info">
+            <span class="stb-layer-icon" id="stbLayerIcon">🖼️</span>
+            <span class="stb-layer-title" id="stbLayerTitle">Layer #1</span>
+          </div>
+          <div class="stb-actions">
+            <button class="stb-mini-btn" id="stbCenterBtn" title="Center on Canvas (256, 256)">🎯 Center</button>
+            <button class="stb-mini-btn" id="stbFlipBtn" title="Flip Horizontally">↔️ Flip</button>
+            <button class="stb-mini-btn" id="stbDuplicateBtn" title="Duplicate Layer">📋 Clone</button>
+            <button class="stb-mini-btn stb-delete-btn" id="stbDeleteBtn" title="Delete Layer">🗑️</button>
+          </div>
+        </div>
+
+        <!-- Sliders & Preset Chips Grid -->
+        <div class="stb-controls-grid">
+          <!-- Size / Scale Control -->
+          <div class="stb-control-group">
+            <div class="stb-control-label">
+              <span>📏 Size</span>
+              <span class="stb-val-badge" id="stbSizeVal">100%</span>
+            </div>
+            <div class="stb-slider-row">
+              <button class="stb-step-btn" id="stbScaleDownBtn" title="Scale Down (-10%)">➖</button>
+              <input type="range" id="stbScaleSlider" min="20" max="300" step="5" value="100" class="stb-slider" />
+              <button class="stb-step-btn" id="stbScaleUpBtn" title="Scale Up (+10%)">➕</button>
+            </div>
+            <div class="stb-quick-chips">
+              <button class="stb-chip" data-scale="0.5">50%</button>
+              <button class="stb-chip" data-scale="0.75">75%</button>
+              <button class="stb-chip" data-scale="1.0">100%</button>
+              <button class="stb-chip" data-scale="1.5">150%</button>
+              <button class="stb-chip" data-scale="fit">🎯 Fit</button>
+            </div>
+          </div>
+
+          <!-- Rotation Control -->
+          <div class="stb-control-group">
+            <div class="stb-control-label">
+              <span>🔄 Rotate</span>
+              <span class="stb-val-badge" id="stbRotateVal">0°</span>
+            </div>
+            <div class="stb-slider-row">
+              <button class="stb-step-btn" id="stbRotateLeftBtn" title="Rotate Counter-Clockwise (-15°)">⟲ -15°</button>
+              <input type="range" id="stbRotateSlider" min="-180" max="180" step="5" value="0" class="stb-slider" />
+              <button class="stb-step-btn" id="stbRotateRightBtn" title="Rotate Clockwise (+15°)">⟳ +15°</button>
+            </div>
+            <div class="stb-quick-chips">
+              <button class="stb-chip" data-rot="0">0°</button>
+              <button class="stb-chip" data-rot="90">90°</button>
+              <button class="stb-chip" data-rot="180">180°</button>
+              <button class="stb-chip" data-rot="-90">-90°</button>
+              <button class="stb-chip" data-rot="reset">🔄 0°</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--pencil-mid); margin-top: 8px; text-align: center;">
+        ✨ <b>On-Canvas:</b> Drag <b>corners (○)</b> to scale, top <b>handle (⟳)</b> to rotate! Or use sliders above.
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="stage-actions-row">
+        <button class="btn-sketch btn-sketch-primary" id="stageQuickGifBtn" style="background: #22c55e; color: #ffffff; border-color: #15803d;">
+          🎬 Export GIF
+        </button>
+        <button class="btn-sketch" id="stageQuickPngBtn">
+          📥 Save PNG
+        </button>
+        <button class="btn-sketch" id="stageQuickCopyBtn">
+          📋 1-Click Copy
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       WEBSITE STICKER PICKER MODAL (1978 Cloudinary Stickers)
+       ======================================================================== -->
+  <div class="sticker-picker-modal" id="stickerPickerModal" role="dialog" aria-modal="true" aria-labelledby="pickerModalTitle">
+    <div class="sticker-picker-card">
+      <div class="picker-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.5rem;">🖼️</span>
+          <h2 id="pickerModalTitle" style="font-family: var(--font-sketch); font-size: 1.4rem; margin: 0;">Add Sticker to Canvas</h2>
+        </div>
+        <button class="btn-sketch btn-sketch-sm" id="closePickerBtn" style="padding: 4px 10px; font-size: 1.2rem;">✕</button>
+      </div>
+
+      <div class="picker-search-bar">
+        <input 
+          type="search" 
+          id="pickerSearchInput" 
+          class="auth-input" 
+          placeholder="Search 1,970+ stickers (e.g. cat, desi, meme, doggo)..." 
+          style="padding: 8px 12px; font-size: 1rem;" 
+        />
+        <div class="picker-pills-row" id="pickerPillsRow">
+          <button class="picker-pill-btn active" data-pack="ALL">🌟 All (1,978)</button>
+          <button class="picker-pill-btn" data-pack="Desi Hinglish Viral">🔥 Desi Viral (479)</button>
+          <button class="picker-pill-btn" data-pack="Hinglish Classics">💬 Hinglish Classics (382)</button>
+          <button class="picker-pill-btn" data-pack="Cats Hinglish Doodles">🐱 Cats (334)</button>
+          <button class="picker-pill-btn" data-pack="Doggo Memes & Reactions">🐶 Doggos (248)</button>
+          <button class="picker-pill-btn" data-pack="Silly Goofs & Brainrot">🤪 Brainrot (215)</button>
+          <button class="picker-pill-btn" data-pack="Western Pop & Aesthetic">✨ Western Pop (166)</button>
+          <button class="picker-pill-btn" data-pack="Cute Kids & Babies">👶 Cute Kids (154)</button>
+        </div>
+      </div>
+
+      <div class="picker-grid" id="pickerGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       EXPORT PROGRESS MODAL
+       ======================================================================== -->
+  <div class="export-progress-modal" id="exportProgressModal">
+    <div class="export-progress-box">
+      <div style="font-size: 2.4rem; margin-bottom: 8px;" id="progressEmoji">🎬</div>
+      <h3 style="font-family: var(--font-sketch); font-size: 1.5rem; margin: 0;" id="progressTitle">Rendering Animated GIF...</h3>
+      <p style="font-size: 0.88rem; color: var(--pencil-mid); margin: 6px 0 0;" id="progressStatus">Encoding frames at 15 fps...</p>
+      
+      <div class="export-progress-bar-bg">
+        <div class="export-progress-bar-fill" id="progressBarFill"></div>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.85rem;" id="progressPercent">0%</div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" aria-label="StickerPencil">
+        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+          <defs>
+            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF007A"/>
+              <stop offset="55%" stop-color="#FF2E83"/>
+              <stop offset="100%" stop-color="#9333EA"/>
+            </linearGradient>
+            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F0FF"/>
+              <stop offset="100%" stop-color="#00C8FF"/>
+            </linearGradient>
+            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
+          <g transform="translate(6, 6)">
+            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
+            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
+            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        </svg>
+        </a>
+        <p style="color: var(--pencil-mid); font-size: 0.95rem;">
+          Free online sticker studio & meme GIF generator.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Platforms</h4>
+        <ul class="footer-links-list">
+          <li><a href="whatsapp-stickers.html" class="footer-link">WhatsApp Stickers</a></li>
+          <li><a href="discord-stickers.html" class="footer-link">Discord Emotes</a></li>
+          <li><a href="index.html?platform=instagram" class="footer-link">Instagram Stories</a></li>
+          <li><a href="index.html?platform=snapchat" class="footer-link">Snapchat Snaps</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Studio Features</h4>
+        <ul class="footer-links-list">
+          <li><a href="sticker-maker.html" class="footer-link">Sticker & GIF Maker</a></li>
+          <li><a href="packs.html" class="footer-link">Themed Sticker Packs</a></li>
+          <li><a href="categories.html" class="footer-link">Categories</a></li>
+          <li><a href="trending.html" class="footer-link">Trending Stickers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 StickerPencil. Hand-drawn sticker gallery & online animated GIF studio.</span>
+    </div>
+  </footer>
+
+  <!-- DEPENDENCY SCRIPTS -->
+  <script src="js/cloudinary-stickers.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/gifshot.min.js"></script>
+  <script src="js/nav-common.js"></script>
+
+  <!-- ADVANCED STUDIO LOGIC & LAYER MANAGEMENT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Core Elements
+      const canvas = document.getElementById("drawingCanvas");
+      const ctx = canvas.getContext("2d");
+      const checkerboardWrapper = document.getElementById("checkerboardWrapper");
+
+      // Offscreen doodle canvas (so drawings persist independently of images/animations)
+      const doodleCanvas = document.createElement("canvas");
+      doodleCanvas.width = 512;
+      doodleCanvas.height = 512;
+      const doodleCtx = doodleCanvas.getContext("2d");
+      doodleCtx.lineCap = "round";
+      doodleCtx.lineJoin = "round";
+
+      // Undo history for doodles
+      const undoStack = [];
+      function saveDoodleState() {
+        if (undoStack.length > 20) undoStack.shift();
+        undoStack.push(doodleCtx.getImageData(0, 0, 512, 512));
+      }
+
+      // 2. Studio State
+      const state = {
+        tool: "pen", // "pen", "eraser"
+        color: "#18181b",
+        size: 8,
+        isDrawing: false,
+        activeTab: "tab-draw",
+        // Array of layers in stacking order (index 0 is back, length-1 is top)
+        layers: [
+          {
+            id: "layer-doodles",
+            type: "doodle",
+            name: "Freehand Doodles",
+            hidden: false,
+            locked: false
+          }
+        ],
+        selectedLayerId: null,
+        animation: "none", // "none", "bounce", "pulse", "wobble", "spin", "shake", "float", "rainbow"
+        animSpeed: 1.0,
+        isPlaying: false,
+        animTime: 0,
+        lastFrameTime: performance.now()
+      };
+
+      // 3. Tab Switching
+      const tabBtns = document.querySelectorAll(".studio-tab-btn");
+      const tabPanes = document.querySelectorAll(".studio-tab-pane");
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach(b => b.classList.remove("active"));
+          tabPanes.forEach(p => p.classList.remove("active"));
+          btn.classList.add("active");
+          const tabId = btn.getAttribute("data-tab");
+          const targetPane = document.getElementById(tabId);
+          if (targetPane) targetPane.classList.add("active");
+          state.activeTab = tabId;
+        });
+      });
+
+      // 4. Color Swatches & Pen Sizes
+      const colorBtns = document.querySelectorAll(".color-swatch-btn");
+      colorBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          colorBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.color = btn.getAttribute("data-color");
+          state.tool = "pen";
+          document.getElementById("penToolBtn").classList.add("active");
+          document.getElementById("eraserToolBtn").classList.remove("active");
+        });
+      });
+
+      const sizeBtns = document.querySelectorAll(".size-btn");
+      sizeBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          sizeBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.size = parseInt(btn.getAttribute("data-size"), 10);
+        });
+      });
+
+      document.getElementById("penToolBtn").addEventListener("click", () => {
+        state.tool = "pen";
+        document.getElementById("penToolBtn").classList.add("active");
+        document.getElementById("eraserToolBtn").classList.remove("active");
+      });
+
+      document.getElementById("eraserToolBtn").addEventListener("click", () => {
+        state.tool = "eraser";
+        document.getElementById("eraserToolBtn").classList.add("active");
+        document.getElementById("penToolBtn").classList.remove("active");
+      });
+
+      document.getElementById("clearDoodleBtn").addEventListener("click", () => {
+        if (confirm("Clear all doodles?")) {
+          saveDoodleState();
+          doodleCtx.clearRect(0, 0, 512, 512);
+          renderStage();
+          syncLayersUI();
+          showToast("Doodles cleared!", "🧹");
+        }
+      });
+
+      document.getElementById("undoBtn").addEventListener("click", () => {
+        if (undoStack.length > 0) {
+          const prev = undoStack.pop();
+          doodleCtx.putImageData(prev, 0, 0);
+          renderStage();
+          showToast("Undone last stroke", "↩");
+        } else {
+          showToast("Nothing to undo", "ℹ️");
+        }
+      });
+
+      // Stamp Emojis
+      document.querySelectorAll(".stamp-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const stamp = btn.getAttribute("data-stamp");
+          addTextLayer(stamp, { fontSize: 64, fontFamily: "'Plus Jakarta Sans', sans-serif" });
+          showToast(`Stamped ${stamp}! Drag to position.`, "✨");
+        });
+      });
+
+      // 5. Layer Selection & Management Engine
+      const layersStackList = document.getElementById("layersStackList");
+      const quickLayerPills = document.getElementById("quickLayerPills");
+      const tabLayersCountBadge = document.getElementById("tabLayersCountBadge");
+      const layerTransformPad = document.getElementById("layerTransformPad");
+      const transformPadTitle = document.getElementById("transformPadTitle");
+
+      function selectLayer(id) {
+        state.selectedLayerId = id;
+        syncLayersUI();
+        renderStage();
+      }
+
+      function deselectLayer() {
+        state.selectedLayerId = null;
+        syncLayersUI();
+        renderStage();
+      }
+
+      document.getElementById("deselectLayerBtn").addEventListener("click", deselectLayer);
+
+      function moveLayerUp(id) {
+        const idx = state.layers.findIndex(l => l.id === id);
+        if (idx < state.layers.length - 1) {
+          const temp = state.layers[idx];
+          state.layers[idx] = state.layers[idx + 1];
+          state.layers[idx + 1] = temp;
+          syncLayersUI();
+          renderStage();
+          showToast("Brought layer forward ⬆️", "📚");
+        }
+      }
+
+      function moveLayerDown(id) {
+        const idx = state.layers.findIndex(l => l.id === id);
+        if (idx > 0) {
+          const temp = state.layers[idx];
+          state.layers[idx] = state.layers[idx - 1];
+          state.layers[idx - 1] = temp;
+          syncLayersUI();
+          renderStage();
+          showToast("Sent layer backward ⬇️", "📚");
+        }
+      }
+
+      function toggleLayerVisibility(id) {
+        const layer = state.layers.find(l => l.id === id);
+        if (layer) {
+          layer.hidden = !layer.hidden;
+          syncLayersUI();
+          renderStage();
+          showToast(layer.hidden ? "Layer hidden 🕶️" : "Layer visible 👁️", "✨");
+        }
+      }
+
+      function toggleLayerLock(id) {
+        const layer = state.layers.find(l => l.id === id);
+        if (layer) {
+          layer.locked = !layer.locked;
+          syncLayersUI();
+          renderStage();
+          showToast(layer.locked ? "Layer locked 🔒" : "Layer unlocked 🔓", "✨");
+        }
+      }
+
+      function deleteLayer(id) {
+        if (id === "layer-doodles") {
+          doodleCtx.clearRect(0, 0, 512, 512);
+          showToast("Cleared doodles layer", "🧹");
+        } else {
+          state.layers = state.layers.filter(l => l.id !== id);
+          if (state.selectedLayerId === id) state.selectedLayerId = null;
+          showToast("Layer deleted", "🗑️");
+        }
+        syncLayersUI();
+        renderStage();
+      }
+
+      function duplicateLayer(id) {
+        const orig = state.layers.find(l => l.id === id);
+        if (!orig || orig.type === "doodle") return;
+        const copy = JSON.parse(JSON.stringify(orig));
+        copy.id = "layer-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+        copy.name = orig.name + " (Copy)";
+        copy.x = (orig.x || 256) + 20;
+        copy.y = (orig.y || 256) + 20;
+        if (orig.type === "image") copy.img = orig.img;
+        state.layers.push(copy);
+        state.selectedLayerId = copy.id;
+        syncLayersUI();
+        renderStage();
+        showToast("Layer cloned! 📋", "✨");
+      }
+
+      // Sync Layer UI: Update List and Stage Quick Pills
+      function syncLayersUI() {
+        tabLayersCountBadge.textContent = `(${state.layers.length})`;
+
+        // 1. Render Layers Stack List (Top layers shown at the top of list, reverse order)
+        const reversed = [...state.layers].reverse();
+        layersStackList.innerHTML = reversed.map((layer, index) => {
+          const isSelected = layer.id === state.selectedLayerId;
+          const origIdx = state.layers.indexOf(layer);
+          let icon = "🖼️";
+          let previewHtml = "";
+          if (layer.type === "doodle") {
+            icon = "🎨";
+            previewHtml = "<span>🎨</span>";
+          } else if (layer.type === "text") {
+            icon = "💬";
+            previewHtml = `<span style="font-weight:700; font-size: 0.9rem;">${layer.text.slice(0, 3)}</span>`;
+          } else if (layer.type === "image" && layer.img) {
+            icon = "🖼️";
+            previewHtml = `<img src="${layer.img.src}" alt="${layer.name}" width="40" height="40" />`;
+          }
+
+          const isTop = origIdx === state.layers.length - 1;
+          const isBottom = origIdx === 0;
+
+          return `
+            <div class="layer-card-item ${isSelected ? 'selected' : ''}" data-id="${layer.id}">
+              <div class="layer-thumb-preview">${previewHtml}</div>
+              <div class="layer-info-col">
+                <div class="layer-name-title">${layer.name}</div>
+                <div class="layer-type-meta">${layer.type.toUpperCase()} • ${layer.locked ? '🔒 Locked' : 'Unlocked'} ${layer.hidden ? '• 🕶️ Hidden' : ''}</div>
+              </div>
+              <div class="layer-btn-actions" onclick="event.stopPropagation()">
+                <button class="layer-action-icon-btn" title="Move Up (Front)" onclick="window.layerMoveUp('${layer.id}')" ${isTop ? 'disabled style="opacity:0.3;"' : ''}>⬆️</button>
+                <button class="layer-action-icon-btn" title="Move Down (Back)" onclick="window.layerMoveDown('${layer.id}')" ${isBottom ? 'disabled style="opacity:0.3;"' : ''}>⬇️</button>
+                <button class="layer-action-icon-btn" title="${layer.hidden ? 'Show' : 'Hide'}" onclick="window.layerToggleVisibility('${layer.id}')">${layer.hidden ? '🕶️' : '👁️'}</button>
+                <button class="layer-action-icon-btn" title="${layer.locked ? 'Unlock' : 'Lock'}" onclick="window.layerToggleLock('${layer.id}')">${layer.locked ? '🔒' : '🔓'}</button>
+                <button class="layer-action-icon-btn" title="Delete" onclick="window.layerDelete('${layer.id}')" style="color: #ef4444;">🗑️</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        // Attach card click listeners
+        layersStackList.querySelectorAll(".layer-card-item").forEach(card => {
+          card.addEventListener("click", () => {
+            const id = card.getAttribute("data-id");
+            selectLayer(id);
+          });
+        });
+
+        // 2. Render Stage Quick Pills
+        quickLayerPills.innerHTML = state.layers.map(layer => {
+          const isSelected = layer.id === state.selectedLayerId;
+          let icon = layer.type === 'doodle' ? '🎨' : (layer.type === 'text' ? '💬' : '🖼️');
+          const shortName = layer.name.length > 14 ? layer.name.slice(0, 12) + "…" : layer.name;
+          return `
+            <button class="quick-layer-pill-btn ${isSelected ? 'selected' : ''}" data-id="${layer.id}">
+              <span>${icon}</span>
+              <span>${shortName}</span>
+              ${isSelected ? '<span>★</span>' : ''}
+            </button>
+          `;
+        }).join("");
+
+        quickLayerPills.querySelectorAll(".quick-layer-pill-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            selectLayer(id);
+          });
+        });
+
+        // 3. Update Transform Pad Visibility & Title
+        const selected = state.layers.find(l => l.id === state.selectedLayerId);
+        if (selected && selected.type !== "doodle") {
+          layerTransformPad.style.display = "block";
+          transformPadTitle.textContent = `Move: ${selected.name}`;
+          
+          if (selected.type === "image") updateLayerControls();
+          if (selected.type === "text") updateTextControls();
+        } else {
+          layerTransformPad.style.display = "none";
+          if (selected && selected.type === "doodle") {
+            // Select doodle mode
+            state.tool = "pen";
+            document.getElementById("penToolBtn").classList.add("active");
+            document.getElementById("eraserToolBtn").classList.remove("active");
+          }
+        }
+
+        // 4. Update Quick Transform Bar on Stage
+        if (typeof syncTransformBar === "function") syncTransformBar();
+      }
+
+      // Expose to window for inline onclicks
+      window.layerMoveUp = moveLayerUp;
+      window.layerMoveDown = moveLayerDown;
+      window.layerToggleVisibility = toggleLayerVisibility;
+      window.layerToggleLock = toggleLayerLock;
+      window.layerDelete = deleteLayer;
+
+      // 6. Easy Move & Directional Nudge Pad Engine
+      function nudge(dx, dy) {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (!sel || sel.type === "doodle" || sel.locked) return;
+        sel.x = (sel.x || 256) + dx;
+        sel.y = (sel.y || 256) + dy;
+        renderStage();
+      }
+
+      document.getElementById("nudgeUpBtn").addEventListener("click", () => nudge(0, -8));
+      document.getElementById("nudgeDownBtn").addEventListener("click", () => nudge(0, 8));
+      document.getElementById("nudgeLeftBtn").addEventListener("click", () => nudge(-8, 0));
+      document.getElementById("nudgeRightBtn").addEventListener("click", () => nudge(8, 0));
+      document.getElementById("nudgeCenterBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (sel && sel.type !== "doodle") {
+          sel.x = 256;
+          sel.y = 256;
+          renderStage();
+          showToast("Centered on canvas! 🎯", "✨");
+        }
+      });
+
+      // Quick Zoom & Rotate in D-Pad
+      document.getElementById("quickZoomInBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (!sel || sel.type === "doodle") return;
+        if (sel.type === "image") sel.scale = Math.min(3.0, (sel.scale || 1.0) * 1.1);
+        if (sel.type === "text") sel.fontSize = Math.min(120, Math.round((sel.fontSize || 38) * 1.1));
+        syncLayersUI();
+        renderStage();
+      });
+
+      document.getElementById("quickZoomOutBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (!sel || sel.type === "doodle") return;
+        if (sel.type === "image") sel.scale = Math.max(0.2, (sel.scale || 1.0) * 0.9);
+        if (sel.type === "text") sel.fontSize = Math.max(14, Math.round((sel.fontSize || 38) * 0.9));
+        syncLayersUI();
+        renderStage();
+      });
+
+      document.getElementById("quickRotateLeftBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (!sel || sel.type === "doodle") return;
+        sel.rotation = ((sel.rotation || 0) - 15) % 360;
+        syncLayersUI();
+        renderStage();
+      });
+
+      document.getElementById("quickRotateRightBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (!sel || sel.type === "doodle") return;
+        sel.rotation = ((sel.rotation || 0) + 15) % 360;
+        syncLayersUI();
+        renderStage();
+      });
+
+      document.getElementById("padFlipXBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (!sel || sel.type !== "image") return;
+        sel.flipX = (sel.flipX === 1) ? -1 : 1;
+        renderStage();
+      });
+
+      document.getElementById("padDuplicateBtn").addEventListener("click", () => {
+        if (state.selectedLayerId) duplicateLayer(state.selectedLayerId);
+      });
+
+      document.getElementById("padDeleteBtn").addEventListener("click", () => {
+        if (state.selectedLayerId) deleteLayer(state.selectedLayerId);
+      });
+
+      // 7. Adding Layers (Images, Captions, Photos)
+      function addImageLayer(imgObj, name = "Sticker") {
+        const id = "layer-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+        
+        let w = imgObj.naturalWidth || imgObj.width || 300;
+        let h = imgObj.naturalHeight || imgObj.height || 300;
+        const maxDim = 320;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = (h / w) * maxDim;
+            w = maxDim;
+          } else {
+            w = (w / h) * maxDim;
+            h = maxDim;
+          }
+        }
+
+        const layer = {
+          id,
+          type: "image",
+          name,
+          img: imgObj,
+          x: 256,
+          y: 256,
+          width: w,
+          height: h,
+          scale: 1.0,
+          rotation: 0,
+          flipX: 1,
+          hidden: false,
+          locked: false
+        };
+
+        state.layers.push(layer);
+        state.selectedLayerId = id;
+        syncLayersUI();
+        renderStage();
+
+        // Switch to layers tab
+        const layersTabBtn = document.querySelector('[data-tab="tab-layers"]');
+        if (layersTabBtn) layersTabBtn.click();
+
+        showToast(`Added "${name}"! Use D-Pad or drag to move.`, "🎉");
+      }
+
+      function addTextLayer(text, options = {}) {
+        if (!text || !text.trim()) return;
+        const id = "txt-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+        const layer = {
+          id,
+          type: "text",
+          name: text.trim().slice(0, 18),
+          text: text.trim(),
+          x: 256,
+          y: options.y || 420,
+          fontSize: options.fontSize || 38,
+          fontFamily: options.fontFamily || "'Impact', sans-serif",
+          color: options.color || "#ffffff",
+          strokeColor: options.strokeColor || "#000000",
+          strokeWidth: options.strokeWidth || 5,
+          rotation: 0,
+          hidden: false,
+          locked: false
+        };
+
+        state.layers.push(layer);
+        state.selectedLayerId = id;
+        syncLayersUI();
+        renderStage();
+
+        // Switch to layers tab
+        const layersTabBtn = document.querySelector('[data-tab="tab-layers"]');
+        if (layersTabBtn) layersTabBtn.click();
+
+        showToast("Caption added! Use D-Pad or drag to move.", "💬");
+      }
+
+      // Add Caption from Input
+      document.getElementById("addCaptionBtn").addEventListener("click", () => {
+        const input = document.getElementById("captionTextInput");
+        const font = document.getElementById("captionFontSelect").value;
+        const color = document.getElementById("captionColorPicker").value;
+        const strokeColor = document.getElementById("captionStrokeColorPicker").value;
+        if (!input.value.trim()) {
+          showToast("Please enter caption text first!", "⚠️");
+          input.focus();
+          return;
+        }
+        addTextLayer(input.value, {
+          fontFamily: font,
+          color,
+          strokeColor,
+          fontSize: 42
+        });
+        input.value = "";
+      });
+
+      // Sliders Controls for Image
+      const layerControlsBox = document.getElementById("activeImageControlsBox");
+      const scaleSlider = document.getElementById("layerScaleSlider");
+      const scaleVal = document.getElementById("layerScaleVal");
+      const rotateSlider = document.getElementById("layerRotateSlider");
+      const rotateVal = document.getElementById("layerRotateVal");
+
+      function updateLayerControls() {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId && l.type === "image");
+        if (sel) {
+          layerControlsBox.style.display = "block";
+          scaleSlider.value = sel.scale;
+          scaleVal.textContent = sel.scale.toFixed(2) + "x";
+          rotateSlider.value = sel.rotation;
+          rotateVal.textContent = sel.rotation + "°";
+        } else {
+          layerControlsBox.style.display = "none";
+        }
+      }
+
+      scaleSlider.addEventListener("input", (e) => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId && l.type === "image");
+        if (sel) {
+          sel.scale = parseFloat(e.target.value);
+          scaleVal.textContent = sel.scale.toFixed(2) + "x";
+          renderStage();
+        }
+      });
+
+      rotateSlider.addEventListener("input", (e) => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId && l.type === "image");
+        if (sel) {
+          sel.rotation = parseInt(e.target.value, 10);
+          rotateVal.textContent = sel.rotation + "°";
+          renderStage();
+        }
+      });
+
+      document.getElementById("layerFlipXBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId && l.type === "image");
+        if (sel) {
+          sel.flipX = sel.flipX === 1 ? -1 : 1;
+          renderStage();
+        }
+      });
+
+      document.getElementById("layerCenterBtn").addEventListener("click", () => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (sel) {
+          sel.x = 256;
+          sel.y = 256;
+          renderStage();
+        }
+      });
+
+      document.getElementById("layerDeleteBtn").addEventListener("click", () => {
+        if (state.selectedLayerId) deleteLayer(state.selectedLayerId);
+      });
+
+      // Text Layer Controls
+      const textControlsBox = document.getElementById("activeTextControlsBox");
+      const textSizeSlider = document.getElementById("textSizeSlider");
+      const textSizeVal = document.getElementById("textSizeVal");
+      const textRotateSlider = document.getElementById("textRotateSlider");
+      const textRotateVal = document.getElementById("textRotateVal");
+
+      function updateTextControls() {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId && l.type === "text");
+        if (sel) {
+          textControlsBox.style.display = "block";
+          textSizeSlider.value = sel.fontSize;
+          textSizeVal.textContent = sel.fontSize + "px";
+          textRotateSlider.value = sel.rotation;
+          textRotateVal.textContent = sel.rotation + "°";
+        } else {
+          textControlsBox.style.display = "none";
+        }
+      }
+
+      textSizeSlider.addEventListener("input", (e) => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId && l.type === "text");
+        if (sel) {
+          sel.fontSize = parseInt(e.target.value, 10);
+          textSizeVal.textContent = sel.fontSize + "px";
+          renderStage();
+        }
+      });
+
+      textRotateSlider.addEventListener("input", (e) => {
+        const sel = state.layers.find(l => l.id === state.selectedLayerId && l.type === "text");
+        if (sel) {
+          sel.rotation = parseInt(e.target.value, 10);
+          textRotateVal.textContent = sel.rotation + "°";
+          renderStage();
+        }
+      });
+
+      document.getElementById("textDeleteBtn").addEventListener("click", () => {
+        if (state.selectedLayerId) deleteLayer(state.selectedLayerId);
+      });
+
+      // 8. Photo Upload & Drag & Drop & Paste
+      const photoInput = document.getElementById("photoFileInput");
+      document.getElementById("choosePhotoBtn").addEventListener("click", () => {
+        photoInput.click();
+      });
+
+      photoInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) handleImageFile(file);
+      });
+
+      function handleImageFile(file) {
+        if (!file.type.startsWith("image/")) {
+          showToast("Please select a valid image file", "⚠️");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.onload = () => {
+            addImageLayer(img, file.name ? file.name.slice(0, 16) : "Uploaded Photo");
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Drag and Drop
+      checkerboardWrapper.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        checkerboardWrapper.classList.add("drag-over");
+      });
+      checkerboardWrapper.addEventListener("dragleave", () => {
+        checkerboardWrapper.classList.remove("drag-over");
+      });
+      checkerboardWrapper.addEventListener("drop", (e) => {
+        e.preventDefault();
+        checkerboardWrapper.classList.remove("drag-over");
+        const file = e.dataTransfer.files[0];
+        if (file) handleImageFile(file);
+      });
+
+      // Paste from Clipboard (Ctrl+V)
+      window.addEventListener("paste", (e) => {
+        const items = e.clipboardData?.items;
+        if (!items) return;
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type.indexOf("image") !== -1) {
+            const blob = items[i].getAsFile();
+            handleImageFile(blob);
+            break;
+          }
+        }
+      });
+
+      // 9. Website Sticker Picker (1978 Cloudinary Stickers)
+      const pickerModal = document.getElementById("stickerPickerModal");
+      const openPickerBtn = document.getElementById("openStickerPickerBtn");
+      const closePickerBtn = document.getElementById("closePickerBtn");
+      const pickerGrid = document.getElementById("pickerGrid");
+      const pickerSearch = document.getElementById("pickerSearchInput");
+      const pickerPills = document.querySelectorAll(".picker-pill-btn");
+
+      let currentPickerFilter = "ALL";
+      let allStickersList = typeof getStickers === "function" ? getStickers() : [];
+
+      function renderPickerGrid() {
+        const query = (pickerSearch.value || "").toLowerCase().trim();
+        const filtered = allStickersList.filter(s => {
+          const matchPack = currentPickerFilter === "ALL" || s.pack === currentPickerFilter;
+          if (!matchPack) return false;
+          if (!query) return true;
+          return s.title.toLowerCase().includes(query) || (s.tags && s.tags.some(t => t.toLowerCase().includes(query)));
+        });
+
+        const displayStickers = filtered.slice(0, 72);
+
+        pickerGrid.innerHTML = displayStickers.map(s => `
+          <button class="picker-item-btn" data-url="${getFullQualityImageUrl(s.imageUrl)}" data-title="${s.title}" title="${s.title}">
+            <img src="${getLowResThumbnailUrl(s.imageUrl)}" alt="${s.title}" width="60" height="60" loading="lazy" decoding="async" />
+          </button>
+        `).join("");
+
+        pickerGrid.querySelectorAll(".picker-item-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const url = btn.getAttribute("data-url");
+            const title = btn.getAttribute("data-title");
+            loadStickerUrlOntoCanvas(url, title);
+            pickerModal.classList.remove("active");
+          });
+        });
+      }
+
+      function loadStickerUrlOntoCanvas(url, title = "Sticker") {
+        showToast("Loading sticker...", "⏳");
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          addImageLayer(img, title);
+        };
+        img.onerror = () => {
+          showToast("Failed to load sticker image", "❌");
+        };
+        img.src = url;
+      }
+
+      openPickerBtn.addEventListener("click", () => {
+        pickerModal.classList.add("active");
+        renderPickerGrid();
+      });
+
+      closePickerBtn.addEventListener("click", () => {
+        pickerModal.classList.remove("active");
+      });
+
+      pickerSearch.addEventListener("input", renderPickerGrid);
+
+      pickerPills.forEach(pill => {
+        pill.addEventListener("click", () => {
+          pickerPills.forEach(p => p.classList.remove("active"));
+          pill.classList.add("active");
+          currentPickerFilter = pill.getAttribute("data-pack");
+          renderPickerGrid();
+        });
+      });
+
+      // Quick picks in tab 2
+      const quickGrid = document.getElementById("studioQuickStickersGrid");
+      if (allStickersList.length > 0) {
+        const sampleStickers = allStickersList.slice(0, 8);
+        quickGrid.innerHTML = sampleStickers.map(s => `
+          <button class="picker-item-btn" data-url="${getFullQualityImageUrl(s.imageUrl)}" data-title="${s.title}" title="${s.title}">
+            <img src="${getLowResThumbnailUrl(s.imageUrl)}" alt="${s.title}" width="60" height="60" loading="lazy" decoding="async" />
+          </button>
+        `).join("");
+
+        quickGrid.querySelectorAll(".picker-item-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const url = btn.getAttribute("data-url");
+            const title = btn.getAttribute("data-title");
+            loadStickerUrlOntoCanvas(url, title);
+          });
+        });
+      }
+
+      // Check URL parameters (e.g. sticker-maker.html?sticker=cly-00b0998d)
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramSticker = urlParams.get("sticker");
+      if (paramSticker) {
+        const found = allStickersList.find(s => s.id === paramSticker || s.imageUrl === paramSticker);
+        if (found) {
+          loadStickerUrlOntoCanvas(getFullQualityImageUrl(found.imageUrl), found.title);
+        } else if (paramSticker.startsWith("http")) {
+          loadStickerUrlOntoCanvas(getFullQualityImageUrl(paramSticker), "Custom Sticker");
+        }
+      }
+
+      // 10. Interactive Touch & Pointer Canvas Engine (Handles, Drag, Resize, Rotate, Pinch)
+      let activeTransformMode = null; // null | "move" | "resize" | "rotate" | "pinch"
+      let transformTarget = null;
+      let activeResizeHandle = null; // "tl" | "tr" | "bl" | "br"
+      let dragOffset = { x: 0, y: 0 };
+      let startPointerAngle = 0;
+      let startLayerRotation = 0;
+      let startDist = 1;
+      let startScale = 1.0;
+      let startFontSize = 38;
+      let initialPinchDist = 0;
+      let initialPinchAngle = 0;
+      let initialPinchScale = 1.0;
+      let initialPinchRotation = 0;
+
+      function getCanvasCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        return {
+          x: (clientX - rect.left) * scaleX,
+          y: (clientY - rect.top) * scaleY
+        };
+      }
+
+      function getLayerDimensions(layer) {
+        if (!layer) return { w: 100, h: 100 };
+        if (layer.type === "image") {
+          const s = layer.scale || 1.0;
+          return {
+            w: (layer.width || 250) * s,
+            h: (layer.height || 250) * s
+          };
+        } else if (layer.type === "text") {
+          ctx.save();
+          ctx.font = `bold ${layer.fontSize || 38}px ${layer.fontFamily || "'Plus Jakarta Sans', sans-serif"}`;
+          const metrics = ctx.measureText(layer.text || "");
+          ctx.restore();
+          return {
+            w: metrics.width + 24,
+            h: (layer.fontSize || 38) * 1.25 + 16
+          };
+        }
+        return { w: 100, h: 100 };
+      }
+
+      function toLayerLocal(px, py, layer) {
+        const theta = ((layer.rotation || 0) * Math.PI) / 180;
+        const dx = px - (layer.x || 256);
+        const dy = py - (layer.y || 256);
+        const cos = Math.cos(-theta);
+        const sin = Math.sin(-theta);
+        return {
+          lx: dx * cos - dy * sin,
+          ly: dx * sin + dy * cos
+        };
+      }
+
+      function hitTestHandles(px, py, layer) {
+        if (!layer || layer.locked || layer.hidden || layer.type === "doodle") return null;
+        const { lx, ly } = toLayerLocal(px, py, layer);
+        const { w, h } = getLayerDimensions(layer);
+        const hw = w / 2;
+        const hh = h / 2;
+        const pad = 6;
+        const hitRadius = 24; // Generous touch target
+
+        // Rotate Knob at top stem: (0, -hh - pad - 26)
+        if (Math.hypot(lx - 0, ly - (-hh - pad - 26)) <= hitRadius) {
+          return { handle: "rotate", layer };
+        }
+
+        // 4 Corner Knobs
+        if (Math.hypot(lx - (-hw - pad), ly - (-hh - pad)) <= hitRadius) return { handle: "tl", layer };
+        if (Math.hypot(lx - (hw + pad), ly - (-hh - pad)) <= hitRadius) return { handle: "tr", layer };
+        if (Math.hypot(lx - (-hw - pad), ly - (hh + pad)) <= hitRadius) return { handle: "bl", layer };
+        if (Math.hypot(lx - (hw + pad), ly - (hh + pad)) <= hitRadius) return { handle: "br", layer };
+
+        return null;
+      }
+
+      function hitTestBody(px, py, layer) {
+        if (!layer || layer.hidden || layer.type === "doodle") return false;
+        const { lx, ly } = toLayerLocal(px, py, layer);
+        const { w, h } = getLayerDimensions(layer);
+        const hw = w / 2 + 8;
+        const hh = h / 2 + 8;
+        return Math.abs(lx) <= hw && Math.abs(ly) <= hh;
+      }
+
+      function hitTestLayers(px, py) {
+        for (let i = state.layers.length - 1; i >= 0; i--) {
+          const l = state.layers[i];
+          if (l.hidden || l.type === "doodle") continue;
+          if (hitTestBody(px, py, l)) return l;
+        }
+        return null;
+      }
+
+      function updateHoverCursor(x, y) {
+        const selected = state.layers.find(l => l.id === state.selectedLayerId);
+        if (selected && !selected.locked && selected.type !== "doodle") {
+          const handleHit = hitTestHandles(x, y, selected);
+          if (handleHit) {
+            if (handleHit.handle === "rotate") {
+              canvas.style.cursor = "grab";
+              return;
+            }
+            if (handleHit.handle === "tl" || handleHit.handle === "br") {
+              canvas.style.cursor = "nwse-resize";
+              return;
+            }
+            if (handleHit.handle === "tr" || handleHit.handle === "bl") {
+              canvas.style.cursor = "nesw-resize";
+              return;
+            }
+          }
+          if (hitTestBody(x, y, selected)) {
+            canvas.style.cursor = "move";
+            return;
+          }
+        }
+
+        const other = hitTestLayers(x, y);
+        if (other && !other.locked) {
+          canvas.style.cursor = "pointer";
+          return;
+        }
+
+        if (state.tool === "eraser" || state.tool === "pen") {
+          canvas.style.cursor = "crosshair";
+        } else {
+          canvas.style.cursor = "default";
+        }
+      }
+
+      function onPointerDown(e) {
+        // Multi-touch pinch handling for scale & rotate
+        if (e.touches && e.touches.length === 2) {
+          const t1 = e.touches[0];
+          const t2 = e.touches[1];
+          initialPinchDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+          initialPinchAngle = Math.atan2(t2.clientY - t1.clientY, t2.clientX - t1.clientX);
+          const sel = state.layers.find(l => l.id === state.selectedLayerId);
+          if (sel && !sel.locked && sel.type !== "doodle") {
+            initialPinchScale = sel.scale || 1.0;
+            initialPinchRotation = sel.rotation || 0;
+            activeTransformMode = "pinch";
+            transformTarget = sel;
+          }
+          return;
+        }
+
+        const pos = getCanvasCoords(e);
+        const selected = state.layers.find(l => l.id === state.selectedLayerId);
+
+        // 1. Check if user clicked a handle on the currently selected layer
+        if (selected && !selected.locked && selected.type !== "doodle") {
+          const handleHit = hitTestHandles(pos.x, pos.y, selected);
+          if (handleHit) {
+            if (handleHit.handle === "rotate") {
+              activeTransformMode = "rotate";
+              transformTarget = selected;
+              startPointerAngle = Math.atan2(pos.y - selected.y, pos.x - selected.x);
+              startLayerRotation = selected.rotation || 0;
+              canvas.style.cursor = "grabbing";
+              renderStage();
+              return;
+            } else {
+              activeTransformMode = "resize";
+              activeResizeHandle = handleHit.handle;
+              transformTarget = selected;
+              startDist = Math.hypot(pos.x - selected.x, pos.y - selected.y) || 1;
+              startScale = selected.scale || 1.0;
+              startFontSize = selected.fontSize || 38;
+              canvas.style.cursor = (activeResizeHandle === "tl" || activeResizeHandle === "br") ? "nwse-resize" : "nesw-resize";
+              renderStage();
+              return;
+            }
+          }
+
+          // Check if clicked inside selected layer body to move
+          if (hitTestBody(pos.x, pos.y, selected)) {
+            activeTransformMode = "move";
+            transformTarget = selected;
+            dragOffset.x = pos.x - selected.x;
+            dragOffset.y = pos.y - selected.y;
+            canvas.style.cursor = "grabbing";
+            return;
+          }
+        }
+
+        // 2. Check if clicked another layer
+        const hit = hitTestLayers(pos.x, pos.y);
+        if (hit) {
+          selectLayer(hit.id);
+          if (!hit.locked) {
+            activeTransformMode = "move";
+            transformTarget = hit;
+            dragOffset.x = pos.x - hit.x;
+            dragOffset.y = pos.y - hit.y;
+            canvas.style.cursor = "grabbing";
+          }
+          return;
+        }
+
+        // 3. Freehand doodle drawing if drawing tool active
+        if (state.tool === "pen" || state.tool === "eraser") {
+          saveDoodleState();
+          state.isDrawing = true;
+
+          doodleCtx.beginPath();
+          doodleCtx.moveTo(pos.x, pos.y);
+
+          if (state.tool === "eraser") {
+            doodleCtx.globalCompositeOperation = "destination-out";
+            doodleCtx.lineWidth = state.size * 2;
+          } else {
+            doodleCtx.globalCompositeOperation = "source-over";
+            doodleCtx.strokeStyle = state.color;
+            doodleCtx.lineWidth = state.size;
+          }
+          renderStage();
+        }
+      }
+
+      function onPointerMove(e) {
+        // Multi-touch 2-finger pinch & rotate
+        if (e.touches && e.touches.length === 2 && activeTransformMode === "pinch" && transformTarget) {
+          if (e.cancelable) e.preventDefault();
+          const t1 = e.touches[0];
+          const t2 = e.touches[1];
+          const curDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+          const curAngle = Math.atan2(t2.clientY - t1.clientY, t2.clientX - t1.clientX);
+
+          if (initialPinchDist > 0) {
+            const ratio = curDist / initialPinchDist;
+            if (transformTarget.type === "image") {
+              transformTarget.scale = Math.max(0.15, Math.min(3.5, initialPinchScale * ratio));
+            } else if (transformTarget.type === "text") {
+              transformTarget.fontSize = Math.max(12, Math.min(130, Math.round((initialPinchScale || 38) * ratio)));
+            }
+          }
+
+          const angleDiffDeg = (curAngle - initialPinchAngle) * (180 / Math.PI);
+          let newRot = Math.round(initialPinchRotation + angleDiffDeg);
+          newRot = ((newRot % 360) + 360) % 360;
+          if (newRot > 180) newRot -= 360;
+          transformTarget.rotation = newRot;
+
+          syncTransformBar();
+          renderStage();
+          return;
+        }
+
+        const pos = getCanvasCoords(e);
+
+        // Active Rotate Mode
+        if (activeTransformMode === "rotate" && transformTarget) {
+          if (e.cancelable) e.preventDefault();
+          const curAngle = Math.atan2(pos.y - transformTarget.y, pos.x - transformTarget.x);
+          const deltaDeg = (curAngle - startPointerAngle) * (180 / Math.PI);
+          let newRot = Math.round(startLayerRotation + deltaDeg);
+          newRot = ((newRot % 360) + 360) % 360;
+          if (newRot > 180) newRot -= 360;
+
+          // Snap to cardinal angles (0°, 90°, 180°, -90°) if within 3.5 degrees
+          if (Math.abs(newRot) <= 3.5) newRot = 0;
+          else if (Math.abs(newRot - 90) <= 3.5) newRot = 90;
+          else if (Math.abs(newRot + 90) <= 3.5) newRot = -90;
+          else if (Math.abs(Math.abs(newRot) - 180) <= 3.5) newRot = 180;
+
+          transformTarget.rotation = newRot;
+          syncTransformBar();
+          renderStage();
+          return;
+        }
+
+        // Active Resize Mode
+        if (activeTransformMode === "resize" && transformTarget) {
+          if (e.cancelable) e.preventDefault();
+          const curDist = Math.hypot(pos.x - transformTarget.x, pos.y - transformTarget.y);
+          const ratio = curDist / (startDist || 1);
+
+          if (transformTarget.type === "image") {
+            const newScale = Math.max(0.15, Math.min(3.5, startScale * ratio));
+            transformTarget.scale = Math.round(newScale * 100) / 100;
+          } else if (transformTarget.type === "text") {
+            const newFont = Math.max(12, Math.min(130, Math.round(startFontSize * ratio)));
+            transformTarget.fontSize = newFont;
+          }
+
+          syncTransformBar();
+          renderStage();
+          return;
+        }
+
+        // Active Move Mode
+        if (activeTransformMode === "move" && transformTarget) {
+          if (e.cancelable) e.preventDefault();
+          transformTarget.x = Math.round(pos.x - dragOffset.x);
+          transformTarget.y = Math.round(pos.y - dragOffset.y);
+          renderStage();
+          return;
+        }
+
+        // Active Doodle Drawing
+        if (state.isDrawing) {
+          if (e.cancelable) e.preventDefault();
+          doodleCtx.lineTo(pos.x, pos.y);
+          doodleCtx.stroke();
+          renderStage();
+          return;
+        }
+
+        // Idle Cursor on Desktop
+        updateHoverCursor(pos.x, pos.y);
+      }
+
+      function onPointerUp() {
+        if (activeTransformMode) {
+          activeTransformMode = null;
+          transformTarget = null;
+          activeResizeHandle = null;
+          syncLayersUI();
+          renderStage();
+        }
+        if (state.isDrawing) {
+          doodleCtx.closePath();
+          state.isDrawing = false;
+        }
+        initialPinchDist = 0;
+        window.removeEventListener("mousemove", onPointerMove);
+        window.removeEventListener("mouseup", onPointerUp);
+        window.removeEventListener("touchmove", onPointerMove);
+        window.removeEventListener("touchend", onPointerUp);
+        window.removeEventListener("touchcancel", onPointerUp);
+      }
+
+      function attachActivePointerEvents() {
+        window.addEventListener("mousemove", onPointerMove);
+        window.addEventListener("mouseup", onPointerUp);
+        window.addEventListener("touchmove", onPointerMove, { passive: false });
+        window.addEventListener("touchend", onPointerUp);
+        window.addEventListener("touchcancel", onPointerUp);
+      }
+
+      canvas.addEventListener("mousedown", (e) => {
+        attachActivePointerEvents();
+        onPointerDown(e);
+      });
+      canvas.addEventListener("mousemove", onPointerMove);
+
+      canvas.addEventListener("touchstart", (e) => {
+        attachActivePointerEvents();
+        onPointerDown(e);
+      }, { passive: false });
+
+      // 11. Animation System
+      const animBtns = document.querySelectorAll(".anim-preset-btn");
+      animBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          animBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.animation = btn.getAttribute("data-anim");
+          if (state.animation !== "none" && !state.isPlaying) {
+            startAnimation();
+          } else if (state.animation === "none") {
+            stopAnimation();
+          }
+          renderStage();
+        });
+      });
+
+      const animSpeedSlider = document.getElementById("animSpeedSlider");
+      const animSpeedVal = document.getElementById("animSpeedVal");
+      animSpeedSlider.addEventListener("input", (e) => {
+        state.animSpeed = parseFloat(e.target.value);
+        animSpeedVal.textContent = state.animSpeed.toFixed(1) + "x";
+      });
+
+      const togglePlayBtn = document.getElementById("togglePlayBtn");
+      const stagePlayPauseBtn = document.getElementById("stagePlayPauseBtn");
+
+      function startAnimation() {
+        if (state.isPlaying) return;
+        state.isPlaying = true;
+        togglePlayBtn.textContent = "⏸ Pause Animation";
+        stagePlayPauseBtn.textContent = "⏸ Pause";
+        state.lastFrameTime = performance.now();
+        requestAnimationFrame(animLoop);
+      }
+
+      function stopAnimation() {
+        state.isPlaying = false;
+        togglePlayBtn.textContent = "▶ Play Animation";
+        stagePlayPauseBtn.textContent = "▶ Animate";
+        renderStage(0);
+      }
+
+      togglePlayBtn.addEventListener("click", () => {
+        if (state.isPlaying) stopAnimation();
+        else {
+          if (state.animation === "none") {
+            const bounceBtn = document.querySelector('[data-anim="bounce"]');
+            if (bounceBtn) bounceBtn.click();
+          }
+          startAnimation();
+        }
+      });
+
+      stagePlayPauseBtn.addEventListener("click", () => {
+        togglePlayBtn.click();
+      });
+
+      document.getElementById("resetAnimBtn").addEventListener("click", () => {
+        const noneBtn = document.querySelector('[data-anim="none"]');
+        if (noneBtn) noneBtn.click();
+      });
+
+      function animLoop(now) {
+        if (!state.isPlaying) return;
+        const delta = (now - state.lastFrameTime) / 1000;
+        state.lastFrameTime = now;
+        state.animTime += delta * state.animSpeed;
+        renderStage(state.animTime);
+        requestAnimationFrame(animLoop);
+      }
+
+      // 12. Core Stacking & Rendering Engine
+      function renderStage(time = state.animTime, targetCtx = ctx) {
+        targetCtx.clearRect(0, 0, 512, 512);
+
+        // Compute global animation transforms
+        let animOffsetX = 0;
+        let animOffsetY = 0;
+        let animScale = 1.0;
+        let animRotation = 0;
+        let filterEffect = "none";
+
+        if (state.animation !== "none" && (state.isPlaying || time > 0)) {
+          const t = time * 4;
+          switch (state.animation) {
+            case "bounce":
+              animOffsetY = -Math.abs(Math.sin(t)) * 28;
+              animScale = 1 + (animOffsetY / 28) * 0.08;
+              break;
+            case "pulse":
+              animScale = 1 + Math.sin(t) * 0.14;
+              break;
+            case "wobble":
+              animRotation = Math.sin(t) * (14 * Math.PI / 180);
+              break;
+            case "spin":
+              animRotation = (time * 3) % (Math.PI * 2);
+              break;
+            case "shake":
+              animOffsetX = (Math.random() - 0.5) * 14;
+              animOffsetY = (Math.random() - 0.5) * 14;
+              break;
+            case "float":
+              animOffsetX = Math.sin(time * 2) * 12;
+              animOffsetY = Math.cos(time * 3) * 16;
+              break;
+            case "rainbow":
+              filterEffect = `hue-rotate(${(time * 160) % 360}deg)`;
+              break;
+          }
+        }
+
+        targetCtx.save();
+        if (filterEffect !== "none") targetCtx.filter = filterEffect;
+
+        // Apply global animation center
+        targetCtx.translate(256 + animOffsetX, 256 + animOffsetY);
+        targetCtx.scale(animScale, animScale);
+        targetCtx.rotate(animRotation);
+        targetCtx.translate(-256, -256);
+
+        // Render each layer strictly in state.layers stacking order
+        state.layers.forEach(layer => {
+          if (layer.hidden) return; // Skip hidden layers
+
+          if (layer.type === "doodle") {
+            targetCtx.drawImage(doodleCanvas, 0, 0);
+          } else if (layer.type === "image" && layer.img) {
+            targetCtx.save();
+            targetCtx.translate(layer.x, layer.y);
+            targetCtx.rotate(((layer.rotation || 0) * Math.PI) / 180);
+            targetCtx.scale((layer.scale || 1.0) * (layer.flipX || 1), (layer.scale || 1.0));
+
+            targetCtx.drawImage(
+              layer.img,
+              -layer.width / 2,
+              -layer.height / 2,
+              layer.width,
+              layer.height
+            );
+
+            targetCtx.restore();
+
+            // If selected, draw outline with 4 grab corners & top rotate knob
+            if (layer.id === state.selectedLayerId && targetCtx === ctx) {
+              drawSelectionBoundingBox(targetCtx, layer);
+            }
+          } else if (layer.type === "text") {
+            targetCtx.save();
+            targetCtx.translate(layer.x, layer.y);
+            targetCtx.rotate(((layer.rotation || 0) * Math.PI) / 180);
+            targetCtx.font = `bold ${layer.fontSize}px ${layer.fontFamily}`;
+            targetCtx.textAlign = "center";
+            targetCtx.textBaseline = "middle";
+
+            if (layer.strokeWidth > 0) {
+              targetCtx.strokeStyle = layer.strokeColor;
+              targetCtx.lineWidth = layer.strokeWidth;
+              targetCtx.strokeText(layer.text, 0, 0);
+            }
+
+            targetCtx.fillStyle = layer.color;
+            targetCtx.fillText(layer.text, 0, 0);
+
+            targetCtx.restore();
+
+            // If selected, draw bounding box
+            if (layer.id === state.selectedLayerId && targetCtx === ctx) {
+              drawSelectionBoundingBox(targetCtx, layer);
+            }
+          }
+        });
+
+        targetCtx.restore();
+      }
+
+      // Helper to draw visual bounding box & interactive transform handles around selected layer
+      function drawSelectionBoundingBox(c, layer) {
+        if (!layer) return;
+        c.save();
+        c.translate(layer.x || 256, layer.y || 256);
+        c.rotate(((layer.rotation || 0) * Math.PI) / 180);
+
+        const dims = getLayerDimensions(layer);
+        const w = dims.w;
+        const h = dims.h;
+        const hw = w / 2;
+        const hh = h / 2;
+        const pad = 6;
+        const isLocked = !!layer.locked;
+        const accentColor = isLocked ? "#f87171" : "#A78BFA";
+
+        // 1. Dotted / Dashed Bounding Box
+        c.strokeStyle = accentColor;
+        c.lineWidth = 2;
+        c.setLineDash([6, 6]);
+        c.strokeRect(-hw - pad, -hh - pad, w + pad * 2, h + pad * 2);
+        c.setLineDash([]);
+
+        if (!isLocked) {
+          // 2. Top Rotate Stem & Knob
+          c.strokeStyle = accentColor;
+          c.lineWidth = 2;
+          c.beginPath();
+          c.moveTo(0, -hh - pad);
+          c.lineTo(0, -hh - pad - 26);
+          c.stroke();
+
+          // Rotate Knob (9.5px radius circle)
+          c.beginPath();
+          c.arc(0, -hh - pad - 26, 9.5, 0, Math.PI * 2);
+          c.fillStyle = "#ffffff";
+          c.fill();
+          c.strokeStyle = accentColor;
+          c.lineWidth = 2.5;
+          c.stroke();
+
+          // Rotate Symbol ⟳ inside knob
+          c.fillStyle = accentColor;
+          c.font = "bold 11px sans-serif";
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.fillText("⟳", 0, -hh - pad - 26);
+
+          // 3. Four Corner Resize Grab Knobs (7.5px radius)
+          const corners = [
+            [-hw - pad, -hh - pad], // TL
+            [hw + pad, -hh - pad],  // TR
+            [-hw - pad, hh + pad],  // BL
+            [hw + pad, hh + pad]   // BR
+          ];
+
+          corners.forEach(([cx, cy]) => {
+            c.beginPath();
+            c.arc(cx, cy, 7.5, 0, Math.PI * 2);
+            c.fillStyle = "#ffffff";
+            c.fill();
+            c.strokeStyle = accentColor;
+            c.lineWidth = 2.5;
+            c.stroke();
+
+            // Accent inner center dot
+            c.beginPath();
+            c.arc(cx, cy, 2.5, 0, Math.PI * 2);
+            c.fillStyle = accentColor;
+            c.fill();
+          });
+
+          // 4. Live HUD Overlay during Active Interaction
+          if (activeTransformMode === "rotate") {
+            c.save();
+            c.fillStyle = "rgba(11, 13, 18, 0.92)";
+            c.strokeStyle = accentColor;
+            c.lineWidth = 1.5;
+            const degText = `🔄 ${layer.rotation || 0}°`;
+            c.font = "bold 12px monospace";
+            const tw = c.measureText(degText).width + 16;
+            c.beginPath();
+            if (c.roundRect) c.roundRect(-tw / 2, -hh - pad - 56, tw, 22, 6);
+            else c.rect(-tw / 2, -hh - pad - 56, tw, 22);
+            c.fill();
+            c.stroke();
+            c.fillStyle = "#A78BFA";
+            c.textAlign = "center";
+            c.textBaseline = "middle";
+            c.fillText(degText, 0, -hh - pad - 45);
+            c.restore();
+          } else if (activeTransformMode === "resize") {
+            c.save();
+            c.fillStyle = "rgba(11, 13, 18, 0.92)";
+            c.strokeStyle = accentColor;
+            c.lineWidth = 1.5;
+            const pct = Math.round((layer.scale || 1.0) * 100);
+            const scaleText = `📏 ${pct}% (${Math.round(w)} × ${Math.round(h)} px)`;
+            c.font = "bold 12px monospace";
+            const tw = c.measureText(scaleText).width + 16;
+            c.beginPath();
+            if (c.roundRect) c.roundRect(-tw / 2, hh + pad + 12, tw, 22, 6);
+            else c.rect(-tw / 2, hh + pad + 12, tw, 22);
+            c.fill();
+            c.stroke();
+            c.fillStyle = "#A78BFA";
+            c.textAlign = "center";
+            c.textBaseline = "middle";
+            c.fillText(scaleText, 0, hh + pad + 23);
+            c.restore();
+          }
+        } else {
+          // Locked label
+          c.save();
+          c.fillStyle = "rgba(239, 68, 68, 0.92)";
+          c.font = "bold 12px monospace";
+          const lockText = "🔒 LOCKED";
+          const tw = c.measureText(lockText).width + 16;
+          c.beginPath();
+          if (c.roundRect) c.roundRect(-tw / 2, hh + pad + 10, tw, 22, 6);
+          else c.rect(-tw / 2, hh + pad + 10, tw, 22);
+          c.fill();
+          c.fillStyle = "#ffffff";
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.fillText(lockText, 0, hh + pad + 21);
+          c.restore();
+        }
+
+        c.restore();
+      }
+
+      // 13. Stage Quick Transform & Resize / Rotate Bar Controller
+      function syncTransformBar() {
+        const bar = document.getElementById("stageTransformBar");
+        if (!bar) return;
+        const sel = state.layers.find(l => l.id === state.selectedLayerId);
+        if (!sel || sel.type === "doodle") {
+          bar.style.display = "none";
+          return;
+        }
+
+        bar.style.display = "flex";
+        const iconEl = document.getElementById("stbLayerIcon");
+        const titleEl = document.getElementById("stbLayerTitle");
+        if (iconEl) iconEl.textContent = sel.type === "image" ? "🖼️" : "💬";
+        if (titleEl) titleEl.textContent = `${sel.name || "Layer"} ${sel.locked ? "(Locked)" : ""}`;
+
+        // Scale / Size Slider Sync
+        const scaleSlider = document.getElementById("stbScaleSlider");
+        const scaleVal = document.getElementById("stbSizeVal");
+        if (sel.type === "image") {
+          const pct = Math.round((sel.scale || 1.0) * 100);
+          if (scaleSlider) scaleSlider.value = pct;
+          if (scaleVal) scaleVal.textContent = pct + "%";
+        } else if (sel.type === "text") {
+          const fs = sel.fontSize || 38;
+          if (scaleSlider) scaleSlider.value = Math.min(300, Math.round((fs / 38) * 100));
+          if (scaleVal) scaleVal.textContent = fs + "px";
+        }
+
+        // Rotate Slider Sync
+        const rotateSlider = document.getElementById("stbRotateSlider");
+        const rotateVal = document.getElementById("stbRotateVal");
+        let rot = sel.rotation || 0;
+        rot = ((rot % 360) + 360) % 360;
+        if (rot > 180) rot -= 360;
+        if (rotateSlider) rotateSlider.value = rot;
+        if (rotateVal) rotateVal.textContent = rot + "°";
+
+        // Also update tab sliders
+        if (sel.type === "image" && typeof updateLayerControls === "function") updateLayerControls();
+        if (sel.type === "text" && typeof updateTextControls === "function") updateTextControls();
+      }
+
+      // Wire Stage Transform Bar Controls
+      (function initStageTransformBar() {
+        const scaleSlider = document.getElementById("stbScaleSlider");
+        const scaleVal = document.getElementById("stbSizeVal");
+        const rotateSlider = document.getElementById("stbRotateSlider");
+        const rotateVal = document.getElementById("stbRotateVal");
+
+        if (scaleSlider) {
+          scaleSlider.addEventListener("input", (e) => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            const pct = parseInt(e.target.value, 10);
+            if (sel.type === "image") {
+              sel.scale = Math.max(0.15, Math.min(3.5, pct / 100));
+              if (scaleVal) scaleVal.textContent = Math.round(sel.scale * 100) + "%";
+            } else if (sel.type === "text") {
+              sel.fontSize = Math.max(12, Math.min(130, Math.round(38 * (pct / 100))));
+              if (scaleVal) scaleVal.textContent = sel.fontSize + "px";
+            }
+            renderStage();
+          });
+        }
+
+        const scaleDownBtn = document.getElementById("stbScaleDownBtn");
+        if (scaleDownBtn) {
+          scaleDownBtn.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            if (sel.type === "image") sel.scale = Math.max(0.15, (sel.scale || 1.0) * 0.9);
+            else if (sel.type === "text") sel.fontSize = Math.max(12, Math.round((sel.fontSize || 38) * 0.9));
+            syncTransformBar();
+            renderStage();
+          });
+        }
+
+        const scaleUpBtn = document.getElementById("stbScaleUpBtn");
+        if (scaleUpBtn) {
+          scaleUpBtn.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            if (sel.type === "image") sel.scale = Math.min(3.5, (sel.scale || 1.0) * 1.1);
+            else if (sel.type === "text") sel.fontSize = Math.min(130, Math.round((sel.fontSize || 38) * 1.1));
+            syncTransformBar();
+            renderStage();
+          });
+        }
+
+        // Quick Scale Chips
+        document.querySelectorAll(".stb-chip[data-scale]").forEach(chip => {
+          chip.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            const val = chip.getAttribute("data-scale");
+            if (val === "fit") {
+              if (sel.type === "image") {
+                const fitScale = Math.min(380 / (sel.width || 300), 380 / (sel.height || 300));
+                sel.scale = Math.round(fitScale * 100) / 100;
+              } else if (sel.type === "text") {
+                sel.fontSize = 54;
+              }
+              sel.x = 256;
+              sel.y = 256;
+            } else {
+              const num = parseFloat(val);
+              if (sel.type === "image") sel.scale = num;
+              else if (sel.type === "text") sel.fontSize = Math.round(38 * num);
+            }
+            syncTransformBar();
+            renderStage();
+          });
+        });
+
+        if (rotateSlider) {
+          rotateSlider.addEventListener("input", (e) => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            sel.rotation = parseInt(e.target.value, 10);
+            if (rotateVal) rotateVal.textContent = sel.rotation + "°";
+            renderStage();
+          });
+        }
+
+        const rotateLeftBtn = document.getElementById("stbRotateLeftBtn");
+        if (rotateLeftBtn) {
+          rotateLeftBtn.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            let rot = ((sel.rotation || 0) - 15) % 360;
+            if (rot < -180) rot += 360;
+            sel.rotation = rot;
+            syncTransformBar();
+            renderStage();
+          });
+        }
+
+        const rotateRightBtn = document.getElementById("stbRotateRightBtn");
+        if (rotateRightBtn) {
+          rotateRightBtn.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            let rot = ((sel.rotation || 0) + 15) % 360;
+            if (rot > 180) rot -= 360;
+            sel.rotation = rot;
+            syncTransformBar();
+            renderStage();
+          });
+        }
+
+        // Quick Rotate Chips
+        document.querySelectorAll(".stb-chip[data-rot]").forEach(chip => {
+          chip.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (!sel || sel.locked || sel.type === "doodle") return;
+            const val = chip.getAttribute("data-rot");
+            if (val === "reset") {
+              sel.rotation = 0;
+            } else {
+              sel.rotation = parseInt(val, 10);
+            }
+            syncTransformBar();
+            renderStage();
+          });
+        });
+
+        // Stage Bar Action Buttons
+        const stbCenterBtn = document.getElementById("stbCenterBtn");
+        if (stbCenterBtn) {
+          stbCenterBtn.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (sel && sel.type !== "doodle") {
+              sel.x = 256;
+              sel.y = 256;
+              renderStage();
+              showToast("Centered on canvas! 🎯", "✨");
+            }
+          });
+        }
+
+        const stbFlipBtn = document.getElementById("stbFlipBtn");
+        if (stbFlipBtn) {
+          stbFlipBtn.addEventListener("click", () => {
+            const sel = state.layers.find(l => l.id === state.selectedLayerId);
+            if (sel && sel.type === "image") {
+              sel.flipX = (sel.flipX === 1) ? -1 : 1;
+              renderStage();
+            }
+          });
+        }
+
+        const stbDuplicateBtn = document.getElementById("stbDuplicateBtn");
+        if (stbDuplicateBtn) {
+          stbDuplicateBtn.addEventListener("click", () => {
+            if (state.selectedLayerId) duplicateLayer(state.selectedLayerId);
+          });
+        }
+
+        const stbDeleteBtn = document.getElementById("stbDeleteBtn");
+        if (stbDeleteBtn) {
+          stbDeleteBtn.addEventListener("click", () => {
+            if (state.selectedLayerId) deleteLayer(state.selectedLayerId);
+          });
+        }
+      })();
+
+      // Initial Seed drawing
+      function seedWelcomeDoodle() {
+        doodleCtx.save();
+        doodleCtx.fillStyle = "#fef08a";
+        doodleCtx.beginPath();
+        doodleCtx.arc(256, 256, 140, 0, Math.PI * 2);
+        doodleCtx.fill();
+        doodleCtx.lineWidth = 9;
+        doodleCtx.strokeStyle = "#18181b";
+        doodleCtx.stroke();
+
+        // Eyes
+        doodleCtx.fillStyle = "#18181b";
+        doodleCtx.beginPath();
+        doodleCtx.arc(210, 225, 14, 0, Math.PI * 2);
+        doodleCtx.arc(302, 225, 14, 0, Math.PI * 2);
+        doodleCtx.fill();
+
+        // Smile
+        doodleCtx.beginPath();
+        doodleCtx.arc(256, 260, 55, 0.2, Math.PI - 0.2, false);
+        doodleCtx.stroke();
+
+        // Cheeks
+        doodleCtx.fillStyle = "#f43f5e";
+        doodleCtx.beginPath();
+        doodleCtx.arc(180, 265, 18, 0, Math.PI * 2);
+        doodleCtx.arc(332, 265, 18, 0, Math.PI * 2);
+        doodleCtx.fill();
+
+        doodleCtx.restore();
+
+        addTextLayer("DOODLE ME! ✏️", {
+          fontSize: 42,
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          color: "#18181b",
+          strokeWidth: 0,
+          y: 440
+        });
+      }
+
+      seedWelcomeDoodle();
+      syncLayersUI();
+      renderStage();
+
+      // Reset Entire Canvas
+      document.getElementById("resetCanvasEntirelyBtn").addEventListener("click", () => {
+        if (confirm("Reset everything on the stage back to start?")) {
+          doodleCtx.clearRect(0, 0, 512, 512);
+          state.layers = [
+            {
+              id: "layer-doodles",
+              type: "doodle",
+              name: "Freehand Doodles",
+              hidden: false,
+              locked: false
+            }
+          ];
+          state.selectedLayerId = null;
+          state.animation = "none";
+          stopAnimation();
+          seedWelcomeDoodle();
+          syncLayersUI();
+          renderStage();
+          showToast("Stage reset!", "🔄");
+        }
+      });
+
+      // 13. EXPORT ENGINES (GIF, PNG, CLIPBOARD)
+      const progressModal = document.getElementById("exportProgressModal");
+      const progressFill = document.getElementById("progressBarFill");
+      const progressPercent = document.getElementById("progressPercent");
+      const progressStatus = document.getElementById("progressStatus");
+
+      async function exportAnimatedGif() {
+        if (typeof gifshot === "undefined") {
+          showToast("GIF encoder is initializing, please wait...", "⏳");
+          return;
+        }
+
+        progressModal.classList.add("active");
+        progressFill.style.width = "10%";
+        progressPercent.textContent = "10%";
+        progressStatus.textContent = "Rendering animation frames...";
+
+        let activeAnim = state.animation;
+        if (activeAnim === "none") {
+          state.animation = "bounce";
+        }
+
+        const totalFrames = 14;
+        const frameInterval = 0.08;
+        const offscreenCanvas = document.createElement("canvas");
+        offscreenCanvas.width = 384;
+        offscreenCanvas.height = 384;
+        const offCtx = offscreenCanvas.getContext("2d");
+
+        const frameImages = [];
+        const cycleDuration = (Math.PI * 2) / 4; // one full cycle
+
+        for (let i = 0; i < totalFrames; i++) {
+          const frameTime = (i / totalFrames) * cycleDuration;
+          offCtx.clearRect(0, 0, 384, 384);
+          offCtx.save();
+          offCtx.scale(384 / 512, 384 / 512);
+          renderStage(frameTime, offCtx);
+          offCtx.restore();
+
+          frameImages.push(offscreenCanvas.toDataURL("image/png"));
+          const pct = Math.round(10 + (i / totalFrames) * 45);
+          progressFill.style.width = pct + "%";
+          progressPercent.textContent = pct + "%";
+        }
+
+        progressStatus.textContent = "Encoding GIF (compressing colors)...";
+        progressFill.style.width = "65%";
+        progressPercent.textContent = "65%";
+
+        gifshot.createGIF({
+          images: frameImages,
+          gifWidth: 384,
+          gifHeight: 384,
+          interval: frameInterval,
+          numFrames: totalFrames,
+          sampleInterval: 8,
+          numWorkers: 2
+        }, function(obj) {
+          progressFill.style.width = "100%";
+          progressPercent.textContent = "100%";
+          progressStatus.textContent = "Done! Downloading GIF...";
+
+          setTimeout(() => {
+            progressModal.classList.remove("active");
+            if (!obj.error) {
+              const a = document.createElement("a");
+              a.href = obj.image;
+              a.download = "stickerpencil-animated.gif";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              showToast("Animated GIF downloaded successfully! 🎉", "🎬");
+            } else {
+              showToast("Error generating GIF: " + obj.error, "❌");
+            }
+            state.animation = activeAnim;
+          }, 400);
+        });
+      }
+
+      document.getElementById("downloadGifBtn").addEventListener("click", exportAnimatedGif);
+      document.getElementById("stageQuickGifBtn").addEventListener("click", exportAnimatedGif);
+
+      // Download PNG
+      function downloadPng() {
+        const exportCanvas = document.createElement("canvas");
+        exportCanvas.width = 512;
+        exportCanvas.height = 512;
+        const expCtx = exportCanvas.getContext("2d");
+        renderStage(0, expCtx);
+
+        const a = document.createElement("a");
+        a.href = exportCanvas.toDataURL("image/png");
+        a.download = "stickerpencil-sticker.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        showToast("Transparent PNG downloaded (512x512)! 📥", "🎉");
+      }
+
+      document.getElementById("downloadPngBtn").addEventListener("click", downloadPng);
+      document.getElementById("stageQuickPngBtn").addEventListener("click", downloadPng);
+
+      // Copy to Clipboard
+      async function copyToClipboard() {
+        try {
+          showToast("Copying sticker image to clipboard...", "⏳");
+          const exportCanvas = document.createElement("canvas");
+          exportCanvas.width = 512;
+          exportCanvas.height = 512;
+          const expCtx = exportCanvas.getContext("2d");
+          renderStage(0, expCtx);
+
+          exportCanvas.toBlob(async (blob) => {
+            if (!blob) throw new Error("Failed to create blob");
+            await navigator.clipboard.write([
+              new ClipboardItem({ "image/png": blob })
+            ]);
+            showToast("Sticker copied! Paste directly (Ctrl+V) into WhatsApp Web or Discord! 📋", "✨");
+          }, "image/png");
+        } catch (err) {
+          showToast("Clipboard copy failed. Try downloading PNG instead.", "⚠️");
+        }
+      }
+
+      document.getElementById("copyClipboardBtn").addEventListener("click", copyToClipboard);
+      document.getElementById("stageQuickCopyBtn").addEventListener("click", copyToClipboard);
+
+      // Toast helper
+      function showToast(message, icon = "✏️") {
+        const container = document.getElementById("toastContainer");
+        if (!container) return;
+        const toast = document.createElement("div");
+        toast.className = "sketch-toast";
+        toast.innerHTML = `<span style="font-size: 1.25rem;">${icon}</span> <span>${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => toast.classList.add("show"), 10);
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 250);
+        }, 3200);
+      }
+    });
+  </script>
+</body>
+</html>

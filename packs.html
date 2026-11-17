@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Themed Sticker Packs 📦 Free Sticker Bundles for WhatsApp & Discord - StickerPencil</title>
+  <meta name="title" content="Themed Sticker Packs 📦 Free Sticker Bundles for WhatsApp & Discord - StickerPencil">
+  <meta name="description" content="Download curated sticker packs for WhatsApp, Telegram, and Discord. Meme collections, anime doodles, kawaii vibes, and gaming reactions.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://stickerpencil.com/packs.html">
+
+  <meta property="og:title" content="Curated Sticker Packs 📦 StickerPencil">
+  <meta property="og:description" content="Download entire themed packs for WhatsApp, Telegram, Discord, and Snapchat.">
+  <meta property="og:url" content="https://stickerpencil.com/packs.html">
+
+  <!-- High-Res Brand Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B0D12'/><path d='M14 8 H42 L56 22 V50 A6 6 0 0 1 50 56 H14 A6 6 0 0 1 8 50 V14 A6 6 0 0 1 14 8 Z' fill='%23FF007A'/><path d='M42 8 L56 22 H46 A4 4 0 0 1 42 18 V8 Z' fill='%2300F0FF'/><path d='M20 44 L18 46 L24 44 L40 28 A3 3 0 0 0 40 23.5 L38.5 22 A3 3 0 0 0 34 22 L18 38 L16 46 L24 44 Z' fill='%23FFFFFF'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css?v=23">
+
+  <style>
+    /* ==========================================================================
+       COMPACT & CUTE PACKS STYLES
+       ========================================================================== */
+    .packs-hero {
+      max-width: 820px;
+      margin: 22px auto 16px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .packs-hero .hero-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+      margin: 6px 0 8px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .packs-hero .hero-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Live Cloudinary Sync Bar (Compact Glass Pill) */
+    .packs-sync-bar {
+      max-width: 1400px;
+      margin: 0 auto 16px;
+      padding: 0 20px;
+    }
+
+    .packs-sync-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 8px 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .packs-sync-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .live-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      animation: livePulse 2s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.7; }
+    }
+
+    .btn-sync-compact {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-sync-compact:hover {
+      border-color: rgba(255, 46, 131, 0.4);
+      background: rgba(255, 46, 131, 0.1);
+      color: #FF5A9E;
+    }
+
+    /* Packs Filter & Search Bar */
+    .packs-controls-bar {
+      max-width: 1400px;
+      margin: 0 auto 18px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .packs-search-wrapper {
+      position: relative;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .packs-search-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 36px 0 38px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .packs-search-input:focus {
+      outline: none;
+      border-color: #FF2E83;
+      box-shadow: 0 0 0 3px rgba(255, 46, 131, 0.18);
+    }
+
+    .packs-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .packs-search-clear {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 2px;
+    }
+
+    .packs-chips-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .packs-chips-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pack-chip-btn {
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .pack-chip-btn:hover {
+      color: var(--text-primary);
+      border-color: rgba(255, 46, 131, 0.35);
+    }
+
+    .pack-chip-btn.active {
+      background: #FF2E83;
+      color: #ffffff;
+      border-color: #FF2E83;
+      box-shadow: 0 2px 8px rgba(255, 46, 131, 0.35);
+    }
+
+    /* Packs Grid (Fluid 3 to 4 Column Large GIPHY-Style Layout) */
+    .packs-grid {
+      max-width: 1400px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .packs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 14px;
+      }
+    }
+
+    /* Pack Card: Chunky, Tactile, High-Contrast */
+    .pack-full-card {
+      background: #181c26;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    body:not(.sketch-dark-mode) .pack-full-card {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .pack-full-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 0, 122, 0.55);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 0, 122, 0.25);
+    }
+
+    .pack-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .pack-card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .pack-card-emoji {
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .pack-card-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .pack-card-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.015em;
+    }
+
+    .pack-count-chip {
+      display: inline-block;
+      color: #00f0ff;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-top: 3px;
+      font-family: var(--font-mono);
+    }
+
+    .pack-dl-btn {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #FF007A 0%, #FF2E83 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      flex-shrink: 0;
+      padding: 0;
+      box-shadow: 0 2px 10px rgba(255, 0, 122, 0.45);
+    }
+
+    .pack-dl-btn:hover {
+      transform: scale(1.12);
+      filter: brightness(1.15);
+      box-shadow: 0 4px 16px rgba(255, 0, 122, 0.7);
+    }
+
+    /* 2x2 Large Sticker Showcase */
+    .pack-stickers-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      background: rgba(10, 14, 22, 0.75);
+      padding: 8px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      aspect-ratio: 1 / 1;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    body:not(.sketch-dark-mode) .pack-stickers-showcase {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .pack-sticker-thumb {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      background: rgba(25, 30, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      box-sizing: border-box;
+      overflow: hidden;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.18s ease;
+      background-image: linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgba(255,255,255,0.02) 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.02) 75%),
+                        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.02) 75%);
+      background-size: 8px 8px;
+    }
+
+    .pack-full-card:hover .pack-sticker-thumb:hover {
+      transform: scale(1.12);
+      border-color: #00f0ff;
+      z-index: 2;
+    }
+
+    .pack-sticker-thumb img {
+      max-width: 92%;
+      max-height: 92%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+    }
+    }
+
+    .pack-empty-preview {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 640px) {
+      .pack-full-card {
+        padding: 9px;
+        border-radius: 13px;
+      }
+      .pack-card-name {
+        font-size: 0.82rem;
+      }
+      .pack-count-chip {
+        font-size: 0.68rem;
+      }
+      .pack-card-emoji {
+        font-size: 1.1rem;
+      }
+      .pack-dl-btn {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        min-height: 28px;
+      }
+      .pack-stickers-showcase {
+        gap: 4px;
+        padding: 4px;
+        border-radius: 9px;
+      }
+      .pack-sticker-thumb {
+        border-radius: 7px;
+        padding: 4px;
+      }
+    }
+  </style>
+  <!-- Instant Zero-FOUC Dark Mode Initializer -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('stickerpencil_theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('sketch-dark-mode');
+      } else {
+        document.documentElement.classList.add('sketch-dark-mode');
+      }
+    })();
+  </script>
+</head>
+<body class="sketch-dark-mode">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" aria-label="StickerPencil Home">
+        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+          <defs>
+            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF007A"/>
+              <stop offset="55%" stop-color="#FF2E83"/>
+              <stop offset="100%" stop-color="#9333EA"/>
+            </linearGradient>
+            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F0FF"/>
+              <stop offset="100%" stop-color="#00C8FF"/>
+            </linearGradient>
+            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
+          <g transform="translate(6, 6)">
+            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
+            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
+            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </a>
+
+<nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#00f0ff" stroke-width="2.2" fill="#00f0ff" fill-opacity="0.18"/>
+                <circle cx="9" cy="10" r="1.5" fill="#00f0ff"/>
+                <circle cx="15" cy="10" r="1.5" fill="#00f0ff"/>
+                <path d="M8 14.5c1.2 1.5 2.5 2 4 2s2.8-.5 4-2" stroke="#00f0ff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Explore</span>
+            </a>
+          </li>
+          <li>
+            <a href="packs.html" class="nav-link active">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#FF007A" stroke-width="2.2" fill="#FF007A" fill-opacity="0.25"/>
+              </svg>
+              <span>Packs</span>
+            </a>
+          </li>
+          <li>
+            <a href="trending.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="#a855f7" fill-opacity="0.3" stroke="#a855f7" stroke-width="2"/>
+              </svg>
+              <span>Trending</span>
+            </a>
+          </li>
+          <li>
+            <a href="categories.html" class="nav-link">
+              <!-- GIPHY-Style 4-Color Vibrant Grid -->
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <rect x="3" y="3" width="7.5" height="7.5" rx="2" fill="#00ccff"/>
+                <rect x="13.5" y="3" width="7.5" height="7.5" rx="2" fill="#fff35c"/>
+                <rect x="3" y="13.5" width="7.5" height="7.5" rx="2" fill="#9933ff"/>
+                <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" fill="#FF007A"/>
+              </svg>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li>
+            <a href="sticker-maker.html" class="nav-link nav-link-studio">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#00ff99" stroke-width="2.2" fill="#00ff99" fill-opacity="0.15"/>
+                <path d="M12 7v10M7 12h10" stroke="#00ff99" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <span>Studio</span>
+              <span class="studio-badge-cute">New</span>
+            </a>
+          </li>
+          <li class="nav-dropdown-item">
+            <button class="nav-link nav-dropdown-btn" type="button" aria-expanded="false" aria-haspopup="true">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="#cbd5e1">
+                <circle cx="12" cy="5" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="19" r="2.2"/>
+              </svg>
+              <span>More</span>
+              <svg class="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="blog.html" class="dropdown-link cyan">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                    <path d="M6 6h10"/>
+                    <path d="M6 10h10"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Blog Guides</span>
+                  <span class="dropdown-desc">Tutorials, ideas &amp; packs</span>
+                </div>
+              </a>
+              <a href="how-to-use.html" class="dropdown-link yellow">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">How to Use</span>
+                  <span class="dropdown-desc">1-Click WhatsApp &amp; Discord import</span>
+                </div>
+              </a>
+              <a href="alternatives.html" class="dropdown-link purple">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 3h5v5"/>
+                    <path d="M4 20L21 3"/>
+                    <path d="M21 16v5h-5"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Compare Alternatives</span>
+                  <span class="dropdown-desc">vs Sticker.ly, Tenor &amp; GIPHY</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="admin.html" class="dropdown-link pink">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Cloud Admin</span>
+                  <span class="dropdown-desc">Sync stickers &amp; CDN stats</span>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="mode-toggle-btn" id="modeToggleBtn" aria-label="Toggle Dark / Light Mode" title="Toggle Light / Dark Mode">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       GIPHY-STYLE EDGE-TO-EDGE SEARCH BAR & TRENDING TAGS
+       ======================================================================== -->
+  <section class="hero-section">
+    <h1 class="sr-only">Themed Sticker Packs - Download Bundles for WhatsApp & Discord</h1>
+
+    <div class="search-wrapper">
+      <div class="search-box">
+        <input 
+          type="search" 
+          id="packsSearchInput" 
+          class="search-input" 
+          placeholder="Search sticker packs (e.g. Cats, Hinglish, Memes...)" 
+          autocomplete="off"
+          aria-label="Search sticker packs"
+        />
+        <button class="search-clear-btn" id="clearPacksSearch" aria-label="Clear Search">✕</button>
+        <button class="search-action-btn" id="packsSearchBtn" aria-label="Search" title="Search packs">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Quick category search tags (GIPHY-Style Flush Trending Chips) -->
+      <div class="quick-tags-container" id="packsFilterChips">
+        <button class="quick-tag-btn pack-chip-btn active" data-filter="all"><span class="trend-arrow">↗</span> All Packs (<span id="packsTotalBadge">9</span>)</button>
+        <button class="quick-tag-btn pack-chip-btn" data-filter="animals"><span class="trend-arrow">↗</span> Animals & Doggos</button>
+        <button class="quick-tag-btn pack-chip-btn" data-filter="hinglish"><span class="trend-arrow">↗</span> Desi Hinglish</button>
+        <button class="quick-tag-btn pack-chip-btn" data-filter="memes"><span class="trend-arrow">↗</span> Viral Memes</button>
+        <button class="quick-tag-btn pack-chip-btn" data-filter="aesthetic"><span class="trend-arrow">↗</span> Aesthetic & Divas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       GIPHY-STYLE FEED TITLE BAR & VIEW SWITCHER
+       ======================================================================== -->
+  <section class="feed-controls-section" aria-label="Packs Navigation & Controls">
+    <!-- Row 1: Section Title & GIPHY View Switcher -->
+    <div class="feed-title-bar">
+      <div class="feed-title-wrap">
+        <span class="feed-trend-glyph">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00f0ff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </span>
+        <h2 class="feed-title">Themed Packs</h2>
+      </div>
+
+      <!-- Segmented Type Selector [ Stickers | Packs | Studio ] -->
+      <div class="feed-segmented-nav">
+        <a href="index.html" class="feed-segment-btn">
+          <span>Stickers</span>
+        </a>
+        <button class="feed-segment-btn active" type="button">
+          <span>Packs</span>
+        </button>
+        <a href="sticker-maker.html" class="feed-segment-btn">
+          <span>Studio</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 2: Sleek Cloudinary Sync Glass Pill -->
+    <div class="packs-sync-bar" style="margin: 0; padding: 0;">
+      <div class="packs-sync-inner" style="border-radius: 9999px;">
+        <div class="packs-sync-left">
+          <span class="live-pulse-dot"></span>
+          <span id="cloudinaryStatusText">
+            <strong>Cloudinary CDN Active:</strong> 9 Live Packs with 2,103 transparent PNGs ready.
+          </span>
+        </div>
+        <button class="btn-sync-compact" id="autoDetectPacksBtn" title="Sync newly uploaded packs from Cloudinary">
+          <span>⚡</span> Sync Cloudinary
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packs Grid -->
+  <main class="packs-grid" id="packsContainer">
+    <!-- Injected dynamically from data -->
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" aria-label="StickerPencil">
+        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+          <defs>
+            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF007A"/>
+              <stop offset="55%" stop-color="#FF2E83"/>
+              <stop offset="100%" stop-color="#9333EA"/>
+            </linearGradient>
+            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F0FF"/>
+              <stop offset="100%" stop-color="#00C8FF"/>
+            </linearGradient>
+            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
+          <g transform="translate(6, 6)">
+            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
+            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
+            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        </svg>
+        </a>
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
+          Free downloadable packs for creators and conversationalists. High-definition transparent PNGs ready for any messaging app.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Platforms</h4>
+        <ul class="footer-links-list">
+          <li><a href="whatsapp-stickers.html" class="footer-link">WhatsApp Stickers</a></li>
+          <li><a href="discord-stickers.html" class="footer-link">Discord Emotes</a></li>
+          <li><a href="index.html?platform=instagram" class="footer-link">Instagram Stories</a></li>
+          <li><a href="index.html?platform=snapchat" class="footer-link">Snapchat Snaps</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Pages</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link">All Stickers</a></li>
+          <li><a href="trending.html" class="footer-link">Trending Top Charts</a></li>
+          <li><a href="categories.html" class="footer-link">Categories</a></li>
+          <li><a href="packs.html" class="footer-link">Themed Packs</a></li>
+          <li><a href="how-to-use.html" class="footer-link">Platform Guides</a></li>
+          <li><a href="about.html" class="footer-link">About & DMCA</a></li>
+          <li><a href="admin.html" class="footer-link">Admin Dashboard</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 StickerPencil. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Mobile Floating Bottom Dock (Phone Thumb Navigation) -->
+  <nav class="mobile-bottom-dock" aria-label="Mobile Navigation Dock">
+    <a href="index.html" class="dock-item-btn">
+      <span class="dock-icon">🎨</span>
+      <span>Explore</span>
+    </a>
+    <a href="index.html?platform=whatsapp" class="dock-item-btn">
+      <span class="dock-icon">💬</span>
+      <span>WhatsApp</span>
+    </a>
+    <a href="index.html?platform=discord" class="dock-item-btn">
+      <span class="dock-icon">👾</span>
+      <span>Discord</span>
+    </a>
+    <a href="packs.html" class="dock-item-btn active">
+      <span class="dock-icon">📦</span>
+      <span>Packs</span>
+    </a>
+    <a href="index.html" class="dock-item-btn">
+      <span class="dock-icon">🔍</span>
+      <span>Search</span>
+    </a>
+  </nav>
+  <script src="js/cloudinary-stickers.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/nav-common.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("packsContainer");
+      const searchInput = document.getElementById("packsSearchInput");
+      const clearSearchBtn = document.getElementById("clearPacksSearch");
+      const filterChips = document.querySelectorAll(".pack-chip-btn");
+      const totalBadge = document.getElementById("packsTotalBadge");
+
+      let currentFilter = "all";
+      let currentQuery = "";
+
+      function filterPacksList(allPacks, filter, query) {
+        return allPacks.filter(pack => {
+          const name = (pack.displayName || pack.name || "").toLowerCase();
+          const desc = (pack.description || "").toLowerCase();
+          const slug = (pack.slug || "").toLowerCase();
+
+          // Search query check
+          if (query) {
+            const q = query.toLowerCase().trim();
+            const matchQuery = name.includes(q) || desc.includes(q) || slug.includes(q);
+            if (!matchQuery) return false;
+          }
+
+          // Category filter check
+          if (filter === "all") return true;
+          if (filter === "animals") {
+            return name.includes("cat") || name.includes("dog") || desc.includes("cat") || desc.includes("dog") || desc.includes("animal");
+          }
+          if (filter === "hinglish") {
+            return name.includes("hinglish") || name.includes("desi") || desc.includes("desi") || desc.includes("hindi");
+          }
+          if (filter === "memes") {
+            return name.includes("meme") || name.includes("silly") || name.includes("brainrot") || name.includes("jolochip") || desc.includes("meme");
+          }
+          if (filter === "aesthetic") {
+            return name.includes("aesthetic") || name.includes("diva") || name.includes("queen") || name.includes("pop") || name.includes("cute") || desc.includes("glam") || desc.includes("aesthetic");
+          }
+          return true;
+        });
+      }
+
+      function renderPacks() {
+        const stickers = getStickers();
+        const allPacks = getStickerPacks();
+
+        if (totalBadge) totalBadge.textContent = allPacks.length;
+
+        const statusEl = document.getElementById("cloudinaryStatusText");
+        if (statusEl) {
+          statusEl.innerHTML = `<strong>Cloudinary CDN Active:</strong> <code>iyh1dd7y</code> • <strong>${allPacks.length} Live Packs</strong> with <strong>${stickers.length.toLocaleString()} Stickers</strong> ready.`;
+        }
+
+        const filteredPacks = filterPacksList(allPacks, currentFilter, currentQuery);
+
+        if (filteredPacks.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 48px 20px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 16px;">
+              <div style="font-size: 2.4rem; margin-bottom: 10px;">🔍</div>
+              <h3 style="margin: 0 0 8px; font-size: 1.15rem; color: var(--text-primary);">No sticker packs found</h3>
+              <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0 0 16px;">Try adjusting your search query or reset filters.</p>
+              <button class="pack-btn-primary" style="display:inline-flex; max-width: 140px; margin: 0 auto;" onclick="document.getElementById('packsSearchInput').value=''; document.querySelector('.pack-chip-btn[data-filter=all]').click();">
+                Reset Filters
+              </button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = filteredPacks.map(pack => {
+          const packStickers = stickers.filter(s => (s.pack || "").toLowerCase() === pack.name.toLowerCase());
+          const thumbsHtml = packStickers.slice(0, 4).map(s => {
+            return `
+              <div class="pack-sticker-thumb" title="${s.title}">
+                <img src="${getLowResThumbnailUrl(s.imageUrl)}" data-fallback="${s.fallbackUrl || ''}" alt="${s.title}" width="100" height="100" loading="lazy" decoding="async" onerror="if(this.dataset.fallback && !this.dataset.failed){this.dataset.failed='1';this.src=this.dataset.fallback;}else{this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 100 100\\'><text y=\\'.9em\\' font-size=\\'80\\'>✨</text></svg>';}" />
+              </div>
+            `;
+          }).join("");
+
+          return `
+            <div class="pack-full-card" onclick="if(!event.target.closest('.pack-dl-btn')){window.location.href='index.html?pack=${encodeURIComponent(pack.name)}';}" title="Explore ${pack.displayName || pack.name} (${packStickers.length} stickers)">
+              <div class="pack-card-header">
+                <div class="pack-card-title-group">
+                  <span class="pack-card-emoji">${pack.icon || '📦'}</span>
+                  <div class="pack-card-meta">
+                    <h2 class="pack-card-name" title="${pack.displayName || pack.name}">${pack.displayName || pack.name}</h2>
+                    <span class="pack-count-chip">${packStickers.length} stickers</span>
+                  </div>
+                </div>
+                <button class="pack-dl-btn" onclick="event.stopPropagation(); downloadPackZip('${pack.id}', '${pack.name}')" title="Download all ${packStickers.length} PNGs" aria-label="Download pack">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="pack-stickers-showcase">
+                ${thumbsHtml || '<div class="pack-empty-preview">✨ No stickers</div>'}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      // Search Events
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          currentQuery = e.target.value.trim();
+          if (clearSearchBtn) {
+            clearSearchBtn.style.display = currentQuery ? "block" : "none";
+          }
+          renderPacks();
+        });
+      }
+
+      if (clearSearchBtn && searchInput) {
+        clearSearchBtn.addEventListener("click", () => {
+          searchInput.value = "";
+          currentQuery = "";
+          clearSearchBtn.style.display = "none";
+          renderPacks();
+          searchInput.focus();
+        });
+      }
+
+      // Filter Chips Events
+      filterChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          filterChips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          currentFilter = chip.dataset.filter || "all";
+          renderPacks();
+        });
+      });
+
+      // Initial Render
+      renderPacks();
+
+      // Cloudinary Auto-Detect & Sync Button
+      const autoDetectBtn = document.getElementById("autoDetectPacksBtn");
+      if (autoDetectBtn) {
+        autoDetectBtn.addEventListener("click", async () => {
+          autoDetectBtn.disabled = true;
+          autoDetectBtn.innerHTML = `<span>⏳</span> Scanning Cloudinary...`;
+
+          try {
+            const res = await fetch("data/packs-manifest.json?t=" + Date.now());
+            if (res.ok) {
+              const data = await res.json();
+              if (data && Array.isArray(data.packs)) {
+                console.log("Cloudinary manifest loaded:", data);
+              }
+            }
+          } catch (e) {
+            console.log("Manifest fetch:", e);
+          }
+
+          resetToDefaultSeed();
+          renderPacks();
+
+          const packs = getStickerPacks();
+          const totalStickers = getStickers().length;
+
+          showToast(`🎉 Auto-detected ${packs.length} packs (${totalStickers} stickers) from Cloudinary!`, "☁️");
+          autoDetectBtn.disabled = false;
+          autoDetectBtn.innerHTML = `<span>⚡</span> Auto-Detect & Sync Packs`;
+        });
+      }
+
+      // Simulated Pack Zip Download
+      window.downloadPackZip = function(packId, packName) {
+        const stickers = getStickers();
+        const packStickers = stickers.filter(s => (s.pack || "").toLowerCase() === packName.toLowerCase());
+        if (packStickers.length === 0) {
+          alert("No stickers found in this pack!");
+          return;
+        }
+
+        showToast(`📦 Packaging "${packName}" (${packStickers.length} files)...`, "⏳");
+        
+        // Trigger full quality downloads with a short delay so browser doesn't block multi-download
+        packStickers.forEach((s, idx) => {
+          setTimeout(() => {
+            const a = document.createElement("a");
+            a.href = getFullQualityImageUrl(s.imageUrl);
+            a.download = `${packName.toLowerCase().replace(/\s+/g, '-')}-${idx + 1}.png`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }, idx * 250);
+        });
+
+        setTimeout(() => {
+          showToast(`✅ All ${packStickers.length} stickers downloaded!`, "🎉");
+        }, packStickers.length * 250 + 500);
+      };
+
+      function showToast(msg, icon = "✏️") {
+        const toastContainer = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = "toast-item";
+        toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${msg}</span>`;
+        toastContainer.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add("show"));
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 350);
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>
+

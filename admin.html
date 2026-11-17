@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Admin Dashboard ??? Manage, Add & Edit Stickers - StickerPencil</title>
+  <meta name="description" content="StickerPencil Admin Studio - manage, upload, and edit transparent stickers for WhatsApp, Discord, Instagram, Snapchat, and Reddit.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://stickerpencil.com/admin.html">
+
+  <!-- High-Res Brand Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B0D12'/><path d='M14 8 H42 L56 22 V50 A6 6 0 0 1 50 56 H14 A6 6 0 0 1 8 50 V14 A6 6 0 0 1 14 8 Z' fill='%23FF007A'/><path d='M42 8 L56 22 H46 A4 4 0 0 1 42 18 V8 Z' fill='%2300F0FF'/><path d='M20 44 L18 46 L24 44 L40 28 A3 3 0 0 0 40 23.5 L38.5 22 A3 3 0 0 0 34 22 L18 38 L16 46 L24 44 Z' fill='%23FFFFFF'/></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css?v=23">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <!-- Optional Cloudinary Upload Widget Script (Free official CDN) -->
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+  <!-- Instant Zero-FOUC Dark Mode Initializer -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('stickerpencil_theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('sketch-dark-mode');
+      } else {
+        document.documentElement.classList.add('sketch-dark-mode');
+      }
+    })();
+  </script>
+</head>
+<body class="sketch-dark-mode">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" aria-label="StickerPencil Home">
+        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+          <defs>
+            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF007A"/>
+              <stop offset="55%" stop-color="#FF2E83"/>
+              <stop offset="100%" stop-color="#9333EA"/>
+            </linearGradient>
+            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F0FF"/>
+              <stop offset="100%" stop-color="#00C8FF"/>
+            </linearGradient>
+            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
+          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
+          <g transform="translate(6, 6)">
+            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
+            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
+            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </a>
+
+<nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+              Explore
+            </a>
+          </li>
+          <li>
+            <a href="packs.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>
+              </svg>
+              Packs
+            </a>
+          </li>
+          <li>
+            <a href="trending.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+              </svg>
+              Trending
+            </a>
+          </li>
+          <li>
+            <a href="categories.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><circle cx="7" cy="7" r=".5" fill="currentColor"/>
+              </svg>
+              Categories
+            </a>
+          </li>
+          <li>
+            <a href="sticker-maker.html" class="nav-link nav-link-studio">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m18 5-3-3L6 11l3 3L18 5z"/><path d="m3 21 3-1-2-2-1 3z"/><path d="M14 2 22 10"/>
+              </svg>
+              Studio
+              <span class="studio-badge-cute">New</span>
+            </a>
+          </li>
+          <li class="nav-dropdown-item">
+            <button class="nav-link nav-dropdown-btn active" type="button" aria-expanded="false" aria-haspopup="true">
+              <svg class="nav-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/><circle cx="5" cy="12" r="1.5"/>
+              </svg>
+              More
+              <svg class="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="blog.html" class="dropdown-link cyan">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                    <path d="M6 6h10"/>
+                    <path d="M6 10h10"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Blog Guides</span>
+                  <span class="dropdown-desc">Tutorials, ideas &amp; packs</span>
+                </div>
+              </a>
+              <a href="how-to-use.html" class="dropdown-link yellow">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">How to Use</span>
+                  <span class="dropdown-desc">1-Click WhatsApp &amp; Discord import</span>
+                </div>
+              </a>
+              <a href="alternatives.html" class="dropdown-link purple">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 3h5v5"/>
+                    <path d="M4 20L21 3"/>
+                    <path d="M21 16v5h-5"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Compare Alternatives</span>
+                  <span class="dropdown-desc">vs Sticker.ly, Tenor &amp; GIPHY</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="admin.html" class="dropdown-link pink">
+                <div class="dropdown-icon-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                  </svg>
+                </div>
+                <div class="dropdown-text">
+                  <span class="dropdown-title">Cloud Admin</span>
+                  <span class="dropdown-desc">Sync stickers &amp; CDN stats</span>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="mode-toggle-btn" id="modeToggleBtn" aria-label="Toggle Dark / Light Mode" title="Toggle Light / Dark Mode">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="btn-sketch btn-sketch-sm" id="adminLogoutBtn" title="Log Out">
+          ?? Logout
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       AUTH GATE (LOGIN PIN/PASSWORD)
+       ======================================================================== -->
+  <div class="auth-gate-box" id="authGate">
+    <div style="font-size: 3rem; margin-bottom: 10px;">??</div>
+    <h1 class="auth-gate-title">Admin Passcode</h1>
+    <p class="auth-gate-desc">Enter your admin PIN to access the sticker management studio.</p>
+    
+    <div class="auth-input-group">
+      <input type="password" id="authPinInput" class="auth-input" placeholder="Enter PIN (Default: 1234)" autofocus />
+    </div>
+
+    <button class="btn-sketch btn-sketch-primary" id="authLoginBtn" style="width: 100%; color: #09090b !important; -webkit-text-fill-color: #09090b !important; font-weight: 800 !important; background-color: #fef08a !important;">
+      ?? Unlock Dashboard
+    </button>
+    <div id="authErrorMsg" style="color: #dc2626; margin-top: 12px; font-family: var(--font-mono); font-size: 0.85rem; display: none;"></div>
+  </div>
+
+  <!-- ========================================================================
+       ADMIN DASHBOARD CONTENT (VISIBLE ON LOGIN)
+       ======================================================================== -->
+  <div class="admin-container" id="adminDashboard" style="display: none;">
+
+    <!-- Top Stats Ribbon -->
+    <div class="admin-stats-row">
+      <div class="admin-stat-card">
+        <div class="admin-stat-number" id="totalStickersCount">0</div>
+        <div class="admin-stat-label">Total Stickers</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="admin-stat-number" id="totalPacksCount">0</div>
+        <div class="admin-stat-label">Themed Packs</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="admin-stat-number" id="featuredCount">0</div>
+        <div class="admin-stat-label">? Top Picks</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="admin-stat-number" id="totalDownloadsCount">0</div>
+        <div class="admin-stat-label">Total Downloads</div>
+      </div>
+    </div>
+
+    <!-- Cloudinary Quick Banner -->
+    <div class="cloudinary-banner">
+      <div class="cloudinary-title">
+        <span>??</span> Cloudinary CDN Integration
+      </div>
+      <p class="cloudinary-desc">
+        Paste your Cloudinary Cloud Name and unsigned Upload Preset below. All sticker images will automatically serve with responsive auto-formatting (<code>f_auto,q_auto</code>) and instant transparency.
+      </p>
+
+      <div class="cloudinary-form-row">
+        <div class="form-group">
+          <label class="form-label" for="cloudNameInput">Cloud Name</label>
+          <input type="text" id="cloudNameInput" class="form-input" placeholder="e.g. my-sticker-cloud" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="uploadPresetInput">Upload Preset (Unsigned)</label>
+          <input type="text" id="uploadPresetInput" class="form-input" placeholder="e.g. stickers_preset" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="apiKeyInput">Cloudinary API Key</label>
+          <input type="text" id="apiKeyInput" class="form-input" placeholder="e.g. Eych-n4uQDcapk5gfcGsqDM3f8Y" value="Eych-n4uQDcapk5gfcGsqDM3f8Y" />
+        </div>
+        <button class="btn-sketch btn-sketch-primary" id="saveCloudinaryBtn" style="height: 48px;">
+          ?? Save Settings
+        </button>
+      </div>
+    </div>
+
+    <!-- Admin Navigation Tabs -->
+    <div class="admin-nav-tabs">
+      <button class="admin-tab-btn active" data-tab="tab-add">? Add New Sticker</button>
+      <button class="admin-tab-btn" data-tab="tab-detect">? Auto-Detect Packs</button>
+      <button class="admin-tab-btn" data-tab="tab-manage">?? Manage Stickers</button>
+      <button class="admin-tab-btn" data-tab="tab-backup">?? Export & JSON Sync</button>
+    </div>
+
+    <!-- TAB 1: ADD NEW STICKER -->
+    <section class="admin-tab-panel active" id="tab-add">
+      <form class="sketch-form" id="addStickerForm">
+        <h2 style="font-family: var(--font-family); font-size: 1.8rem; margin-bottom: 20px;">
+          ?? Draw or Add a New Sticker to Cloudinary
+        </h2>
+
+        <div class="form-grid">
+          <!-- Title -->
+          <div class="form-group">
+            <label class="form-label" for="stickerTitleInput">
+              Sticker Title / Name
+              <span class="form-label-hint">Catchy & search friendly</span>
+            </label>
+            <input type="text" id="stickerTitleInput" class="form-input" placeholder="e.g. Screaming Butter Dog" required />
+          </div>
+
+          <!-- Category -->
+          <div class="form-group">
+            <label class="form-label" for="stickerCategorySelect">Category</label>
+            <select id="stickerCategorySelect" class="form-select">
+              <option value="Memes">Memes</option>
+              <option value="Reactions">Reactions</option>
+              <option value="Cute & Animals">Cute & Animals</option>
+              <option value="Anime & Pop Culture">Anime & Pop Culture</option>
+              <option value="Gaming & Slang">Gaming & Slang</option>
+              <option value="Vibe & Aesthetic">Vibe & Aesthetic</option>
+            </select>
+          </div>
+
+          <!-- Image URL / Cloudinary -->
+          <div class="form-group full-width">
+            <label class="form-label" for="stickerUrlInput">
+              Cloudinary Image URL or Public ID
+              <span class="form-label-hint">e.g. https://res.cloudinary.com/... or public ID</span>
+            </label>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <input type="url" id="stickerUrlInput" class="form-input" style="flex: 1; min-width: 260px;" placeholder="https://res.cloudinary.com/demo/image/upload/sample.png" required />
+              <button type="button" class="btn-sketch" id="launchCloudinaryWidgetBtn" style="white-space: nowrap;">
+                ?? Upload to Cloudinary
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Image Checkerboard Preview -->
+          <div class="form-group">
+            <label class="form-label">Live Transparency Check</label>
+            <div class="live-preview-box">
+              <img src="" alt="Preview" id="livePreviewImg" class="live-preview-img" width="180" height="180" style="display: none;" />
+              <div id="livePreviewEmpty" style="font-family: var(--font-family); color: var(--pencil-light); text-align: center; padding: 10px;">
+                Image preview appears here
+              </div>
+            </div>
+          </div>
+
+          <!-- Themed Pack Assignment -->
+          <div class="form-group">
+            <label class="form-label" for="stickerPackSelect">Assign to Pack</label>
+            <select id="stickerPackSelect" class="form-select">
+              <!-- Injected dynamically -->
+            </select>
+          </div>
+
+          <!-- Platform Compatibility Checkboxes -->
+          <div class="form-group full-width">
+            <label class="form-label">
+              Supported Platforms
+              <span class="form-label-hint">Which apps can users use this sticker on?</span>
+            </label>
+            <div class="platform-checkboxes">
+              <label class="platform-checkbox-label">
+                <input type="checkbox" name="platforms" value="whatsapp" checked> ?? WhatsApp
+              </label>
+              <label class="platform-checkbox-label">
+                <input type="checkbox" name="platforms" value="discord" checked> ?? Discord
+              </label>
+              <label class="platform-checkbox-label">
+                <input type="checkbox" name="platforms" value="instagram" checked> ?? Instagram
+              </label>
+              <label class="platform-checkbox-label">
+                <input type="checkbox" name="platforms" value="snapchat" checked> ?? Snapchat
+              </label>
+              <label class="platform-checkbox-label">
+                <input type="checkbox" name="platforms" value="reddit" checked> ?? Reddit
+              </label>
+              <label class="platform-checkbox-label">
+                <input type="checkbox" name="platforms" value="telegram" checked> ?? Telegram
+              </label>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="form-group full-width">
+            <label class="form-label" for="stickerTagsInput">
+              Tags / Keywords (Comma separated)
+              <span class="form-label-hint">For search autocomplete</span>
+            </label>
+            <input type="text" id="stickerTagsInput" class="form-input" placeholder="dog, funny, scream, buttery, lol" />
+          </div>
+
+          <!-- Featured Switch -->
+          <div class="form-group full-width">
+            <label class="platform-checkbox-label" style="display: inline-flex;">
+              <input type="checkbox" id="stickerFeaturedCheckbox"> ? Feature as "Top Pick" on Homepage
+            </label>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px; display: flex; gap: 12px;">
+          <button type="submit" class="btn-sketch btn-sketch-primary">
+            ?? Publish Sticker Now
+          </button>
+          <button type="reset" class="btn-sketch">
+            Reset Form
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TAB: AUTO-DETECT CLOUDINARY PACKS -->
+    <section class="admin-tab-panel" id="tab-detect">
+      <div class="sketch-form">
+        <h2 style="font-family: var(--font-family); font-size: 1.8rem; margin-bottom: 12px;">
+          ? Cloudinary Pack Auto-Detector & Manager
+        </h2>
+        <p style="color: var(--pencil-mid); margin-bottom: 24px;">
+          Automatically detects new sticker packs uploaded to your Cloudinary account (<code>iyh1dd7y</code>) and creates the pack with all stickers inside it!
+        </p>
+
+        <!-- Quick 1-Click Scan -->
+        <div class="sticky-note sticky-yellow" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <strong style="font-family: var(--font-family); font-size: 1.25rem; display: block;">1-Click Auto-Detect & Sync</strong>
+            <span style="font-size: 0.95rem; color: var(--pencil-mid);">Scans Cloudinary CDN and manifest for newly uploaded packs (like Jolochip Phuyawrr).</span>
+          </div>
+          <button type="button" class="btn-sketch btn-sketch-primary" id="adminScanPacksBtn">
+            ? Run Auto-Detector Now
+          </button>
+        </div>
+
+        <!-- Add / Ingest Pack Form -->
+        <div style="background: var(--paper-bg); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+          <h3 style="font-family: var(--font-family); font-size: 1.4rem; margin-bottom: 14px;">
+            ?? Ingest New Pack from Cloudinary
+          </h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="autoPackNameInput">Pack Name</label>
+              <input type="text" id="autoPackNameInput" class="form-input" placeholder="e.g. Jolochip Phuyawrr or Anime Emotes" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="autoPackCategorySelect">Category</label>
+              <select id="autoPackCategorySelect" class="form-select">
+                <option value="Memes & Reactions">Memes & Reactions</option>
+                <option value="Cute & Animals">Cute & Animals</option>
+                <option value="Anime & Gaming">Anime & Gaming</option>
+                <option value="Trending & Aesthetic">Trending & Aesthetic</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="autoPackIdsInput">
+                Cloudinary Public IDs or Filenames (Comma or newline separated)
+                <span class="form-label-hint">Paste filenames from folder or Cloudinary Media Library</span>
+              </label>
+              <textarea id="autoPackIdsInput" class="form-input" style="height: 100px; font-family: var(--font-mono); font-size: 0.85rem;" placeholder="imgi_100_c4a98aa0...&#10;imgi_101_7e788cbc..."></textarea>
+            </div>
+          </div>
+          <div style="margin-top: 14px; display: flex; gap: 10px;">
+            <button type="button" class="btn-sketch btn-sketch-primary" id="createPackFromCloudinaryBtn">
+              ?? Verify & Create Pack Automatically
+            </button>
+          </div>
+        </div>
+
+        <!-- Current Live Packs Status -->
+        <h3 style="font-family: var(--font-family); font-size: 1.4rem; margin-bottom: 14px;">
+          ?? Currently Active Cloudinary Packs (<span id="adminPacksCount">0</span>)
+        </h3>
+        <div id="adminPacksList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: MANAGE STICKERS -->
+    <section class="admin-tab-panel" id="tab-manage">
+      <div class="admin-table-container">
+        <div class="admin-toolbar-row">
+          <h2 style="font-family: var(--font-family); font-size: 1.8rem;">
+            ?? All Live Stickers
+          </h2>
+          <div style="max-width: 300px; width: 100%;">
+            <input type="search" id="adminSearchInput" class="form-input" placeholder="?? Search sticker list..." />
+          </div>
+        </div>
+
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Preview</th>
+              <th>Sticker Title</th>
+              <th>Category</th>
+              <th>Pack</th>
+              <th>Platforms</th>
+              <th>Top Pick</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminStickersTableBody">
+            <!-- Injected dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 3: BACKUP & JSON SYNC -->
+    <section class="admin-tab-panel" id="tab-backup">
+      <div class="backup-card">
+        <h2 class="backup-title">?? Permanent Repository JSON Sync</h2>
+        <p class="backup-desc">
+          When you add or edit stickers via this dashboard, changes save to your browser's local memory. To permanently publish these stickers into your website's codebase (so visitors around the world see them), click <strong>"Export stickers-data.json"</strong> and replace the data in <code>js/data.js</code>!
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+          <button class="btn-sketch btn-sketch-primary" id="exportJsonBtn">
+            ?? Export stickers-data.json File
+          </button>
+          <button class="btn-sketch" id="copyJsonBtn">
+            ?? Copy JSON to Clipboard
+          </button>
+          <button class="btn-sketch" id="importJsonBtn">
+            ?? Import JSON Backup
+          </button>
+          <input type="file" id="importFileInput" accept=".json" style="display: none;" />
+          <button class="btn-sketch" id="resetSeedBtn" style="color: #dc2626;">
+            ?? Reset to Seed Stickers
+          </button>
+        </div>
+
+        <label class="form-label">Live JSON Database Code:</label>
+        <textarea id="jsonPreviewArea" class="json-preview-area" readonly></textarea>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========================================================================
+       EDIT STICKER MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="editModal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="editModalCloseBtn">?</button>
+      <h2 style="font-family: var(--font-family); font-size: 1.8rem; margin-bottom: 16px;">
+        ?? Edit Sticker Details
+      </h2>
+
+      <form id="editStickerForm">
+        <input type="hidden" id="editStickerId" />
+        
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="editStickerTitle">Title</label>
+          <input type="text" id="editStickerTitle" class="form-input" required />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="editStickerUrl">Image URL (Cloudinary)</label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="url" id="editStickerUrl" class="form-input" style="flex: 1;" required />
+            <div class="live-preview-box" style="width: 54px; height: 54px; min-width: 54px; padding: 2px;">
+              <img src="" alt="Preview" id="editPreviewImg" class="live-preview-img" width="48" height="48" style="max-height: 48px;" />
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div class="form-group">
+            <label class="form-label" for="editStickerCategory">Category</label>
+            <select id="editStickerCategory" class="form-select"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editStickerPack">Pack</label>
+            <select id="editStickerPack" class="form-select"></select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="editStickerTags">Tags (Comma-separated)</label>
+          <input type="text" id="editStickerTags" class="form-input" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Platforms</label>
+          <div class="platform-checkboxes">
+            <label class="platform-checkbox-label"><input type="checkbox" name="platforms" value="whatsapp"> WhatsApp</label>
+            <label class="platform-checkbox-label"><input type="checkbox" name="platforms" value="discord"> Discord</label>
+            <label class="platform-checkbox-label"><input type="checkbox" name="platforms" value="instagram"> Instagram</label>
+            <label class="platform-checkbox-label"><input type="checkbox" name="platforms" value="snapchat"> Snapchat</label>
+            <label class="platform-checkbox-label"><input type="checkbox" name="platforms" value="reddit"> Reddit</label>
+            <label class="platform-checkbox-label"><input type="checkbox" name="platforms" value="telegram"> Telegram</label>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="platform-checkbox-label">
+            <input type="checkbox" id="editStickerFeatured"> ? Feature as Top Pick
+          </label>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <button type="submit" class="btn-sketch btn-sketch-primary">
+            Save Changes
+          </button>
+          <button type="button" class="btn-sketch" onclick="document.getElementById('editModal').classList.remove('active')">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/cloudinary-stickers.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/admin.js?v=2"></script>
+  <script>
+    // Cloudinary Upload Widget Hookup
+    document.addEventListener("DOMContentLoaded", () => {
+      const widgetBtn = document.getElementById("launchCloudinaryWidgetBtn");
+      if (widgetBtn && window.cloudinary) {
+        widgetBtn.addEventListener("click", () => {
+          const config = getCloudinaryConfig();
+          if (!config.cloudName || config.cloudName === "demo") {
+            const promptName = prompt("Please enter your Cloudinary Cloud Name first:", "demo");
+            if (promptName) {
+              config.cloudName = promptName;
+              saveCloudinaryConfig(config);
+              document.getElementById("cloudNameInput").value = promptName;
+            } else {
+              return;
+            }
+          }
+
+          const myWidget = cloudinary.createUploadWidget({
+            cloudName: config.cloudName, 
+            uploadPreset: config.uploadPreset || 'stickers_preset',
+            apiKey: config.apiKey || 'Eych-n4uQDcapk5gfcGsqDM3f8Y',
+            sources: ['local', 'url', 'camera'],
+            multiple: false,
+            cropping: false,
+            defaultSource: "local"
+          }, (error, result) => { 
+            if (!error && result && result.event === "success") { 
+              console.log('Done! Here is the image info: ', result.info); 
+              const secureUrl = result.info.secure_url;
+              document.getElementById("stickerUrlInput").value = secureUrl;
+              const previewImg = document.getElementById("livePreviewImg");
+              previewImg.src = secureUrl;
+              previewImg.style.display = "block";
+              document.getElementById("livePreviewEmpty").style.display = "none";
+              showToast("?? Uploaded to Cloudinary successfully!", "??");
+            }
+          });
+
+          myWidget.open();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+

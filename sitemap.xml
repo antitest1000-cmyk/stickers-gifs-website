@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main Explore Page -->
+  <url>
+    <loc>https://stickerpencil.com/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Free Online Sticker Maker Studio -->
+  <url>
+    <loc>https://stickerpencil.com/sticker-maker.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <!-- Trending Top Charts -->
+  <url>
+    <loc>https://stickerpencil.com/trending.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <!-- Thematic Categories Directory -->
+  <url>
+    <loc>https://stickerpencil.com/categories.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated WhatsApp Stickers Hub -->
+  <url>
+    <loc>https://stickerpencil.com/whatsapp-stickers.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <!-- Dedicated Discord Emotes Hub -->
+  <url>
+    <loc>https://stickerpencil.com/discord-stickers.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Instagram Story Stickers Hub -->
+  <url>
+    <loc>https://stickerpencil.com/instagram-stickers.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Telegram Stickers Hub -->
+  <url>
+    <loc>https://stickerpencil.com/telegram-stickers.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Curated Themed Bundles -->
+  <url>
+    <loc>https://stickerpencil.com/packs.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Blog & Editorial Hub -->
+  <url>
+    <loc>https://stickerpencil.com/blog.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Blog Article: WhatsApp Stickers Guide -->
+  <url>
+    <loc>https://stickerpencil.com/blog-whatsapp-stickers-guide.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Blog Article: Discord Nitro Emotes Guide -->
+  <url>
+    <loc>https://stickerpencil.com/blog-discord-nitro-emotes.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Alternatives Comparison Hub -->
+  <url>
+    <loc>https://stickerpencil.com/alternatives.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Direct Competitor Page: Sticker.ly Alternative -->
+  <url>
+    <loc>https://stickerpencil.com/stickerly-alternative.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Direct Competitor Page: Tenor Alternative -->
+  <url>
+    <loc>https://stickerpencil.com/tenor-alternative.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Platform Setup Guides -->
+  <url>
+    <loc>https://stickerpencil.com/how-to-use.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- About, FAQ & DMCA Legal -->
+  <url>
+    <loc>https://stickerpencil.com/about.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
