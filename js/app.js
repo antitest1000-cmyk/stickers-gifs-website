@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentSearchQuery = "";
   let currentContentType = "all"; // 'all' | 'gif'
   let activeModalSticker = null;
-  const INITIAL_BATCH = 24;
-  const APPEND_BATCH = 20;
+  const INITIAL_BATCH = 36;
+  const APPEND_BATCH = 24;
   let visibleCount = INITIAL_BATCH;
   let scrollObserver = null;
   let imageObserver = null;
@@ -533,13 +533,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const fallbackAttr = sticker.fallbackUrl ? `data-fallback="${sticker.fallbackUrl}" onerror="if(this.dataset.fallback && !this.dataset.fallbackApplied){this.dataset.fallbackApplied='1';this.src=this.dataset.fallback;}"` : '';
       const featuredBadgeHtml = sticker.featured ? `<div class="featured-badge">⭐ Top Pick</div>` : "";
       const gifBadgeHtml = isGif ? `<div class="pin-gif-badge"><span class="gif-pulse-dot"></span>GIF</div>` : "";
-      const isEager = index < 12;
-      const srcAttr = isEager
-        ? `src="${lowResThumb}" fetchpriority="high"`
-        : `src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 240'%3E%3C/svg%3E" data-src="${lowResThumb}" loading="lazy"`;
+      const isEager = index < 8;
+      const loadingAttrs = isEager
+        ? `src="${lowResThumb}" fetchpriority="high" loading="eager"`
+        : `src="${lowResThumb}" loading="lazy" decoding="async"`;
 
       const packEmoji = getPackEmoji(sticker.pack);
       const packName = sticker.pack || "Curated Pack";
+      const packSlug = (sticker.pack || "curated")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
       const platformBadge = isGif ? "GIF" : ((sticker.platforms && sticker.platforms.length)
         ? (sticker.platforms.includes("whatsapp") ? "WhatsApp" : sticker.platforms[0].charAt(0).toUpperCase() + sticker.platforms[0].slice(1))
         : "HD PNG");
@@ -552,18 +556,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <button type="button" class="pin-mobile-copy-btn" onclick="event.stopPropagation(); window.copyStickerImage('${sticker.id}', event)" title="${isGif ? '1-Click Copy GIF' : '1-Click Copy Sticker'}" aria-label="Copy sticker">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
-            <div class="sticker-skeleton" style="--card-color: ${cardColor};">
-              <div class="skeleton-shimmer"></div>
-            </div>
             <img 
-              ${srcAttr} 
+              ${loadingAttrs} 
               data-full-src="${fullResUrl}" 
               ${fallbackAttr} 
-              alt="${sticker.title} sticker" 
-              class="sticker-img" 
+              alt="${escapeHtml(sticker.title)} sticker" 
+              class="sticker-img loaded" 
               decoding="async" 
-              onload="this.classList.add('loaded'); const s = this.parentElement.querySelector('.sticker-skeleton'); if (s) s.classList.add('hidden');" 
-              onerror="if(this.dataset.fallback && !this.dataset.fallbackApplied){this.dataset.fallbackApplied='1';this.src=this.dataset.fallback;}else{this.classList.add('loaded'); const s = this.parentElement.querySelector('.sticker-skeleton'); if (s) s.classList.add('hidden');}" 
             />
             <div class="pin-hover-overlay" onclick="event.stopPropagation()">
               <div class="pin-top-actions">
@@ -576,7 +575,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="pin-bottom-bar">
                 <div class="pin-overlay-details">
                   <span class="pin-overlay-title" title="${escapeHtml(sticker.title)}">${escapeHtml(sticker.title)}</span>
-                  <span class="pin-overlay-pack">${packEmoji} ${escapeHtml(packName)}</span>
+                  <a href="pack-${packSlug}.html" class="pin-overlay-pack" onclick="event.stopPropagation();" title="View Pack">${packEmoji} ${escapeHtml(packName)}</a>
                 </div>
                 <div class="pin-bottom-actions">
                   <button class="pin-btn-icon" onclick="window.downloadSticker('${sticker.id}', event)" title="${isGif ? 'Download Animated GIF (.gif)' : 'Download Transparent PNG'}">
@@ -692,7 +691,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entries[0].isIntersecting) {
         window.loadMoreStickers();
       }
-    }, { rootMargin: "300px" });
+    }, { rootMargin: "600px 0px" });
 
     scrollObserver.observe(trigger);
   }
@@ -795,7 +794,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const feedTitle = document.getElementById("feedTitle");
         if (feedTitle) feedTitle.textContent = "Trending Now";
         renderStickers(true);
-        showToast("✨ Showing all stickers & memes", "⭐");
       });
     }
 
@@ -807,14 +805,12 @@ document.addEventListener("DOMContentLoaded", () => {
           if (segStickersBtn) segStickersBtn.classList.add("active");
           const feedTitle = document.getElementById("feedTitle");
           if (feedTitle) feedTitle.textContent = "Trending Now";
-          showToast("✨ Showing all stickers", "⭐");
         } else {
           currentContentType = "gif";
           segGifsBtn.classList.add("active");
           if (segStickersBtn) segStickersBtn.classList.remove("active");
           const feedTitle = document.getElementById("feedTitle");
           if (feedTitle) feedTitle.textContent = "Trending GIFs & Reactions";
-          showToast("🎬 Filtered to Animated GIFs & Memes", "🔥");
         }
         renderStickers(true);
       });
@@ -879,16 +875,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modal Action Buttons
     if (modalCopyBtn) {
-      modalCopyBtn.addEventListener("click", () => {
+      modalCopyBtn.addEventListener("click", (e) => {
         if (activeModalSticker) {
-          copyStickerImage(activeModalSticker.id);
+          copyStickerImage(activeModalSticker.id, e);
         }
       });
     }
     if (modalDownloadBtn) {
-      modalDownloadBtn.addEventListener("click", () => {
+      modalDownloadBtn.addEventListener("click", (e) => {
         if (activeModalSticker) {
-          downloadSticker(activeModalSticker.id);
+          downloadSticker(activeModalSticker.id, e);
         }
       });
     }
@@ -897,7 +893,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (activeModalSticker) {
           const fullQualityUrl = getFullQualityImageUrl(activeModalSticker.imageUrl);
           navigator.clipboard.writeText(fullQualityUrl).then(() => {
-            showToast("🔗 Full quality direct sticker URL copied!", "✨");
+            const originalHtml = modalCopyLinkBtn.innerHTML;
+            modalCopyLinkBtn.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>✓ Direct Link Copied!</span>`;
+            modalCopyLinkBtn.classList.add("copied");
+            setTimeout(() => {
+              modalCopyLinkBtn.classList.remove("copied");
+              modalCopyLinkBtn.innerHTML = originalHtml;
+            }, 1400);
           });
         }
       });
@@ -933,13 +935,11 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.classList.add("sketch-dark-mode");
           modeToggleBtn.textContent = "☀️";
           localStorage.setItem("stickerpencil_theme", "dark");
-          showToast("Switched to Dark Sketchbook", "🌙");
         } else {
           document.documentElement.classList.remove("sketch-dark-mode");
           document.body.classList.remove("sketch-dark-mode");
           modeToggleBtn.textContent = "🌙";
           localStorage.setItem("stickerpencil_theme", "light");
-          showToast("Switched to Notebook Paper", "☀️");
         }
       });
     }
@@ -1075,6 +1075,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
+   * Inline Micro-Interaction Feedback (Tactile Green Checkmark & Vibration)
+   * Replaces intrusive floating screen banners with instant button-level response
+   */
+  function triggerInlineCopyFeedback(btn) {
+    if (navigator.vibrate) {
+      try { navigator.vibrate(25); } catch (_) {}
+    }
+    if (!btn) return;
+    const originalHtml = btn.innerHTML;
+    btn.classList.add("copied");
+
+    if (btn.classList.contains("pin-mobile-copy-btn")) {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    } else if (btn.classList.contains("pin-btn-copy")) {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Copied!</span>`;
+    } else if (btn.classList.contains("modal-btn-primary") || btn.classList.contains("modal-btn-action")) {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Copied to Clipboard!</span>`;
+    } else {
+      btn.innerHTML = `✓ Copied!`;
+    }
+
+    setTimeout(() => {
+      btn.classList.remove("copied");
+      btn.innerHTML = originalHtml;
+    }, 1400);
+  }
+
+  /**
    * 1-Click Clipboard Copy Image (Full HD Original PNG or Animated GIF)
    */
   window.copyStickerImage = async function (id, e) {
@@ -1082,16 +1110,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const sticker = allStickers.find(s => s.id === id);
     if (!sticker) return;
 
+    // Collect all matching buttons on screen for instant tactile feedback
+    const triggerBtn = e && (e.currentTarget || (e.target ? e.target.closest("button") : null));
+    const cardButtons = document.querySelectorAll(`[data-id="${id}"] .pin-mobile-copy-btn, [data-id="${id}"] .pin-btn-copy`);
+    const buttonsToSignal = new Set();
+    if (triggerBtn) buttonsToSignal.add(triggerBtn);
+    cardButtons.forEach(b => buttonsToSignal.add(b));
+    if (modalCopyBtn && activeModalSticker && activeModalSticker.id === id) {
+      buttonsToSignal.add(modalCopyBtn);
+    }
+
     const isGif = typeof isGifSticker === "function" ? isGifSticker(sticker) : false;
 
     try {
-      showToast(`⏳ Fetching ${isGif ? 'animated GIF' : 'full quality sticker'}...`, "📋");
-
       const fullQualityUrl = getFullQualityImageUrl(sticker.imageUrl);
 
       if (isGif) {
         // Handle Animated GIF (Do not flatten to canvas!)
-        let copied = false;
         try {
           const response = await fetch(fullQualityUrl, { mode: "cors" });
           const gifBlob = await response.blob();
@@ -1099,8 +1134,6 @@ document.addEventListener("DOMContentLoaded", () => {
             await navigator.clipboard.write([
               new ClipboardItem({ "image/gif": gifBlob })
             ]);
-            copied = true;
-            showToast("🎬 Animated GIF copied! Ready to paste into your chats!", "🎉");
           } catch (clipErr) {
             // Rich HTML embed fallback for WhatsApp Web, Discord, Teams, Slack
             const htmlBlob = new Blob([`<img src="${fullQualityUrl}" alt="${sticker.title}">`], { type: "text/html" });
@@ -1111,20 +1144,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 "text/plain": textBlob
               })
             ]);
-            copied = true;
-            showToast("🎬 Animated GIF copied! Paste into WhatsApp or Discord!", "🎉");
           }
         } catch (gifErr) {
           await navigator.clipboard.writeText(fullQualityUrl);
-          copied = true;
-          showToast("🔗 Animated GIF link copied to clipboard!", "✨");
         }
       } else if (sticker.imageUrl.startsWith("data:image/svg+xml") || sticker.imageUrl.endsWith(".svg")) {
         const pngBlob = await svgToPngBlob(sticker.imageUrl);
         await navigator.clipboard.write([
           new ClipboardItem({ "image/png": pngBlob })
         ]);
-        showToast("✏️ Full quality sticker copied! Paste directly in your chats!", "🎉");
       } else {
         let response;
         try {
@@ -1163,16 +1191,20 @@ document.addEventListener("DOMContentLoaded", () => {
             ]);
           }, "image/png");
         }
-        showToast("✏️ Full quality sticker copied! Paste into WhatsApp or Discord!", "🎉");
       }
+
+      // Instant tactile button feedback
+      buttonsToSignal.forEach(btn => triggerInlineCopyFeedback(btn));
 
       sticker.downloads = (sticker.downloads || 0) + 1;
       updateSticker(sticker.id, { downloads: sticker.downloads });
     } catch (err) {
-      console.warn("Clipboard blob copy fallback:", err);
-      const fullQualityUrl = getFullQualityImageUrl(sticker.imageUrl);
-      await navigator.clipboard.writeText(fullQualityUrl);
-      showToast("🔗 Full quality direct link copied to clipboard!", "✨");
+      console.warn("Clipboard copy fallback:", err);
+      try {
+        const fullQualityUrl = getFullQualityImageUrl(sticker.imageUrl);
+        await navigator.clipboard.writeText(fullQualityUrl);
+        buttonsToSignal.forEach(btn => triggerInlineCopyFeedback(btn));
+      } catch (_) {}
     }
   };
 
@@ -1205,6 +1237,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const sticker = allStickers.find(s => s.id === id);
     if (!sticker) return;
 
+    const triggerBtn = e && (e.currentTarget || (e.target ? e.target.closest("button") : null));
+    if (triggerBtn) {
+      triggerBtn.classList.add("copied");
+      setTimeout(() => triggerBtn.classList.remove("copied"), 1000);
+    }
+
     const isGif = typeof isGifSticker === "function" ? isGifSticker(sticker) : false;
     const ext = isGif ? ".gif" : ".png";
     const filename = (sticker.title || "sticker")
@@ -1213,8 +1251,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/^-|-$/g, "") + ext;
 
     try {
-      showToast(`📥 Downloading ${isGif ? 'animated GIF' : 'full quality sticker'}...`, "⏳");
-
       const fullQualityUrl = getFullQualityImageUrl(sticker.imageUrl);
       let downloadUrl = fullQualityUrl;
       if (sticker.imageUrl.startsWith("data:image/svg+xml") || sticker.imageUrl.endsWith(".svg")) {
@@ -1245,7 +1281,6 @@ document.addEventListener("DOMContentLoaded", () => {
       a.click();
       document.body.removeChild(a);
 
-      showToast(`✅ Saved ${filename}!`, "🎉");
       sticker.downloads = (sticker.downloads || 0) + 1;
       updateSticker(sticker.id, { downloads: sticker.downloads });
     } catch (err) {
@@ -1257,33 +1292,14 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      showToast(`✅ Download initiated!`, "🎉");
     }
   };
 
   /**
-   * Sketchy Toast Notifications
+   * Toast Notifications - Silenced per user request to remove intrusive screen-covering popups
    */
-  window.showToast = function (message, icon = "✏️") {
-    if (!toastContainer) return;
-    const toast = document.createElement("div");
-    toast.className = "toast-item";
-    toast.innerHTML = `
-      <span class="toast-icon">${icon}</span>
-      <span>${message}</span>
-    `;
-    toastContainer.appendChild(toast);
-
-    requestAnimationFrame(() => {
-      toast.classList.add("show");
-    });
-
-    setTimeout(() => {
-      toast.classList.remove("show");
-      setTimeout(() => {
-        if (toast.parentNode) toast.parentNode.removeChild(toast);
-      }, 350);
-    }, 3000);
+  window.showToast = function () {
+    return;
   };
 
   /**
@@ -1309,7 +1325,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (input) {
       input.focus();
       input.scrollIntoView({ behavior: "smooth", block: "center" });
-      showToast("🔍 Type to search stickers...", "✏️");
     }
   };
 

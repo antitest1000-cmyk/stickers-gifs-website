@@ -149,17 +149,17 @@ function getLowResThumbnailUrl(url) {
     const parts = url.split("/image/upload/");
     const cleanPath = parts[1].replace(/^(?:(?:[a-z]_[^/]+|v\d+),?)+\//, "");
     if (isGif || cleanPath.toLowerCase().endsWith(".gif")) {
-      // Keep animation alive on thumbnail with optimized frames
-      return `${parts[0]}/image/upload/w_380,c_limit,q_auto:eco,fl_animated/${cleanPath}`;
+      // Keep animation alive on thumbnail with lightweight eco frames
+      return `${parts[0]}/image/upload/w_300,c_limit,q_auto:eco,fl_animated/${cleanPath}`;
     }
-    return `${parts[0]}/image/upload/w_400,q_75,f_auto,c_limit/${cleanPath}`;
+    return `${parts[0]}/image/upload/w_340,q_auto:good,f_auto,c_limit/${cleanPath}`;
   }
   if (typeof url === "string" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("data:") && !url.startsWith("assets/") && !url.startsWith("/") && !url.startsWith("./")) {
     const config = getCloudinaryConfig();
     if (isGif || url.toLowerCase().endsWith(".gif")) {
-      return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_380,c_limit,q_auto:eco,fl_animated/${url}`;
+      return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_300,c_limit,q_auto:eco,fl_animated/${url}`;
     }
-    return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_400,q_75,f_auto,c_limit/${url}`;
+    return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_340,q_auto:good,f_auto,c_limit/${url}`;
   }
   return url;
 }

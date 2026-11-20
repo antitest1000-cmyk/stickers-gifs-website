@@ -1778,101 +1778,25 @@ body:not(.sketch-dark-mode) .sticker-card:hover {
 }
 
 /* ==========================================================================
-   PRELOADED SHIMMER SKELETON SYSTEM (GIPHY Pop-Art Vibrant Color Blocks)
+   PRELOADED SKELETON PLACEHOLDERS
    ========================================================================== */
 .sticker-skeleton {
-  position: absolute;
-  inset: 0;
-  background-color: var(--card-color, #1a1e2d);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: inherit;
-  transition: opacity 0.35s cubic-bezier(0.2, 0.9, 0.2, 1), visibility 0.35s ease;
-  pointer-events: none;
-}
-
-body:not(.sketch-dark-mode) .sticker-skeleton {
-  background-color: var(--card-color, #e2e8f0);
-}
-
-.sticker-skeleton .skeleton-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.16) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: skeletonShimmerWave 1.6s infinite ease-in-out;
-}
-
-body:not(.sketch-dark-mode) .sticker-skeleton .skeleton-shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.28) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-}
-
-@keyframes skeletonShimmerWave {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.sticker-skeleton.hidden,
-.sticker-preview-box:has(.sticker-img.loaded) .sticker-skeleton {
   display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
 }
 
-/* Initial Skeleton Cards Placeholder */
-.skeleton-card {
-  pointer-events: none;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-}
-
-.skeleton-title-placeholder {
-  height: 12px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.07);
+/* High-Impact Responsive Visual Image (Native Fast GPU Rendering) */
+.sticker-img {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
+  display: block;
+  opacity: 1;
   position: relative;
-  overflow: hidden;
-}
-
-.skeleton-title-placeholder::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  animation: skeletonShimmerWave 1.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body:not(.sketch-dark-mode) .skeleton-title-placeholder {
-  background: #e2e8f0;
-}
-body:not(.sketch-dark-mode) .skeleton-title-placeholder::after {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.08) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  z-index: 2;
+  margin: 0 auto;
+  border-radius: 8px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+  content-visibility: auto;
 }
 
 /* ==========================================================================
@@ -1956,12 +1880,13 @@ body:not(.sketch-dark-mode) .sticker-card:hover .sticker-preview-box {
   height: auto !important;
   max-width: 100%;
   display: block;
-  opacity: 0;
+  opacity: 1;
   position: relative;
   z-index: 2;
   margin: 0 auto;
   border-radius: 8px;
-  transition: opacity 0.22s ease, transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), filter 0.24s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+  content-visibility: auto;
 }
 
 /* 1. Animated GIFs: 100% Full Bleed edge-to-edge cover like GIPHY */
@@ -2998,70 +2923,36 @@ body:not(.sketch-dark-mode) .pack-mini-card {
 }
 
 /* --------------------------------------------------------------------------
-   15. TOAST NOTIFICATIONS & MICROINTERACTIONS
+   15. SUPPRESSED TOASTS & TACTILE INLINE MICROINTERACTIONS
    -------------------------------------------------------------------------- */
-.toast-container {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  pointer-events: none;
-}
-
+/* Intrusive floating toast notifications permanently suppressed per user request */
+.toast-container,
 .toast,
-.toast-item {
-  background: rgba(18, 22, 32, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: var(--radius-full);
-  padding: 11px 22px;
-  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.75), 0 0 24px -4px rgba(168, 85, 247, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  color: #ffffff;
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  pointer-events: auto;
-  max-width: 420px;
-  opacity: 0;
-  transform: translateY(16px) scale(0.95);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+.toast-item,
+.sketch-toast {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
-.toast.show,
-.toast-item.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+/* Inline tactile micro-feedback on copy (No floating screen banners) */
+.pin-mobile-copy-btn.copied {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.75) !important;
+  transform: scale(1.15) !important;
 }
 
-body:not(.sketch-dark-mode) .toast,
-body:not(.sketch-dark-mode) .toast-item {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.12), 0 0 20px -4px rgba(124, 58, 237, 0.2);
-  color: #0f172a;
+.pin-btn-copy.copied {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.65) !important;
+  transform: scale(1.05) !important;
 }
 
-.toast-icon {
-  font-size: 1.15rem;
-  flex-shrink: 0;
-}
-
-@keyframes toastSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.modal-btn-primary.copied,
+.modal-btn-action.copied {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.65) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -3168,8 +3059,8 @@ body:not(.sketch-dark-mode) .toast-item {
    -------------------------------------------------------------------------- */
 @media (max-width: 1200px) {
   .stickers-grid {
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 14px;
+    column-count: 3;
+    column-gap: 10px;
   }
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3252,8 +3143,8 @@ body:not(.sketch-dark-mode) .toast-item {
 
 @media (max-width: 860px) {
   .stickers-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    column-count: 2;
+    column-gap: 8px;
   }
 
   .feed-controls-section {
