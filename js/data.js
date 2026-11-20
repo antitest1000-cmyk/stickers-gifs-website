@@ -9,12 +9,46 @@ const CLOUDINARY_CONFIG = {
   defaultUploadPreset: "stickers_preset",
   defaultApiKey: "Eych-n4uQDcapk5gfcGsqDM3f8Y",
   
-  // Storage keys (v9 purges all older demo/cached stickers to load new Cloudinary packs instantly)
-  STORAGE_KEY_STICKERS: "stickerpencil_stickers_v9",
+  // Storage keys (v10 adds full animated GIF extension support & CDN auto-handling)
+  STORAGE_KEY_STICKERS: "stickerpencil_stickers_v10",
   STORAGE_KEY_CONFIG: "stickerpencil_config_v1",
   STORAGE_KEY_AUTH: "stickerpencil_auth_v1",
   STORAGE_KEY_CUSTOM_PACKS: "stickerpencil_custom_packs_v1"
 };
+
+/**
+ * Checks if a given URL points to an animated GIF
+ */
+function isGifUrl(url) {
+  if (!url || typeof url !== "string") return false;
+  const lower = url.toLowerCase();
+  return lower.endsWith(".gif") || 
+         lower.includes(".gif?") || 
+         lower.includes("/fl_animated") || 
+         lower.includes("format,gif") ||
+         lower.includes("f_gif") ||
+         lower.includes(".gif/");
+}
+
+/**
+ * Checks if a sticker is an animated GIF
+ */
+function isGifSticker(sticker) {
+  if (!sticker) return false;
+  if (sticker.format === "gif" || sticker.isAnimated === true) return true;
+  if (Array.isArray(sticker.tags) && (
+    sticker.tags.includes("gif") || 
+    sticker.tags.includes("animated") || 
+    sticker.tags.includes("gifs")
+  )) {
+    return true;
+  }
+  return isGifUrl(sticker.imageUrl) || isGifUrl(sticker.fallbackUrl);
+}
+
+// Expose helpers globally
+window.isGifUrl = isGifUrl;
+window.isGifSticker = isGifSticker;
 
 /**
  * Returns current Cloudinary configuration from localStorage
@@ -68,12 +102,16 @@ function getOptimizedImageUrl(url, options = {}) {
   
   const width = options.width || 400;
   const quality = options.quality || "auto";
+  const isGif = isGifUrl(url);
 
   // If it's a Cloudinary URL
   if (typeof url === "string" && url.includes("res.cloudinary.com")) {
     if (url.includes("/image/upload/")) {
       const parts = url.split("/image/upload/");
       const cleanPath = parts[1].replace(/^(?:(?:[a-z]_[^/]+|v\d+),?)+\//, "");
+      if (isGif || cleanPath.toLowerCase().endsWith(".gif")) {
+        return `${parts[0]}/image/upload/w_${width},c_limit,fl_animated/${cleanPath}`;
+      }
       const transformation = options.format 
         ? `f_${options.format},q_${quality},w_${width},c_limit/` 
         : `q_${quality},w_${width},c_limit/`;
@@ -83,8 +121,11 @@ function getOptimizedImageUrl(url, options = {}) {
   }
 
   // If user passed just a Cloudinary public ID
-  if (typeof url === "string" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("data:")) {
+  if (typeof url === "string" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("data:") && !url.startsWith("assets/") && !url.startsWith("/") && !url.startsWith("./")) {
     const config = getCloudinaryConfig();
+    if (isGif || url.toLowerCase().endsWith(".gif")) {
+      return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_${width},c_limit,fl_animated/${url}`;
+    }
     const transformation = options.format 
       ? `f_${options.format},q_${quality},w_${width},c_limit/` 
       : `q_${quality},w_${width},c_limit/`;
@@ -96,38 +137,57 @@ function getOptimizedImageUrl(url, options = {}) {
 
 /**
  * ⚡ LOW RESOLUTION THUMBNAIL (For blazing-fast grid & list loading)
- * Compresses image to ~3-4 KB with (w_180, q_50, f_auto) so thousands of stickers
+ * Compresses image to ~3-4 KB with (w_280, q_60, f_auto) so thousands of stickers
  * load instantaneously on initial page view without eating user bandwidth.
+ * For animated GIFs, uses fl_animated + q_auto:eco so animation plays smoothly!
  */
 function getLowResThumbnailUrl(url) {
   if (!url) return "";
+  const isGif = isGifUrl(url);
+
   if (typeof url === "string" && url.includes("res.cloudinary.com") && url.includes("/image/upload/")) {
     const parts = url.split("/image/upload/");
     const cleanPath = parts[1].replace(/^(?:(?:[a-z]_[^/]+|v\d+),?)+\//, "");
-    return `${parts[0]}/image/upload/w_280,q_60,f_auto,c_limit/${cleanPath}`;
+    if (isGif || cleanPath.toLowerCase().endsWith(".gif")) {
+      // Keep animation alive on thumbnail with optimized frames
+      return `${parts[0]}/image/upload/w_380,c_limit,q_auto:eco,fl_animated/${cleanPath}`;
+    }
+    return `${parts[0]}/image/upload/w_400,q_75,f_auto,c_limit/${cleanPath}`;
   }
-  if (typeof url === "string" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("data:")) {
+  if (typeof url === "string" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("data:") && !url.startsWith("assets/") && !url.startsWith("/") && !url.startsWith("./")) {
     const config = getCloudinaryConfig();
-    return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_280,q_60,f_auto,c_limit/${url}`;
+    if (isGif || url.toLowerCase().endsWith(".gif")) {
+      return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_380,c_limit,q_auto:eco,fl_animated/${url}`;
+    }
+    return `https://res.cloudinary.com/${config.cloudName}/image/upload/w_400,q_75,f_auto,c_limit/${url}`;
   }
   return url;
 }
 
 /**
  * ✨ FULL RESOLUTION & MAXIMUM QUALITY (When user clicks into a sticker)
- * Delivers 100% crisp, uncompressed full resolution original PNG
+ * Delivers 100% crisp, uncompressed full resolution original PNG or animated GIF
  * for details modal, 1-click clipboard copying, and file downloads.
  */
 function getFullQualityImageUrl(url) {
   if (!url) return "";
+  const isGif = isGifUrl(url);
+
   if (typeof url === "string" && url.includes("res.cloudinary.com") && url.includes("/image/upload/")) {
     const parts = url.split("/image/upload/");
     // Strip any downscaling transformations (like q_auto,w_400/ or v1234/)
     const cleanPath = parts[1].replace(/^(?:(?:[a-z]_[^/]+|v\d+),?)+\//, "");
+    if (isGif || cleanPath.toLowerCase().endsWith(".gif")) {
+      // Deliver untouched original animated GIF with 100% frame fidelity
+      return `${parts[0]}/image/upload/fl_animated/${cleanPath}`;
+    }
     return `${parts[0]}/image/upload/q_auto:best,f_auto/${cleanPath}`;
   }
-  if (typeof url === "string" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("data:")) {
+  if (typeof url === "string" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("data:") && !url.startsWith("assets/") && !url.startsWith("/") && !url.startsWith("./")) {
     const config = getCloudinaryConfig();
+    if (isGif || url.toLowerCase().endsWith(".gif")) {
+      return `https://res.cloudinary.com/${config.cloudName}/image/upload/fl_animated/${url}`;
+    }
     return `https://res.cloudinary.com/${config.cloudName}/image/upload/q_auto:best,f_auto/${url}`;
   }
   return url;
@@ -438,6 +498,11 @@ function saveStickers(stickers) {
 
 function addSticker(sticker) {
   const stickers = getStickers();
+  const isGif = isGifSticker(sticker) || isGifUrl(sticker.imageUrl);
+  let tags = Array.isArray(sticker.tags) ? [...sticker.tags] : [];
+  if (isGif && !tags.includes("gif")) tags.push("gif");
+  if (isGif && !tags.includes("animated")) tags.push("animated");
+
   const newSticker = {
     id: sticker.id || "stk-" + Date.now().toString(36),
     title: sticker.title || "Untitled Sticker",
@@ -446,8 +511,10 @@ function addSticker(sticker) {
     platforms: Array.isArray(sticker.platforms) && sticker.platforms.length > 0 
       ? sticker.platforms 
       : ["whatsapp", "discord"],
-    tags: Array.isArray(sticker.tags) ? sticker.tags : [],
+    tags: tags,
     pack: sticker.pack || "Community Uploads",
+    format: isGif ? "gif" : (sticker.format || "png"),
+    isAnimated: isGif,
     featured: Boolean(sticker.featured),
     downloads: sticker.downloads || 0,
     createdAt: sticker.createdAt || new Date().toISOString().split("T")[0]

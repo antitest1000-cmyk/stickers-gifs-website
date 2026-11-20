@@ -1,5 +1,47 @@
-// CLOUDINARY REAL USER UPLOADS (2103 STICKERS)
+// CLOUDINARY REAL USER UPLOADS & ANIMATED GIFS (2106 STICKERS)
 const CLOUDINARY_UPLOADED_STICKERS = [
+  {
+    "id": "gif-party-cat",
+    "title": "Party Cat Dance",
+    "imageUrl": "assets/gifs/party-cat.gif",
+    "category": "Cute & Animals",
+    "platforms": ["whatsapp", "discord", "instagram", "telegram", "reddit", "snapchat"],
+    "tags": ["party", "cat", "billi", "dance", "cool", "animated", "gif", "cute", "vibe"],
+    "pack": "Cats Hinglish Doodles",
+    "format": "gif",
+    "isAnimated": true,
+    "featured": true,
+    "downloads": 320,
+    "createdAt": "2026-11-18"
+  },
+  {
+    "id": "gif-fire-flame",
+    "title": "Lit Fire Meme",
+    "imageUrl": "assets/gifs/fire-reaction.gif",
+    "category": "Memes & Reactions",
+    "platforms": ["whatsapp", "discord", "instagram", "telegram", "reddit", "snapchat"],
+    "tags": ["fire", "lit", "hot", "flame", "reaction", "animated", "gif", "viral", "epic"],
+    "pack": "Desi Hinglish Viral",
+    "format": "gif",
+    "isAnimated": true,
+    "featured": true,
+    "downloads": 485,
+    "createdAt": "2026-11-18"
+  },
+  {
+    "id": "gif-neon-heart",
+    "title": "Neon Love Heart",
+    "imageUrl": "assets/gifs/neon-heart.gif",
+    "category": "Vibe & Aesthetic",
+    "platforms": ["whatsapp", "discord", "instagram", "telegram", "reddit", "snapchat"],
+    "tags": ["love", "heart", "neon", "burst", "aesthetic", "animated", "gif", "pink"],
+    "pack": "Western Pop & Aesthetic",
+    "format": "gif",
+    "isAnimated": true,
+    "featured": true,
+    "downloads": 290,
+    "createdAt": "2026-11-18"
+  },
   {
     "id": "cly-00b0998d",
     "title": "Desi Cat Billi #1",

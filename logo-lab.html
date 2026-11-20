@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StickerPencil Official Brand Logo Redesign Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090E;
+      --card: #0F131D;
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #FF007A;
+      --cyan: #00F0FF;
+    }
+    * { box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 40px 24px 80px;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+    .header p {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1060px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 0, 122, 0.25);
+    }
+    .card-preview-stage {
+      width: 100%;
+      height: 190px;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 0, 122, 0.08) 0%, #080A10 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      align-self: flex-start;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0;
+    }
+    .card-desc {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      line-height: 1.45;
+      margin: 0;
+    }
+    /* Simulated Live Navbar Demo */
+    .nav-demo-wrap {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-demo-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .nav-demo {
+      background: #080A10;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-demo.light {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+    .nav-demo-logo {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-demo-logo svg {
+      width: 38px;
+      height: 38px;
+    }
+    .nav-links-fake {
+      display: flex;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+    .nav-demo.light .nav-links-fake {
+      color: #64748b;
+    }
+    .nav-links-fake .active { color: var(--accent); }
+    .select-btn {
+      background: linear-gradient(135deg, #FF007A 0%, #FF2E83 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 9999px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 10px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+      box-shadow: 0 4px 14px rgba(255, 0, 122, 0.4);
+      margin-top: 10px;
+    }
+    .select-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(255, 0, 122, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>StickerPencil Official Brand Logo Redesign Lab</h1>
+      <p>Click "Apply This Logo" on any option to instantly update the entire website.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- ========================================================
+           OPTION 1: THE GIPHY-PEEL PRISM (Figma & GIPHY Style)
+           ======================================================== -->
+      <div class="card">
+        <div class="card-preview-stage">
+          <svg viewBox="0 0 64 64" width="88" height="88" fill="none">
+            <defs>
+              <linearGradient id="o1Pink" x1="10" y1="12" x2="38" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF007A"/>
+                <stop offset="100%" stop-color="#FF2E83"/>
+              </linearGradient>
+              <linearGradient id="o1Cyan" x1="24" y1="32" x2="54" y2="60" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00F0FF"/>
+                <stop offset="100%" stop-color="#00C8FF"/>
+              </linearGradient>
+              <linearGradient id="o1Yellow" x1="28" y1="8" x2="56" y2="36" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFE600"/>
+                <stop offset="100%" stop-color="#FF9900"/>
+              </linearGradient>
+              <filter id="o1Glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#FF007A" flood-opacity="0.4"/>
+              </filter>
+            </defs>
+            <g filter="url(#o1Glow)">
+              <!-- Facet 1: Left Pink Plane -->
+              <polygon points="32,6 12,18 12,42 32,30" fill="url(#o1Pink)"/>
+              <!-- Facet 2: Right Yellow Plane -->
+              <polygon points="32,6 52,18 52,42 32,30" fill="url(#o1Yellow)"/>
+              <!-- Facet 3: Bottom Tapered Cone (Cyan) -->
+              <polygon points="12,42 32,30 52,42 32,58" fill="url(#o1Cyan)"/>
+              <!-- The Iconic Vinyl Peel Flap (Top-right corner peeling upward in 3D) -->
+              <path d="M 40 11 L 52 18 L 44 26 C 38 22 36 15 40 11 Z" fill="#FFFFFF"/>
+              <!-- Sharp Diamond Graphite Nib -->
+              <polygon points="30,53 34,53 32,58" fill="#07090E"/>
+              <circle cx="32" cy="58" r="1.5" fill="#FFE600"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Option 01</span>
+          <h2 class="card-title">GIPHY Isometric Prism</h2>
+          <p class="card-desc">Bold 3D isometric pencil crafted from 3 vibrant pop-art facets (Hot Pink, Cyan, Yellow) with a white peeling vinyl corner and graphite nib. Highly distinct & modern.</p>
+          
+          <div class="nav-demo-wrap">
+            <span class="nav-demo-label">Live Navbar Test (Dark)</span>
+            <div class="nav-demo">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <polygon points="32,6 12,18 12,42 32,30" fill="#FF007A"/>
+                  <polygon points="32,6 52,18 52,42 32,30" fill="#FFE600"/>
+                  <polygon points="12,42 32,30 52,42 32,58" fill="#00F0FF"/>
+                  <path d="M 40 11 L 52 18 L 44 26 C 38 22 36 15 40 11 Z" fill="#FFFFFF"/>
+                  <polygon points="30,53 34,53 32,58" fill="#07090E"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+            <span class="nav-demo-label">Live Navbar Test (Light)</span>
+            <div class="nav-demo light">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <polygon points="32,6 12,18 12,42 32,30" fill="#FF007A"/>
+                  <polygon points="32,6 52,18 52,42 32,30" fill="#FFE600"/>
+                  <polygon points="12,42 32,30 52,42 32,58" fill="#00F0FF"/>
+                  <path d="M 40 11 L 52 18 L 44 26 C 38 22 36 15 40 11 Z" fill="#FFFFFF"/>
+                  <polygon points="30,53 34,53 32,58" fill="#07090E"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="select-btn" onclick="applyLogo('prism')">
+            <span>🚀</span> Apply Option 1 (Prism)
+          </button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           OPTION 2: THE BOLD "P" VINYL PEEL (Pinterest Monogram Style)
+           ======================================================== -->
+      <div class="card">
+        <div class="card-preview-stage">
+          <svg viewBox="0 0 64 64" width="88" height="88" fill="none">
+            <defs>
+              <linearGradient id="o2Pink" x1="16" y1="8" x2="52" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF007A"/>
+                <stop offset="60%" stop-color="#FF2E83"/>
+                <stop offset="100%" stop-color="#9333EA"/>
+              </linearGradient>
+              <linearGradient id="o2Cyan" x1="32" y1="24" x2="52" y2="42" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00F0FF"/>
+                <stop offset="100%" stop-color="#00FF99"/>
+              </linearGradient>
+              <filter id="o2Glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#FF007A" flood-opacity="0.4"/>
+              </filter>
+            </defs>
+            <g filter="url(#o2Glow)">
+              <!-- Chunky Pencil Stem -->
+              <path d="M 14 10 L 26 10 L 26 44 L 20 56 L 14 44 Z" fill="#00F0FF"/>
+              <!-- Sharpened Cone & Lead Point -->
+              <polygon points="14,44 26,44 20,56" fill="#FFFFFF"/>
+              <polygon points="18,52 22,52 20,56" fill="#07090E"/>
+              <!-- Bold Peeling Loop of 'P' (Thick Vinyl Ribbon) -->
+              <path d="M 24 10 C 38 10 50 16 50 27 C 50 37 38 42 24 42" stroke="url(#o2Pink)" stroke-width="12" stroke-linecap="round"/>
+              <!-- 3D Peeling Underside Flap -->
+              <path d="M 36 26 L 48 24 C 46 33 38 38 28 39 L 36 26 Z" fill="url(#o2Cyan)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Option 02</span>
+          <h2 class="card-title">Bold "P" Vinyl Peel</h2>
+          <p class="card-desc">Chunky, juicy 'P' monogram. The vertical stem is a mechanical pencil pointing down, while the loop is a thick vinyl sticker peeling outward. Ultra-legible at small sizes.</p>
+          
+          <div class="nav-demo-wrap">
+            <span class="nav-demo-label">Live Navbar Test (Dark)</span>
+            <div class="nav-demo">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <path d="M 14 10 L 26 10 L 26 44 L 20 56 L 14 44 Z" fill="#00F0FF"/>
+                  <polygon points="14,44 26,44 20,56" fill="#FFFFFF"/>
+                  <polygon points="18,52 22,52 20,56" fill="#07090E"/>
+                  <path d="M 24 10 C 38 10 50 16 50 27 C 50 37 38 42 24 42" stroke="#FF007A" stroke-width="12" stroke-linecap="round"/>
+                  <path d="M 36 26 L 48 24 C 46 33 38 38 28 39 L 36 26 Z" fill="#00FF99"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+            <span class="nav-demo-label">Live Navbar Test (Light)</span>
+            <div class="nav-demo light">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <path d="M 14 10 L 26 10 L 26 44 L 20 56 L 14 44 Z" fill="#00F0FF"/>
+                  <polygon points="14,44 26,44 20,56" fill="#FFFFFF"/>
+                  <polygon points="18,52 22,52 20,56" fill="#07090E"/>
+                  <path d="M 24 10 C 38 10 50 16 50 27 C 50 37 38 42 24 42" stroke="#FF007A" stroke-width="12" stroke-linecap="round"/>
+                  <path d="M 36 26 L 48 24 C 46 33 38 38 28 39 L 36 26 Z" fill="#00FF99"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="select-btn" onclick="applyLogo('peel_p')">
+            <span>🚀</span> Apply Option 2 (Monogram P)
+          </button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           OPTION 3: THE CHUNKY STREETWEAR PENCIL (Pop Art Die-Cut Sticker)
+           ======================================================== -->
+      <div class="card">
+        <div class="card-preview-stage">
+          <svg viewBox="0 0 64 64" width="88" height="88" fill="none">
+            <defs>
+              <linearGradient id="o3Grad" x1="12" y1="52" x2="52" y2="12" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFE600"/>
+                <stop offset="50%" stop-color="#FF007A"/>
+                <stop offset="100%" stop-color="#00F0FF"/>
+              </linearGradient>
+              <filter id="o3Glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#FF007A" flood-opacity="0.45"/>
+              </filter>
+            </defs>
+            <g filter="url(#o3Glow)">
+              <!-- Thick White Sticker Die-Cut Outline -->
+              <path d="M 12 52 L 8 56 L 16 56 L 48 24 C 54 18 54 10 48 4 C 42 -2 34 2 28 8 L 8 44 Z" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+              <!-- Pencil Barrel -->
+              <path d="M 16 48 L 10 54 L 14 54 L 46 22 L 40 16 L 12 44 Z" fill="url(#o3Grad)"/>
+              <!-- Sharp Lead Tip -->
+              <polygon points="10,54 8,56 12,56" fill="#07090E"/>
+              <!-- Peeling Vinyl Eraser -->
+              <circle cx="45" cy="15" r="9" fill="#00F0FF"/>
+              <path d="M 40 10 C 46 6 52 12 48 18" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Option 03</span>
+          <h2 class="card-title">Pop-Art Die-Cut Pencil</h2>
+          <p class="card-desc">Chunky tilted streetwear sticker pencil with bold white die-cut vinyl border, hot yellow-to-pink gradient body, and round cyan peeling eraser. Fun, young, energetic.</p>
+          
+          <div class="nav-demo-wrap">
+            <span class="nav-demo-label">Live Navbar Test (Dark)</span>
+            <div class="nav-demo">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <path d="M 16 48 L 10 54 L 14 54 L 46 22 L 40 16 L 12 44 Z" fill="#FF007A"/>
+                  <polygon points="10,54 8,56 12,56" fill="#07090E"/>
+                  <circle cx="45" cy="15" r="9" fill="#00F0FF"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+            <span class="nav-demo-label">Live Navbar Test (Light)</span>
+            <div class="nav-demo light">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <path d="M 16 48 L 10 54 L 14 54 L 46 22 L 40 16 L 12 44 Z" fill="#FF007A"/>
+                  <polygon points="10,54 8,56 12,56" fill="#07090E"/>
+                  <circle cx="45" cy="15" r="9" fill="#00F0FF"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="select-btn" onclick="applyLogo('chunky')">
+            <span>🚀</span> Apply Option 3 (Pop-Art)
+          </button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           OPTION 4: THE CYBER DRAFTING NIB (Minimalist Luxury)
+           ======================================================== -->
+      <div class="card">
+        <div class="card-preview-stage">
+          <svg viewBox="0 0 64 64" width="88" height="88" fill="none">
+            <defs>
+              <linearGradient id="o4Grad" x1="10" y1="54" x2="54" y2="10" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF007A"/>
+                <stop offset="45%" stop-color="#7928CA"/>
+                <stop offset="100%" stop-color="#00F0FF"/>
+              </linearGradient>
+              <filter id="o4Glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00F0FF" flood-opacity="0.45"/>
+              </filter>
+            </defs>
+            <g filter="url(#o4Glow)">
+              <!-- Precision Fountain & Drafting Stylus Nib with Folded Wing -->
+              <path d="M 10 54 L 22 42 L 52 12 A 4 4 0 0 0 48 8 L 40 8 A 4 4 0 0 0 36 12 L 8 40 L 10 54 Z" fill="url(#o4Grad)"/>
+              <!-- High-Contrast Pure White Slit -->
+              <path d="M 10 54 L 38 26" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="38" cy="26" r="2.5" fill="#FFFFFF"/>
+              <!-- Peeling Chrome Flap (3D Corner Peel) -->
+              <path d="M 36 12 L 52 12 L 44 20 Z" fill="#FFE600"/>
+              <!-- Nib Tungsten Tip -->
+              <polygon points="10,54 8,56 12,56" fill="#00F0FF"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Option 04</span>
+          <h2 class="card-title">Cyber Drafting Nib</h2>
+          <p class="card-desc">Streamlined 45° drafting fountain nib with luminous purple-pink gradient, sharp white center slit, and folded gold sticker corner. Sleek, razor-sharp, premium.</p>
+          
+          <div class="nav-demo-wrap">
+            <span class="nav-demo-label">Live Navbar Test (Dark)</span>
+            <div class="nav-demo">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <path d="M 10 54 L 22 42 L 52 12 A 4 4 0 0 0 48 8 L 40 8 A 4 4 0 0 0 36 12 L 8 40 L 10 54 Z" fill="#FF007A"/>
+                  <path d="M 10 54 L 38 26" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M 36 12 L 52 12 L 44 20 Z" fill="#FFE600"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+            <span class="nav-demo-label">Live Navbar Test (Light)</span>
+            <div class="nav-demo light">
+              <div class="nav-demo-logo">
+                <svg viewBox="0 0 64 64" fill="none">
+                  <path d="M 10 54 L 22 42 L 52 12 A 4 4 0 0 0 48 8 L 40 8 A 4 4 0 0 0 36 12 L 8 40 L 10 54 Z" fill="#FF007A"/>
+                  <path d="M 10 54 L 38 26" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M 36 12 L 52 12 L 44 20 Z" fill="#FFE600"/>
+                </svg>
+              </div>
+              <div class="nav-links-fake">
+                <span class="active">Explore</span>
+                <span>Packs</span>
+                <span>Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="select-btn" onclick="applyLogo('cyber_nib')">
+            <span>🚀</span> Apply Option 4 (Cyber Nib)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function applyLogo(opt) {
+      alert('Selected: ' + opt + '! Applying to live site...');
+      window.location.href = '/apply-logo?choice=' + opt;
+    }
+  </script>
+</body>
+</html>

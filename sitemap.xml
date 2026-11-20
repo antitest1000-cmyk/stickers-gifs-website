@@ -119,4 +119,67 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Dedicated Pack Bundle: cats-hinglish-doodles -->
+  <url>
+    <loc>https://stickerpencil.com/pack-cats-hinglish-doodles.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: cute-kids-babies -->
+  <url>
+    <loc>https://stickerpencil.com/pack-cute-kids-babies.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: doggo-memes-reactions -->
+  <url>
+    <loc>https://stickerpencil.com/pack-doggo-memes-reactions.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: desi-hinglish-viral -->
+  <url>
+    <loc>https://stickerpencil.com/pack-desi-hinglish-viral.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: hinglish-classics -->
+  <url>
+    <loc>https://stickerpencil.com/pack-hinglish-classics.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: silly-goofs-brainrot -->
+  <url>
+    <loc>https://stickerpencil.com/pack-silly-goofs-brainrot.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: western-pop-aesthetic -->
+  <url>
+    <loc>https://stickerpencil.com/pack-western-pop-aesthetic.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: jolochip-phuyawrr -->
+  <url>
+    <loc>https://stickerpencil.com/pack-jolochip-phuyawrr.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Dedicated Pack Bundle: for-divas-queens -->
+  <url>
+    <loc>https://stickerpencil.com/pack-for-divas-queens.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <title id="pageTitle">Sticker Pack Bundle - StickerPencil</title>
+  <meta name="title" id="metaTitle" content="Sticker Pack Bundle - StickerPencil">
+  <meta name="description" id="metaDesc" content="Download free transparent stickers and animated GIFs for WhatsApp, Discord & Telegram.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" id="canonicalLink" href="https://stickerpencil.com/pack.html">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" id="ogUrl" content="https://stickerpencil.com/pack.html">
+  <meta property="og:title" id="ogTitle" content="Sticker Pack Bundle">
+  <meta property="og:description" id="ogDesc" content="Free transparent stickers bundle.">
+  <meta property="og:image" id="ogImage" content="https://stickerpencil.com/assets/og-banner.png">
+
+  <!-- High-Res Brand Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=36">
+
+  <!-- Dynamic JSON-LD Structured Data Container -->
+  <script type="application/ld+json" id="packJsonLdSchema">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Sticker Bundle",
+    "description": "Free transparent sticker pack for WhatsApp and Discord.",
+    "url": "https://stickerpencil.com/pack.html"
+  }
+  </script>
+
+  <style>
+    .pack-hero-section {
+      max-width: 1280px;
+      margin: 28px auto 36px;
+      padding: 0 24px;
+    }
+    .pack-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .pack-breadcrumbs a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .pack-breadcrumbs a:hover { color: #00F0FF; }
+    .pack-banner-card {
+      background: linear-gradient(135deg, rgba(20, 23, 34, 0.98) 0%, rgba(11, 13, 18, 1) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+    .pack-banner-card::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255, 0, 122, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .pack-header-top {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .pack-hero-emoji {
+      font-size: 3rem;
+      width: 72px;
+      height: 72px;
+      background: #fef08a;
+      color: #05070f;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+    }
+    .pack-title-wrap h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #ffffff !important;
+      margin: 0 0 6px;
+      letter-spacing: -0.02em;
+    }
+    .pack-meta-pills {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .pack-pill-chip {
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-secondary);
+    }
+    .pack-pill-chip.count {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.4);
+      color: #00F0FF;
+    }
+    .pack-hero-tagline {
+      font-size: 1.15rem;
+      color: #f1f5f9;
+      font-weight: 600;
+      margin: 16px 0 24px;
+      line-height: 1.5;
+    }
+    .pack-action-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .btn-pack-primary {
+      background: linear-gradient(135deg, #FF007A 0%, #9333EA 100%);
+      color: #ffffff !important;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(255, 0, 122, 0.4);
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-pack-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 0, 122, 0.6);
+    }
+    .btn-pack-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff !important;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-pack-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #00F0FF;
+      color: #00F0FF !important;
+    }
+    /* Editorial SEO Section */
+    .pack-editorial-section {
+      max-width: 1280px;
+      margin: 48px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 36px;
+    }
+    @media (max-width: 960px) {
+      .pack-editorial-section { grid-template-columns: 1fr; }
+    }
+    .editorial-content-box {
+      background: #141722;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px;
+      color: #94a3b8;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+    .editorial-content-box h2,
+    .editorial-content-box h3 {
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .editorial-content-box h2 {
+      font-size: 1.6rem;
+      margin: 0 0 16px;
+    }
+    .editorial-content-box p {
+      margin-bottom: 16px;
+    }
+    .usecases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .usecase-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .usecase-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #00F0FF;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .usecase-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 8px;
+    }
+    .usecase-desc {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin: 0;
+      color: #94a3b8;
+    }
+    /* FAQ Accordion */
+    .faq-accordion-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 16px 20px;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq-answer {
+      padding: 0 20px 18px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #94a3b8;
+    }
+    /* Related Packs Sidebar */
+    .related-packs-box {
+      background: #141722;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 28px;
+      height: fit-content;
+    }
+    .related-packs-box h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 16px;
+    }
+    .related-pack-chip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+    .related-pack-chip:hover {
+      border-color: #00F0FF;
+      background: rgba(0, 240, 255, 0.06);
+      transform: translateX(4px);
+    }
+    .rp-icon {
+      font-size: 1.8rem;
+    }
+    .rp-title {
+      font-size: 0.95rem;
+      color: #ffffff;
+      display: block;
+    }
+    .rp-sub {
+      font-size: 0.78rem;
+      color: #00F0FF;
+    }
+  </style>
+</head>
+<body class="sketch-dark-mode">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" aria-label="StickerPencil Home">
+        <img src="assets/logo.svg" alt="getstckup" class="brand-logo-svg" height="40" />
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Explore</a></li>
+          <li><a href="packs.html" class="nav-link active">Packs</a></li>
+          <li><a href="trending.html" class="nav-link">Trending</a></li>
+          <li><a href="categories.html" class="nav-link">Categories</a></li>
+          <li><a href="sticker-maker.html" class="nav-link nav-link-studio">Studio <span class="studio-badge-cute">New</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="packs.html" class="btn-sketch btn-sketch-sm">All Packs &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="pack-hero-section">
+      <nav class="pack-breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>&rsaquo;</span>
+        <a href="packs.html">Packs</a>
+        <span>&rsaquo;</span>
+        <span id="breadcrumbPackName">Loading...</span>
+      </nav>
+
+      <div class="pack-banner-card">
+        <div class="pack-header-top">
+          <div class="pack-hero-emoji" id="packHeroEmoji">📦</div>
+          <div class="pack-title-wrap">
+            <h1 id="packTitleHeading">Loading Sticker Bundle...</h1>
+            <div class="pack-meta-pills">
+              <span class="pack-pill-chip count" id="packStickerCountChip">0 Stickers</span>
+              <span class="pack-pill-chip" id="packCategoryChip">Bundle</span>
+              <span class="pack-pill-chip">Free WhatsApp &amp; Discord Bundle</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="pack-hero-tagline" id="packHeroTagline">High-Definition Transparent Sticker Bundle</p>
+
+        <div class="pack-action-bar">
+          <button class="btn-pack-primary" id="downloadAllPackBtn" type="button">
+            <span>📥 Download Pack (All Stickers)</span>
+          </button>
+          <a href="index.html" class="btn-pack-secondary" id="viewInSearchBtn">
+            <span>🔍 View in Full Search Feed</span>
+          </a>
+          <a href="sticker-maker.html" class="btn-pack-secondary">
+            <span>✨ Animate in Studio</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticker Masonry Grid -->
+    <section class="stickers-container" style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin: 0;" id="gridHeading">
+          Stickers in this Pack
+        </h2>
+        <span style="font-size: 0.88rem; color: var(--text-secondary);">Click any sticker to 1-click copy or download</span>
+      </div>
+
+      <div class="stickers-grid" id="packStickersGrid">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Editorial SEO Section (Groq AI) -->
+    <section class="pack-editorial-section">
+      <div class="editorial-content-box" id="editorialBox">
+        <h2 id="aboutHeading">About this Bundle</h2>
+        <div id="overviewContainer">
+          <p>Loading AI-curated pack insights and viral chat tips...</p>
+        </div>
+
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff; margin: 32px 0 14px;">
+          Best Chat Situations &amp; Reactions
+        </h3>
+        <div class="usecases-grid" id="usecasesGrid">
+          <!-- Injected dynamically -->
+        </div>
+
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff; margin: 36px 0 14px;">
+          Frequently Asked Questions
+        </h3>
+        <div class="faq-list" id="faqList">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="related-packs-box">
+        <h3>Related Sticker Packs</h3>
+        <div id="relatedPacksContainer">
+          <!-- Injected dynamically -->
+        </div>
+
+        <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Need Custom Stickers?</h4>
+          <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 14px;">
+            Create and customize transparent stickers or animated GIFs using our free web studio.
+          </p>
+          <a href="sticker-maker.html" class="btn-sketch" style="width: 100%; text-align: center; box-sizing: border-box;">Open Studio &rarr;</a>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" style="margin-top: 60px;">
+    <div class="footer-container">
+      <div>
+        <h4 class="footer-heading">StickerPencil</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Free transparent stickers and animated GIFs for WhatsApp, Discord, Instagram Stories &amp; Telegram.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Platforms</h4>
+        <ul class="footer-links-list">
+          <li><a href="whatsapp-stickers.html" class="footer-link">WhatsApp Stickers</a></li>
+          <li><a href="discord-stickers.html" class="footer-link">Discord Emotes</a></li>
+          <li><a href="telegram-stickers.html" class="footer-link">Telegram Stickers</a></li>
+          <li><a href="instagram-stickers.html" class="footer-link">Instagram Stickers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Explore</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link">All Stickers</a></li>
+          <li><a href="packs.html" class="footer-link">Themed Packs</a></li>
+          <li><a href="trending.html" class="footer-link">Trending Top Charts</a></li>
+          <li><a href="categories.html" class="footer-link">Categories</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 StickerPencil. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Interactive Scripts -->
+  <script src="js/cloudinary-stickers.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/groq-seo.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const params = new URLSearchParams(window.location.search);
+      const rawQuery = params.get("pack") || params.get("id") || params.get("name") || "Cats Hinglish Doodles";
+
+      const stickers = getStickers();
+      const allPacks = getStickerPacks();
+
+      // Find matching pack
+      let pack = allPacks.find(p => 
+        (p.slug && p.slug.toLowerCase() === rawQuery.toLowerCase()) ||
+        (p.name && p.name.toLowerCase() === rawQuery.toLowerCase()) ||
+        (p.id && p.id.toLowerCase() === rawQuery.toLowerCase())
+      );
+
+      if (!pack) {
+        // Fallback: search by partial name
+        pack = allPacks.find(p => p.name.toLowerCase().includes(rawQuery.toLowerCase())) || allPacks[0];
+      }
+
+      const packName = pack.displayName || pack.name;
+      const packSlug = pack.slug || pack.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      const category = pack.category || "Memes & Reactions";
+      const icon = pack.icon || "📦";
+      const color = pack.color || "#fef08a";
+
+      // Filter stickers for this pack
+      const packStickers = stickers.filter(s => (s.pack || "").toLowerCase() === pack.name.toLowerCase());
+      const count = packStickers.length;
+
+      // Update UI Header
+      document.getElementById("breadcrumbPackName").textContent = packName;
+      document.getElementById("packHeroEmoji").textContent = icon;
+      document.getElementById("packHeroEmoji").style.background = color;
+      document.getElementById("packTitleHeading").textContent = packName;
+      document.getElementById("packStickerCountChip").textContent = `${count} Transparent Stickers`;
+      document.getElementById("packCategoryChip").textContent = category;
+      document.getElementById("viewInSearchBtn").href = `index.html?pack=${encodeURIComponent(pack.name)}`;
+
+      // Try loading cached or manifest SEO content
+      let seo = getCachedPackSeo(packSlug);
+
+      if (!seo) {
+        // Try reading from manifest if available
+        try {
+          const mRes = await fetch("data/packs-manifest.json");
+          if (mRes.ok) {
+            const manifest = await mRes.json();
+            const mPack = (manifest.packs || []).find(p => (p.slug && p.slug === packSlug) || (p.name && p.name.toLowerCase() === pack.name.toLowerCase()));
+            if (mPack && mPack.seoContent) {
+              seo = mPack.seoContent;
+              savePackSeoToCache(packSlug, seo);
+            }
+          }
+        } catch (e) {}
+      }
+
+      // If still missing, automatically generate with Groq LLM
+      if (!seo) {
+        document.getElementById("packHeroTagline").textContent = "✨ Generating viral AI insights with Groq LLM...";
+        seo = await generatePackSeoWithGroq(packName, category, count, packStickers);
+        savePackSeoToCache(packSlug, seo);
+      }
+
+      // Populate SEO Content
+      document.title = seo.metaTitle || `${packName} Stickers - Free WhatsApp & Discord Emotes`;
+      document.getElementById("metaTitle").content = document.title;
+      document.getElementById("metaDesc").content = seo.metaDescription || `Download ${count}+ free transparent ${packName} stickers for WhatsApp, Discord, and Telegram.`;
+      document.getElementById("canonicalLink").href = `https://stickerpencil.com/pack-${packSlug}.html`;
+      document.getElementById("packHeroTagline").textContent = seo.heroTagline || `The Ultimate ${packName} Digital Sticker Collection for Group Chats`;
+      document.getElementById("aboutHeading").textContent = `About the ${packName} Bundle`;
+
+      // Overview
+      const paragraphs = (seo.overview || "").split("\n\n").map(p => `<p>${p.trim()}</p>`).join("");
+      document.getElementById("overviewContainer").innerHTML = paragraphs;
+
+      // Use cases
+      const casesHtml = (seo.chatUseCases || []).map(c => `
+        <div class="usecase-card">
+          <div class="usecase-badge">💡 Tip</div>
+          <h4 class="usecase-title">${c.title || ''}</h4>
+          <p class="usecase-desc">${c.description || ''}</p>
+        </div>
+      `).join("");
+      document.getElementById("usecasesGrid").innerHTML = casesHtml;
+
+      // FAQ
+      const faqHtml = (seo.faq || []).map(f => `
+        <details class="faq-accordion-item">
+          <summary class="faq-question">
+            <span>${f.question || ''}</span>
+            <span class="faq-chevron">&darr;</span>
+          </summary>
+          <div class="faq-answer">
+            <p>${f.answer || ''}</p>
+          </div>
+        </details>
+      `).join("");
+      document.getElementById("faqList").innerHTML = faqHtml;
+
+      // Render Sticker Cards
+      const grid = document.getElementById("packStickersGrid");
+      if (packStickers.length === 0) {
+        grid.innerHTML = `<p style="color: var(--text-secondary); text-align: center; padding: 40px; grid-column: 1/-1;">No stickers found in this pack.</p>`;
+      } else {
+        grid.innerHTML = packStickers.map((s, idx) => {
+          const isGif = isGifSticker(s);
+          const thumb = getLowResThumbnailUrl(s.imageUrl);
+          return `
+            <article class="sticker-card" data-id="${s.id}">
+              <div class="sticker-preview-box">
+                ${isGif ? '<div class="pin-gif-badge"><span class="gif-pulse-dot"></span>GIF</div>' : ''}
+                <img 
+                  src="${thumb}" 
+                  alt="${s.title}" 
+                  class="sticker-img loaded" 
+                  loading="lazy" 
+                  decoding="async" 
+                  width="160" 
+                  height="160" 
+                />
+                <div class="pin-hover-overlay" onclick="event.stopPropagation()">
+                  <div class="pin-top-actions">
+                    <button type="button" class="pin-action-btn pin-copy-btn" onclick="copySingleSticker('${s.imageUrl}', '${s.title}')" title="Copy Sticker">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><rect width="13" height="13" x="9" y="9" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      <span>Copy</span>
+                    </button>
+                  </div>
+                  <div class="pin-bottom-bar">
+                    <button type="button" class="pin-action-btn pin-dl-btn" onclick="downloadSingleSticker('${s.imageUrl}', '${s.title}')" title="Download">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                      <span>${isGif ? 'GIF' : 'PNG'}</span>
+                    </button>
+                    <a href="sticker-maker.html?sticker=${s.id}" class="pin-action-btn pin-edit-btn" title="Edit in Studio">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m18 5-3-3L6 11l3 3L18 5z"/><path d="m3 21 3-1-2-2-1 3z"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="sticker-info-strip">
+                <h3 class="sticker-item-title">${s.title}</h3>
+                <span class="sticker-format-pill">${icon} ${category}</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      // Related Packs
+      const related = allPacks.filter(p => (p.name || "").toLowerCase() !== pack.name.toLowerCase()).slice(0, 3);
+      document.getElementById("relatedPacksContainer").innerHTML = related.map(rp => `
+        <a href="pack-${rp.slug || rp.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html" class="related-pack-chip">
+          <span class="rp-icon">${rp.icon || '📦'}</span>
+          <div class="rp-info">
+            <strong class="rp-title">${rp.displayName || rp.name}</strong>
+            <span class="rp-sub">View Bundle &rarr;</span>
+          </div>
+        </a>
+      `).join("");
+
+      // Download all button
+      document.getElementById("downloadAllPackBtn").addEventListener("click", () => {
+        downloadPackAll(packName);
+      });
+    });
+
+    function showToast(msg, icon = "✨") {
+      let c = document.getElementById("toastContainer");
+      if (!c) {
+        c = document.createElement("div");
+        c.id = "toastContainer";
+        c.className = "toast-container";
+        document.body.appendChild(c);
+      }
+      const t = document.createElement("div");
+      t.className = "toast-item active";
+      t.style.cssText = "background:#171b24;color:#fff;border:1px solid rgba(0,240,255,0.4);border-radius:12px;padding:12px 20px;margin-top:10px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 10px 25px rgba(0,0,0,0.5);";
+      t.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
+      c.appendChild(t);
+      setTimeout(() => { t.style.opacity = "0"; setTimeout(() => t.remove(), 300); }, 3000);
+    }
+
+    async function copySingleSticker(url, title) {
+      try {
+        const resp = await fetch(url);
+        const blob = await resp.blob();
+        await navigator.clipboard.write([
+          new ClipboardItem({ [blob.type]: blob })
+        ]);
+        showToast(`Copied "${title}" to clipboard! Ready to paste into chat.`);
+      } catch (e) {
+        navigator.clipboard.writeText(url);
+        showToast(`Copied image link to clipboard!`);
+      }
+    }
+
+    function downloadSingleSticker(url, title) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = (title || "sticker").toLowerCase().replace(/[^a-z0-9]+/g, "-") + (url.endsWith(".gif") ? ".gif" : ".png");
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showToast(`Downloading "${title}"...`);
+    }
+
+    function downloadPackAll(packName) {
+      showToast(`Preparing bundle download for "${packName}"...`, "📦");
+      const stickers = getStickers().filter(s => (s.pack || "").toLowerCase() === packName.toLowerCase());
+      if (stickers.length === 0) {
+        alert("No stickers found to download.");
+        return;
+      }
+      stickers.slice(0, 5).forEach((s, idx) => {
+        setTimeout(() => {
+          downloadSingleSticker(s.imageUrl, s.title);
+        }, idx * 400);
+      });
+      showToast(`Started downloading top stickers from ${packName}!`, "🚀");
+    }
+  </script>
+</body>
+</html>
+

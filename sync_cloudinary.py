@@ -149,7 +149,7 @@ def sync_folders():
         pack_name = clean_pack_title(folder)
         category, icon, color, desc = detect_metadata(pack_name)
 
-        files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp'))]
+        files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif'))]
         if not files:
             continue
 
@@ -157,7 +157,8 @@ def sync_folders():
         unseen_files = []
         for f in files:
             pub_id = os.path.splitext(f)[0]
-            url = f"https://res.cloudinary.com/{CLOUD_NAME}/image/upload/q_auto,w_400/{pub_id}"
+            is_gif = f.lower().endswith('.gif')
+            url = f"https://res.cloudinary.com/{CLOUD_NAME}/image/upload/fl_animated/{pub_id}.gif" if is_gif else f"https://res.cloudinary.com/{CLOUD_NAME}/image/upload/q_auto,w_400/{pub_id}"
             if url not in existing_urls:
                 unseen_files.append((pub_id, f))
 
@@ -186,17 +187,22 @@ def sync_folders():
             if pub_id not in valid_ids:
                 continue
 
+            is_gif = fname.lower().endswith('.gif')
             clean_tag = re.sub(r'[^a-zA-Z0-9]+', ' ', pack_name).lower().split()
-            tags = list(set(clean_tag + ["sticker", "transparent", "reaction", f"#{idx}"]))
+            extra_tags = ["gif", "animated"] if is_gif else []
+            tags = list(set(clean_tag + ["sticker", "transparent", "reaction"] + extra_tags + [f"#{idx}"]))
+            img_url = f"https://res.cloudinary.com/{CLOUD_NAME}/image/upload/fl_animated/{pub_id}.gif" if is_gif else f"https://res.cloudinary.com/{CLOUD_NAME}/image/upload/q_auto,w_400/{pub_id}"
 
             sticker_item = {
                 "id": f"cly-{pub_id[:8]}",
                 "title": f"{pack_name} #{idx}",
-                "imageUrl": f"https://res.cloudinary.com/{CLOUD_NAME}/image/upload/q_auto,w_400/{pub_id}",
+                "imageUrl": img_url,
                 "category": category,
                 "platforms": ["whatsapp", "discord", "instagram", "telegram", "reddit", "snapchat"],
                 "tags": tags,
                 "pack": pack_name,
+                "format": "gif" if is_gif else "png",
+                "isAnimated": is_gif,
                 "featured": idx <= 8,
                 "downloads": 40 + (idx * 3) % 95,
                 "createdAt": time.strftime("%Y-%m-%d")
@@ -215,6 +221,14 @@ def sync_folders():
     else:
         print("\n✨ All packs are already up to date with Cloudinary.")
         update_manifest(existing_stickers)
+
+    # Automatically generate detailed SEO landing pages with Groq LLM
+    try:
+        print("\n🤖 Running Groq AI SEO Page Generator for bundle landing pages...")
+        from generate_pack_pages import main as generate_seo_pages
+        generate_seo_pages()
+    except Exception as e:
+        print(f"Notice: Pack SEO generator: {e}")
 
 if __name__ == "__main__":
     if "--watch" in sys.argv:

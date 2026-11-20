@@ -260,7 +260,7 @@ body:not(.sketch-dark-mode) .brand-logo {
   color: #0f172a;
 }
 
-body:not(.sketch-dark-mode) .brand-logo-svg .brand-typography text {
+body:not(.sketch-dark-mode) .brand-word-sticker {
   fill: #0f172a;
 }
 
@@ -275,20 +275,24 @@ body:not(.sketch-dark-mode) .brand-logo-svg .brand-typography text {
 
 @keyframes logoPeelBounce {
   0% { transform: scale(1) rotate(0deg); }
-  40% { transform: scale(1.12) rotate(-5deg); }
+  40% { transform: scale(1.08) rotate(-4deg); }
   100% { transform: scale(1) rotate(0deg); }
 }
 
+.brand-logo-img,
 .brand-logo-svg {
   display: block;
-  height: 42px;
-  width: 42px;
+  height: 40px;
+  width: auto;
+  max-width: 175px;
+  object-fit: contain;
   transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.22s ease;
 }
 
+.brand-logo:hover .brand-logo-img,
 .brand-logo:hover .brand-logo-svg {
-  transform: translateY(-2px) scale(1.08);
-  filter: drop-shadow(0 0 16px rgba(255, 0, 122, 0.7));
+  transform: translateY(-2px) scale(1.04);
+  filter: drop-shadow(0 0 16px rgba(255, 0, 122, 0.55));
 }
 
 /* Backwards-compatibility for any legacy logo-area elements */
@@ -624,6 +628,42 @@ body:not(.sketch-dark-mode) .dropdown-desc {
 }
 .dropdown-link.pink:hover .dropdown-title {
   color: #FF007A;
+}
+
+.dropdown-chip {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.dropdown-chip.cyan {
+  color: #00F0FF;
+  background: rgba(0, 240, 255, 0.16);
+  border: 1px solid rgba(0, 240, 255, 0.38);
+}
+
+.dropdown-chip.yellow {
+  color: #FFE600;
+  background: rgba(255, 230, 0, 0.16);
+  border: 1px solid rgba(255, 230, 0, 0.38);
+}
+
+.dropdown-chip.purple {
+  color: #C084FC;
+  background: rgba(168, 85, 247, 0.16);
+  border: 1px solid rgba(168, 85, 247, 0.38);
+}
+
+.dropdown-chip.pink {
+  color: #FF007A;
+  background: rgba(255, 0, 122, 0.16);
+  border: 1px solid rgba(255, 0, 122, 0.38);
 }
 
 .dropdown-divider {
@@ -1175,16 +1215,16 @@ body:not(.sketch-dark-mode) .quick-tag-btn:hover {
 }
 
 .feed-segment-btn {
-  padding: 9px 24px;
+  padding: 8px 22px;
   border-radius: var(--radius-full);
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #c7cbd7;
   border: none;
-  background: transparent;
+  background: #1e2230;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.2, 0.9, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1193,22 +1233,32 @@ body:not(.sketch-dark-mode) .quick-tag-btn:hover {
 
 .feed-segment-btn:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  background: #2b3145;
 }
 
+/* Authentic GIPHY Purple Pill for Active Section */
 .feed-segment-btn.active {
-  background: linear-gradient(135deg, #FF007A 0%, #FF2E83 100%);
+  background: #6157ff;
   color: #ffffff;
-  box-shadow: 0 4px 20px rgba(255, 0, 122, 0.65);
+  box-shadow: 0 4px 18px rgba(97, 87, 255, 0.55);
 }
 
 body:not(.sketch-dark-mode) .feed-segmented-nav {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.08);
 }
+body:not(.sketch-dark-mode) .feed-segment-btn {
+  background: #edf0f7;
+  color: #475569;
+}
+body:not(.sketch-dark-mode) .feed-segment-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
 body:not(.sketch-dark-mode) .feed-segment-btn.active {
-  background: #FF007A;
+  background: #6157ff;
   color: #ffffff;
+  box-shadow: 0 4px 16px rgba(97, 87, 255, 0.4);
 }
 
 /* Row 2: Unified Filter & Sorting Toolbar */
@@ -1475,9 +1525,21 @@ body:not(.sketch-dark-mode) .platform-pill-btn.active {
   transform: scale(1.14);
 }
 
-.item-icon-bubble.fire { background: rgba(255, 102, 0, 0.2); box-shadow: 0 0 10px rgba(255, 102, 0, 0.25); }
-.item-icon-bubble.sparkle { background: rgba(0, 240, 255, 0.2); box-shadow: 0 0 10px rgba(0, 240, 255, 0.25); }
-.item-icon-bubble.alpha { background: rgba(168, 85, 247, 0.2); box-shadow: 0 0 10px rgba(168, 85, 247, 0.25); }
+.item-icon-bubble.fire { 
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.35), rgba(255, 140, 0, 0.2)); 
+  border: 1px solid #ff4500; 
+  box-shadow: 0 0 14px rgba(255, 69, 0, 0.45); 
+}
+.item-icon-bubble.sparkle { 
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.35), rgba(56, 189, 248, 0.2)); 
+  border: 1px solid #00f0ff; 
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.45); 
+}
+.item-icon-bubble.alpha { 
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(147, 51, 234, 0.2)); 
+  border: 1px solid #a855f7; 
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.45); 
+}
 
 .item-text-wrap {
   display: flex;
@@ -1570,19 +1632,46 @@ body:not(.sketch-dark-mode) .sticker-count-badge {
   width: 100%;
 }
 
-/* Desktop Grid: 4 Columns with generous Pinterest spacing */
-.stickers-grid {
-  columns: 4 240px;
-  column-gap: 20px;
+/* ==========================================================================
+   10. GIPHY & PINTEREST AUTHENTIC MULTI-COLUMN MASONRY STREAM (CHUNKY & BOLD)
+   ========================================================================== */
+.stickers-container {
+  max-width: 1440px;
+  margin: 0 auto 60px;
+  padding: 0 16px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-/* Pinterest Vibe Sticker Card - Frameless Floating Pin Container */
+/* 4 Chunky Columns on Desktop, tight 10px GIPHY gaps */
+.stickers-grid {
+  column-count: 4;
+  column-gap: 10px;
+  width: 100%;
+  display: block; /* Pure multi-column flow */
+}
+
+@media (max-width: 1200px) {
+  .stickers-grid {
+    column-count: 3;
+    column-gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stickers-grid {
+    column-count: 2;
+    column-gap: 8px;
+    padding: 0;
+  }
+}
+
+/* GIPHY / Pinterest Pure Media Card - Natural Heights, No 1:1 Box */
 .sticker-card {
   break-inside: avoid;
+  margin-bottom: 10px;
   display: inline-block;
   width: 100%;
-  margin-bottom: 24px;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -1590,15 +1679,15 @@ body:not(.sketch-dark-mode) .sticker-count-badge {
   overflow: visible;
   position: relative;
   box-sizing: border-box;
-  vertical-align: top;
   cursor: pointer;
   line-height: normal;
-  content-visibility: auto;
-  contain-intrinsic-size: 260px 320px;
+  contain: none;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sticker-card:hover {
-  transform: none;
+  transform: translateY(-4px) scale(1.015);
+  z-index: 10;
 }
 
 body:not(.sketch-dark-mode) .sticker-card {
@@ -1608,7 +1697,12 @@ body:not(.sketch-dark-mode) .sticker-card {
 }
 
 body:not(.sketch-dark-mode) .sticker-card:hover {
-  transform: none;
+  transform: translateY(-4px) scale(1.015);
+}
+
+/* Hide repetitive bot titles under pack cards for clean Pinterest visual feed */
+.sticker-info-strip {
+  display: none !important;
 }
 
 /* Featured Top Pick Badge - Hot Pink */
@@ -1627,6 +1721,49 @@ body:not(.sketch-dark-mode) .sticker-card:hover {
   font-weight: 700;
   letter-spacing: 0.02em;
   box-shadow: 0 2px 10px rgba(255, 46, 131, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Neon Cyber Animated GIF Pill */
+.pin-gif-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+  padding: 3px 9px;
+  border-radius: 8px;
+  background: rgba(5, 7, 15, 0.82);
+  border: 1px solid rgba(0, 240, 255, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #00F0FF;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.pin-gif-badge .gif-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00F0FF;
+  box-shadow: 0 0 6px #00F0FF;
+  animation: pulseGifDot 1.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulseGifDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.65);
+  }
 }
 
 /* ==========================================================================
@@ -1680,6 +1817,7 @@ body:not(.sketch-dark-mode) .sticker-skeleton .skeleton-shimmer {
 
 .sticker-skeleton.hidden,
 .sticker-preview-box:has(.sticker-img.loaded) .sticker-skeleton {
+  display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
@@ -1726,71 +1864,117 @@ body:not(.sketch-dark-mode) .skeleton-title-placeholder::after {
   );
 }
 
-/* Pinterest Image Canvas Stage (Floating Rounded Pin Stage) */
+/* ==========================================================================
+   GIPHY & PINTEREST CHUNKY MASONRY MEDIA CANVAS (FULL-BLEED & NATURAL RATIOS)
+   ========================================================================== */
 .sticker-preview-box {
   width: 100%;
   position: relative;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 8px; /* Clean authentic GIPHY/Pinterest 8px corners */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px;
+  padding: 0;
   box-sizing: border-box;
-  background-color: #141722;
-  background-image: 
-    radial-gradient(circle at 50% 50%, rgba(255, 0, 122, 0.06) 0%, rgba(20, 23, 34, 0.98) 100%),
-    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 100% 100%, 14px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  background-color: #12151e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   line-height: 0;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+  min-height: 140px;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.2s ease;
 }
 
 body:not(.sketch-dark-mode) .sticker-preview-box {
-  background-color: #f8fafc;
-  background-image: 
-    radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 100%),
-    radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  background-color: #f1f3f9;
+  border-color: rgba(0, 0, 0, 0.06);
 }
 
 .sticker-card:hover .sticker-preview-box {
-  transform: translateY(-6px) scale(1.015);
+  transform: scale(1.02);
   border-color: rgba(255, 0, 122, 0.5);
-  box-shadow: 0 20px 42px -6px rgba(0, 0, 0, 0.8),
-              0 0 24px rgba(255, 0, 122, 0.3);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.8),
+              0 0 20px rgba(255, 0, 122, 0.3);
 }
 
 body:not(.sketch-dark-mode) .sticker-card:hover .sticker-preview-box {
   border-color: rgba(255, 0, 122, 0.45);
-  box-shadow: 0 18px 36px -6px rgba(0, 0, 0, 0.12),
-              0 0 18px rgba(255, 0, 122, 0.25);
+  box-shadow: 0 14px 30px -6px rgba(0, 0, 0, 0.15),
+              0 0 16px rgba(255, 0, 122, 0.25);
 }
 
-/* Dynamic Pinterest Staggered Masonry Heights (5-Cycle Coprime to 4-Col & 3-Col & 2-Col) */
-.sticker-card:nth-child(5n+1) .sticker-preview-box { height: 260px; }
-.sticker-card:nth-child(5n+2) .sticker-preview-box { height: 350px; }
-.sticker-card:nth-child(5n+3) .sticker-preview-box { height: 210px; }
-.sticker-card:nth-child(5n+4) .sticker-preview-box { height: 310px; }
-.sticker-card:nth-child(5n+5) .sticker-preview-box { height: 270px; }
+/* Mobile Quick-Copy Micro-Pill */
+.pin-mobile-copy-btn {
+  display: none;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 6;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF007A 0%, #FF2E83 100%);
+  color: #ffffff;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(255, 0, 122, 0.55);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
 
+.pin-mobile-copy-btn:active {
+  transform: scale(0.9);
+}
+
+@media (max-width: 768px) {
+  .pin-mobile-copy-btn {
+    display: inline-flex;
+  }
+}
+
+/* High-Impact Responsive Visual Image */
 .sticker-img {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: auto !important;
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  display: block;
   opacity: 0;
   position: relative;
   z-index: 2;
-  display: block;
   margin: 0 auto;
-  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 8px;
+  transition: opacity 0.22s ease, transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), filter 0.24s ease;
+}
+
+/* 1. Animated GIFs: 100% Full Bleed edge-to-edge cover like GIPHY */
+.card-is-gif .sticker-img {
+  object-fit: cover;
+  padding: 0;
+  min-height: 140px;
+  max-height: 520px;
+  filter: none;
+}
+
+/* 2. Transparent Stickers: Chunky high-res vinyl outline with natural variable height */
+.card-is-sticker .sticker-img,
+.sticker-card:not(.card-is-gif) .sticker-img {
+  object-fit: contain;
+  padding: 8px;
+  min-height: 180px;
+  max-height: 380px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+body:not(.sketch-dark-mode) .card-is-sticker .sticker-img,
+body:not(.sketch-dark-mode) .sticker-card:not(.card-is-gif) .sticker-img {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
 }
 
 /* ONLY display image when loaded class is applied */
@@ -1799,8 +1983,12 @@ body:not(.sketch-dark-mode) .sticker-card:hover .sticker-preview-box {
 }
 
 .sticker-card:hover .sticker-img {
-  transform: scale(1.04);
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.7));
+  transform: scale(1.03);
+}
+
+.card-is-sticker:hover .sticker-img,
+.sticker-card:not(.card-is-gif):hover .sticker-img {
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 16px rgba(255, 0, 122, 0.45));
 }
 
 /* Pinterest Floating Quick Action Overlay on Image */
@@ -1835,8 +2023,9 @@ body:not(.sketch-dark-mode) .sticker-card:hover .sticker-preview-box {
 
 .pin-top-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .pin-bottom-bar {
@@ -1848,14 +2037,42 @@ body:not(.sketch-dark-mode) .sticker-card:hover .sticker-preview-box {
   min-width: 0;
 }
 
+.pin-overlay-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.pin-overlay-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.pin-overlay-pack {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #00F0FF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
 .pin-overlay-tag {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: #00F0FF;
-  background: rgba(0, 240, 255, 0.15);
+  background: rgba(0, 240, 255, 0.18);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 240, 255, 0.35);
+  border: 1px solid rgba(0, 240, 255, 0.4);
   padding: 3px 8px;
   border-radius: 9999px;
   text-transform: uppercase;
@@ -1870,31 +2087,31 @@ body:not(.sketch-dark-mode) .sticker-card:hover .sticker-preview-box {
   flex-shrink: 0;
 }
 
-/* Pinterest Signature Hot-Pink Copy/Save Pill */
+/* Pinterest Signature Crimson/Hot-Pink Copy/Save Pill */
 .pin-btn-copy {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, #FF007A 0%, #FF2E83 100%);
+  background: linear-gradient(135deg, #E60023 0%, #FF007A 100%);
   color: #ffffff;
-  font-weight: 700;
-  font-size: 0.84rem;
+  font-weight: 800;
+  font-size: 0.86rem;
   padding: 8px 18px;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(255, 0, 122, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(230, 0, 35, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
 }
 
 .pin-btn-copy:hover {
-  background: linear-gradient(135deg, #FF5A9E 0%, #FF007A 100%);
-  transform: scale(1.06);
-  box-shadow: 0 6px 22px rgba(255, 0, 122, 0.75);
+  background: linear-gradient(135deg, #FF1A4B 0%, #FF2E83 100%);
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(230, 0, 35, 0.75);
 }
 
 .pin-btn-copy:active {
-  transform: scale(0.95);
+  transform: scale(0.94);
 }
 
 /* Frosted Glass Floating Action Circles */
@@ -1927,18 +2144,9 @@ body:not(.sketch-dark-mode) .sticker-card:hover .sticker-preview-box {
   transform: scale(0.94);
 }
 
-/* ==========================================================================
-   Pinterest Card Info Area (Clean, Floating Typography & Metadata)
-   ========================================================================== */
+/* GIPHY Style Pure Media Card (Details live in the hover overlay) */
 .pin-card-info {
-  padding: 8px 4px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  box-sizing: border-box;
-  line-height: normal;
-  background: transparent;
-  border: none;
+  display: none !important;
 }
 
 .pin-card-title {
@@ -2946,8 +3154,8 @@ body:not(.sketch-dark-mode) .toast-item {
    -------------------------------------------------------------------------- */
 @media (max-width: 1200px) {
   .stickers-grid {
-    columns: 3 220px;
-    column-gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px;
   }
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3030,8 +3238,8 @@ body:not(.sketch-dark-mode) .toast-item {
 
 @media (max-width: 860px) {
   .stickers-grid {
-    columns: 2 160px;
-    column-gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
 
   .feed-controls-section {
@@ -3076,126 +3284,232 @@ body:not(.sketch-dark-mode) .toast-item {
 }
 
 @media (max-width: 640px) {
-  .brand-logo-svg {
-    height: 36px;
-    width: 36px;
+  /* 1. Header (Compact, Solid Dark, GIPHY Style) */
+  .site-header {
+    padding: 8px 12px;
+    background: #000000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  .header-container {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-logo-svg,
+  .brand-logo-img {
+    height: 32px;
+    width: auto;
+    max-width: 135px;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .mobile-menu-btn {
+    color: #00f0ff;
+    padding: 6px;
+  }
+
+  /* 2. Search Section (Flush, Edge-to-Edge with Hot Pink Button) */
   .hero-section {
-    margin: 16px auto 12px;
-    padding: 0 14px;
+    margin: 8px auto 0;
+    padding: 0 8px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  .feed-controls-section,
-  .stickers-container,
-  .featured-packs-section,
-  .filter-toolbar {
-    padding: 0 14px;
-  }
-
-  .stickers-grid {
-    columns: 2 140px;
-    column-gap: 12px;
-  }
-
-  .sticker-card {
-    margin-bottom: 16px;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  .sticker-preview-box {
-    border-radius: 16px;
-    padding: 10px;
-  }
-
-  .sticker-card:nth-child(5n+1) .sticker-preview-box { height: 180px; }
-  .sticker-card:nth-child(5n+2) .sticker-preview-box { height: 240px; }
-  .sticker-card:nth-child(5n+3) .sticker-preview-box { height: 155px; }
-  .sticker-card:nth-child(5n+4) .sticker-preview-box { height: 220px; }
-  .sticker-card:nth-child(5n+5) .sticker-preview-box { height: 190px; }
-
-  .pin-card-info {
-    padding: 6px 2px 0;
-    gap: 3px;
-    background: transparent;
-    border: none;
-  }
-
-  .pin-card-title {
-    font-size: 0.84rem;
-  }
-
-  .pin-pack-badge {
-    font-size: 0.72rem;
-  }
-
-  .pin-chip {
-    font-size: 0.65rem;
-    padding: 1px 6px;
-  }
-
-  .feed-title {
-    font-size: 1.35rem;
-    line-height: 1.25;
-    flex-wrap: wrap;
+  .search-wrapper {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     gap: 6px;
   }
 
-  .feed-segmented-nav {
-    width: 100%;
-    justify-content: space-around;
-  }
-
-  .feed-dropdowns-group {
-    width: 100%;
+  .search-box {
+    height: 44px;
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    border: none;
     display: flex;
-    gap: 8px;
-    justify-content: space-between;
+    align-items: center;
   }
 
-  .custom-dropdown {
-    flex: 1;
-    min-width: 0;
+  .search-input {
+    padding: 0 12px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #000000;
+    height: 100%;
+    border: none;
+    background: transparent;
   }
 
-  .custom-dropdown-btn {
+  .search-input::placeholder {
+    color: #71717a;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .search-action-btn {
+    width: 46px;
+    min-width: 46px;
+    height: 44px;
+    background: #e60067;
+    border-radius: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-action-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: #ffffff;
+    stroke-width: 3.2;
+  }
+
+  /* 3. Segmented Pill Tabs [ Stickers | GIFs | Packs | Studio ] */
+  .feed-segmented-nav {
+    display: flex;
     width: 100%;
-    padding: 8px 12px;
-    font-size: 0.84rem;
-    min-height: 44px;
+    background: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    gap: 6px;
+    margin: 2px 0 0;
   }
 
-  .custom-dropdown-value {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .dropdown-label-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  #categoryDropdownWrap .custom-dropdown-panel {
-    left: 0;
-    right: auto;
-    min-width: 260px;
-    max-width: 90vw;
-  }
-
-  #sortDropdownWrap .custom-dropdown-panel {
-    right: 0;
-    left: auto;
-    min-width: 240px;
-    max-width: 90vw;
-  }
-
-  .category-dropdown,
-  .sort-dropdown {
+  .feed-segment-btn {
     flex: 1;
-    min-width: 0;
+    padding: 7px 10px;
+    height: 38px;
+    border-radius: 9999px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: #1e2230;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .feed-segment-btn.active {
+    background: #6157ff;
+    color: #ffffff;
+    box-shadow: 0 3px 12px rgba(97, 87, 255, 0.5);
+  }
+
+  /* 4. Trending Quick Tags Carousel (Horizontal chips with neon cyan arrow) */
+  .quick-tags-container {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 0 6px;
+    scrollbar-width: none;
+    margin: 0;
+    width: 100%;
+  }
+
+  .quick-tags-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .quick-tag-btn {
+    background: #1e2230;
+    border: none;
+    border-radius: 9999px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: none;
+  }
+
+  .quick-tag-btn .trend-arrow {
+    color: #00f0ff;
+    font-weight: 900;
+    font-size: 1.05rem;
+  }
+
+  /* 5. Pure Visual Stream - Hide cluttered filters on mobile */
+  .feed-controls-section {
+    display: none !important;
+  }
+
+  /* 6. Instant 2-Column Masonry Stream (Edge-to-Edge Chunky) */
+  .stickers-container {
+    padding: 0 6px;
+    margin: 2px auto 30px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .stickers-grid {
+    column-count: 2;
+    column-gap: 6px;
+    display: block;
+    width: 100%;
+  }
+
+  .sticker-card {
+    break-inside: avoid;
+    margin-bottom: 6px;
+    display: inline-block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 6px;
+  }
+
+  .sticker-preview-box {
+    border-radius: 6px;
+    padding: 0;
+    min-height: 100px;
+    background-color: #12151e;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .card-is-sticker .sticker-img,
+  .sticker-card:not(.card-is-gif) .sticker-img {
+    min-height: 110px;
+    max-height: 260px;
+    padding: 4px;
+    border-radius: 6px;
+  }
+
+  .card-is-gif .sticker-img {
+    min-height: 100px;
+    max-height: 340px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  .pin-card-info {
+    display: none !important;
+  }
+
+  .featured-packs-section {
+    padding: 0 8px;
   }
 
   .sticker-info {
@@ -3203,9 +3517,6 @@ body:not(.sketch-dark-mode) .toast-item {
     gap: 6px;
   }
 
-  .sticker-preview-box {
-    padding: 12px;
-  }
 
   .btn-card-action {
     font-size: 0.72rem;
@@ -3248,6 +3559,14 @@ body:not(.sketch-dark-mode) .toast-item {
     border-radius: 24px 24px 0 0;
     max-height: 92vh;
     padding: 24px 18px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .modal-close-btn {
+    top: 14px;
+    right: 14px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
   }
 }
 

@@ -95,12 +95,15 @@ async function run() {
     const packName = cleanPackTitle(folder);
     const meta = detectMetadata(packName);
 
-    const files = fs.readdirSync(folderPath).filter(f => /\.(png|jpg|jpeg|webp)$/i.test(f));
+    const files = fs.readdirSync(folderPath).filter(f => /\.(png|jpg|jpeg|webp|gif)$/i.test(f));
     if (!files.length) continue;
 
     const unseenFiles = files.filter(f => {
       const pubId = path.parse(f).name;
-      const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/q_auto,w_400/${pubId}`;
+      const isGif = f.toLowerCase().endsWith('.gif');
+      const url = isGif
+        ? `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/fl_animated/${pubId}.gif`
+        : `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/q_auto,w_400/${pubId}`;
       return !existingUrls.has(url);
     });
 
@@ -117,19 +120,25 @@ async function run() {
     let idx = 1;
     for (const f of unseenFiles) {
       const pubId = path.parse(f).name;
+      const isGif = f.toLowerCase().endsWith('.gif');
       const ok = await verifyAsset(pubId);
       if (ok) {
         verifiedCount++;
         const cleanTag = packName.toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(' ').filter(Boolean);
-        const tags = Array.from(new Set([...cleanTag, 'sticker', 'transparent', 'reaction', `#${idx}`]));
+        const extraTags = isGif ? ['gif', 'animated'] : [];
+        const tags = Array.from(new Set([...cleanTag, 'sticker', 'transparent', 'reaction', ...extraTags, `#${idx}`]));
         const item = {
           id: `cly-${pubId.slice(0, 8)}`,
           title: `${packName} #${idx}`,
-          imageUrl: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/q_auto,w_400/${pubId}`,
+          imageUrl: isGif
+            ? `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/fl_animated/${pubId}.gif`
+            : `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/q_auto,w_400/${pubId}`,
           category: meta.category,
           platforms: ['whatsapp', 'discord', 'instagram', 'telegram', 'reddit', 'snapchat'],
           tags: tags,
           pack: packName,
+          format: isGif ? 'gif' : 'png',
+          isAnimated: isGif,
           featured: idx <= 8,
           downloads: 40 + (idx * 3) % 95,
           createdAt: new Date().toISOString().split('T')[0]

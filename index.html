@@ -37,7 +37,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=24">
+  <link rel="stylesheet" href="css/style.css?v=48">
 
   <!-- JSON-LD Structured Data for Search Engines -->
   <script type="application/ld+json">
@@ -74,30 +74,7 @@
   <header class="site-header">
     <div class="header-container">
       <a href="index.html" class="brand-logo" aria-label="StickerPencil Home">
-        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
-          <defs>
-            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#FF007A"/>
-              <stop offset="55%" stop-color="#FF2E83"/>
-              <stop offset="100%" stop-color="#9333EA"/>
-            </linearGradient>
-            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#00F0FF"/>
-              <stop offset="100%" stop-color="#00C8FF"/>
-            </linearGradient>
-            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
-            </filter>
-          </defs>
-          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
-          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
-          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
-          <g transform="translate(6, 6)">
-            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
-            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
-            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
-          </g>
-        </svg>
+        <img src="assets/logo.svg" alt="getstckup" class="brand-logo-svg" height="40" />
       </a>
 
       <nav aria-label="Main Navigation">
@@ -174,6 +151,7 @@
                   <span class="dropdown-title">Blog Guides</span>
                   <span class="dropdown-desc">Tutorials, ideas &amp; packs</span>
                 </div>
+                <span class="dropdown-chip cyan">Guides</span>
               </a>
               <a href="how-to-use.html" class="dropdown-link yellow">
                 <div class="dropdown-icon-box">
@@ -187,6 +165,7 @@
                   <span class="dropdown-title">How to Use</span>
                   <span class="dropdown-desc">1-Click WhatsApp &amp; Discord import</span>
                 </div>
+                <span class="dropdown-chip yellow">1-Click</span>
               </a>
               <a href="alternatives.html" class="dropdown-link purple">
                 <div class="dropdown-icon-box">
@@ -200,6 +179,7 @@
                   <span class="dropdown-title">Compare Alternatives</span>
                   <span class="dropdown-desc">vs Sticker.ly, Tenor &amp; GIPHY</span>
                 </div>
+                <span class="dropdown-chip purple">vs Apps</span>
               </a>
               <div class="dropdown-divider"></div>
               <a href="admin.html" class="dropdown-link pink">
@@ -213,6 +193,7 @@
                   <span class="dropdown-title">Cloud Admin</span>
                   <span class="dropdown-desc">Sync stickers &amp; CDN stats</span>
                 </div>
+                <span class="dropdown-chip pink">Admin</span>
               </a>
             </div>
           </li>
@@ -260,16 +241,33 @@
           type="search" 
           id="searchInput" 
           class="search-input" 
-          placeholder="Search all the Stickers and Memes..." 
+          placeholder="Search all Stickers and Memes..." 
           autocomplete="off"
           aria-label="Search all stickers and memes"
         />
         <button class="search-clear-btn" id="searchClearBtn" aria-label="Clear Search">✕</button>
         <button class="search-action-btn" id="searchActionBtn" aria-label="Search" title="Search stickers">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
         </button>
+      </div>
+
+      <!-- Segmented Type Selector [ Stickers | GIFs | Packs | Studio ] -->
+      <div class="feed-segmented-nav">
+        <button class="feed-segment-btn active" id="segStickersBtn" type="button">
+          <span>Stickers</span>
+        </button>
+        <button class="feed-segment-btn" id="segGifsBtn" type="button">
+          <span>GIFs</span>
+          <span class="studio-badge-cute" style="background:#00f0ff;color:#05070f;font-weight:800;">HOT</span>
+        </button>
+        <a href="packs.html" class="feed-segment-btn">
+          <span>Packs</span>
+        </a>
+        <a href="sticker-maker.html" class="feed-segment-btn">
+          <span>Studio</span>
+        </a>
       </div>
 
       <!-- Quick category search tags (GIPHY-Style Flush Trending Chips) -->
@@ -286,10 +284,10 @@
   </section>
 
   <!-- ========================================================================
-       GIPHY-STYLE SORTED & UNIFIED FEED CONTROLS
+       GIPHY-STYLE SORTED & UNIFIED FEED CONTROLS (Desktop Filters)
        ======================================================================== -->
   <section class="feed-controls-section" aria-label="Feed Navigation & Filters">
-    <!-- Row 1: Section Title & GIPHY View Switcher -->
+    <!-- Row 1: Section Title -->
     <div class="feed-title-bar">
       <div class="feed-title-wrap">
         <span class="feed-trend-glyph">
@@ -299,19 +297,6 @@
           </svg>
         </span>
         <h2 class="feed-title" id="feedTitle">Trending Now</h2>
-      </div>
-
-      <!-- Segmented Type Selector [ Stickers | Packs | Studio ] -->
-      <div class="feed-segmented-nav">
-        <button class="feed-segment-btn active" id="segStickersBtn" type="button">
-          <span>Stickers</span>
-        </button>
-        <a href="packs.html" class="feed-segment-btn">
-          <span>Packs</span>
-        </a>
-        <a href="sticker-maker.html" class="feed-segment-btn">
-          <span>Studio</span>
-        </a>
       </div>
     </div>
 
@@ -449,6 +434,13 @@
       <!-- Injected dynamically by app.js -->
     </div>
 
+    <!-- Infinite Scroll Sentinel & Manual Trigger (Smooth, outside column layout) -->
+    <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+      <button class="btn-sketch btn-sketch-primary" id="loadMoreBtn" onclick="window.loadMoreStickers()">
+        Load More Stickers
+      </button>
+    </div>
+
     <!-- Empty State -->
     <div class="empty-state" id="emptyState" style="display: none;">
       <div class="empty-state-doodle">🔍</div>
@@ -554,32 +546,9 @@
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-brand">
-        <a href="index.html" class="brand-logo" aria-label="StickerPencil">
-        <svg class="brand-logo-svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
-          <defs>
-            <linearGradient id="headerLogoGrad" x1="2" y1="2" x2="42" y2="42" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#FF007A"/>
-              <stop offset="55%" stop-color="#FF2E83"/>
-              <stop offset="100%" stop-color="#9333EA"/>
-            </linearGradient>
-            <linearGradient id="headerPeelGrad" x1="28" y1="2" x2="42" y2="16" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#00F0FF"/>
-              <stop offset="100%" stop-color="#00C8FF"/>
-            </linearGradient>
-            <filter id="headerLogoGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#FF007A" flood-opacity="0.5"/>
-            </filter>
-          </defs>
-          <rect width="44" height="44" rx="12" fill="url(#headerLogoGrad)" filter="url(#headerLogoGlow)"/>
-          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="url(#headerPeelGrad)"/>
-          <path d="M28 2 L42 16 H32 A4 4 0 0 1 28 12 V2 Z" fill="#000000" fill-opacity="0.2"/>
-          <g transform="translate(6, 6)">
-            <path d="M14 26 L13 27 L16.5 26 L26.5 16 A2.5 2.5 0 0 0 26.5 12.5 L24.5 10.5 A2.5 2.5 0 0 0 21 10.5 L11 20.5 L10 27.5 L17 26.5 Z" fill="#FFFFFF"/>
-            <polygon points="10,27.5 13,26.5 12,25.5" fill="#00F0FF"/>
-            <line x1="14" y1="22" x2="23" y2="13" stroke="#FF007A" stroke-width="2.2" stroke-linecap="round"/>
-          </g>
-        </svg>
-        </a>
+        <a href="index.html" class="brand-logo" aria-label="StickerPencil Home">
+        <img src="assets/logo.svg" alt="getstckup" class="brand-logo-svg" height="40" />
+      </a>
         <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
           A modern transparent sticker discovery and download marketplace for creators, meme enthusiasts, and chat lovers across WhatsApp, Discord, Instagram, Snapchat, Reddit & Telegram.
         </p>
@@ -666,9 +635,9 @@
   </nav>
 
   <!-- Scripts -->
-  <script src="js/cloudinary-stickers.js"></script>
-  <script src="js/data.js?v=24"></script>
-  <script src="js/app.js?v=24"></script>
+  <script src="js/cloudinary-stickers.js?v=42"></script>
+  <script src="js/data.js?v=42"></script>
+  <script src="js/app.js?v=42"></script>
 </body>
 </html>
 

@@ -43,12 +43,56 @@ document.addEventListener("DOMContentLoaded", () => {
     '#ff6600'  // electric orange
   ];
 
+  const CATEGORY_THEMES = {
+    "Cute & Animals": { 
+      bg: "linear-gradient(135deg, rgba(254, 240, 138, 0.35), rgba(250, 204, 21, 0.2))", 
+      border: "#facc15", 
+      icon: "🐱", 
+      hint: "Cute cats, doggos & happy babies",
+      glow: "rgba(250, 204, 21, 0.4)",
+      textColor: "#fef08a"
+    },
+    "Memes & Reactions": { 
+      bg: "linear-gradient(135deg, rgba(255, 46, 131, 0.35), rgba(255, 0, 122, 0.2))", 
+      border: "#ff007a", 
+      icon: "🔥", 
+      hint: "Viral desi banter & savage punchlines",
+      glow: "rgba(255, 0, 122, 0.4)",
+      textColor: "#ff70a6"
+    },
+    "Vibe & Aesthetic": { 
+      bg: "linear-gradient(135deg, rgba(0, 240, 255, 0.35), rgba(56, 189, 248, 0.2))", 
+      border: "#00f0ff", 
+      icon: "✨", 
+      hint: "Pastel doodles, anime & lo-fi vibes",
+      glow: "rgba(0, 240, 255, 0.4)",
+      textColor: "#67e8f9"
+    },
+    "Memes": { 
+      bg: "linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(147, 51, 234, 0.2))", 
+      border: "#a855f7", 
+      icon: "😂", 
+      hint: "Peak internet brainrot & funny shitposts",
+      glow: "rgba(168, 85, 247, 0.4)",
+      textColor: "#d8b4fe"
+    },
+    "Trending & Aesthetic": { 
+      bg: "linear-gradient(135deg, rgba(52, 211, 153, 0.35), rgba(16, 185, 129, 0.2))", 
+      border: "#34d399", 
+      icon: "⚡", 
+      hint: "Hot viral drops & trending icons",
+      glow: "rgba(52, 211, 153, 0.4)",
+      textColor: "#6ee7b7"
+    }
+  };
+
   // State
   let allStickers = getStickers();
   let currentPlatform = "all";
   let currentCategory = "all";
   let currentSort = "popular";
   let currentSearchQuery = "";
+  let currentContentType = "all"; // 'all' | 'gif'
   let activeModalSticker = null;
   const INITIAL_BATCH = 24;
   const APPEND_BATCH = 20;
@@ -196,27 +240,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (categoryPanel) {
       let html = `
         <button type="button" class="custom-dropdown-item ${currentCategory === 'all' ? 'active' : ''}" data-value="all" role="option" aria-selected="${currentCategory === 'all'}">
-          <span class="item-icon-bubble">🎨</span>
+          <span class="item-icon-bubble" style="background: linear-gradient(135deg, rgba(255, 0, 122, 0.35), rgba(0, 240, 255, 0.35)); border: 1px solid #ff007a; box-shadow: 0 0 12px rgba(255, 0, 122, 0.45);">🎨</span>
           <div class="item-text-wrap">
-            <span class="item-title">All Categories</span>
-            <span class="item-hint">Show all sticker themes</span>
+            <span class="item-title" style="color: #ffffff;">All Categories</span>
+            <span class="item-hint">Show all sticker themes &amp; moods</span>
           </div>
           <span class="item-check">✓</span>
         </button>
       `;
 
       categories.forEach(cat => {
-        const icon = getCategoryEmoji(cat);
-        const count = allStickers.filter(s => s.category === cat).length;
+        const theme = CATEGORY_THEMES[cat] || {
+          bg: "rgba(255, 255, 255, 0.12)",
+          border: "rgba(255, 255, 255, 0.3)",
+          icon: getCategoryEmoji(cat),
+          hint: "Themed sticker collection",
+          glow: "rgba(255, 255, 255, 0.2)",
+          textColor: "#ffffff"
+        };
         const isActive = currentCategory === cat;
         html += `
           <button type="button" class="custom-dropdown-item ${isActive ? 'active' : ''}" data-value="${escapeHtml(cat)}" role="option" aria-selected="${isActive}">
-            <span class="item-icon-bubble">${icon}</span>
+            <span class="item-icon-bubble" style="background: ${theme.bg}; border: 1px solid ${theme.border}; box-shadow: 0 0 12px ${theme.glow};">${theme.icon}</span>
             <div class="item-text-wrap">
-              <span class="item-title">${escapeHtml(cat)}</span>
-              <span class="item-hint">${count.toLocaleString()} stickers</span>
+              <span class="item-title" style="color: ${theme.textColor || '#ffffff'};">${escapeHtml(cat)}</span>
+              <span class="item-hint">${theme.hint}</span>
             </div>
-            <span class="item-check">✓</span>
+            <span class="item-check" style="color: ${theme.border};">✓</span>
           </button>
         `;
       });
@@ -374,6 +424,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function getFilteredStickers() {
     let filtered = [...allStickers];
 
+    // 0. Content Type Filter (Stickers vs GIFs)
+    if (currentContentType === "gif") {
+      filtered = filtered.filter(s => (typeof isGifSticker === "function" ? isGifSticker(s) : false));
+    }
+
     // 1. Platform Filter
     if (currentPlatform !== "all") {
       filtered = filtered.filter(s => s.platforms && s.platforms.includes(currentPlatform));
@@ -384,7 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
       filtered = filtered.filter(s => s.category === currentCategory);
     }
 
-    // 3. Search Query (Title, Category, Tags, Pack)
+    // 3. Search Query (Title, Category, Tags, Pack, or 'gif')
     if (currentSearchQuery.trim()) {
       const q = currentSearchQuery.toLowerCase().trim();
       filtered = filtered.filter(s => {
@@ -392,7 +447,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const catMatch = s.category && s.category.toLowerCase().includes(q);
         const packMatch = s.pack && s.pack.toLowerCase().includes(q);
         const tagsMatch = s.tags && s.tags.some(t => t.toLowerCase().includes(q));
-        return titleMatch || catMatch || packMatch || tagsMatch;
+        const gifMatch = (q === "gif" || q === "gifs" || q === "animated") && (typeof isGifSticker === "function" ? isGifSticker(s) : false);
+        return titleMatch || catMatch || packMatch || tagsMatch || gifMatch;
       });
     }
 
@@ -471,25 +527,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function buildCardHtml(sticker, index) {
       const cardColor = GIPHY_COLORS[index % GIPHY_COLORS.length];
+      const isGif = typeof isGifSticker === "function" ? isGifSticker(sticker) : false;
       const lowResThumb = getLowResThumbnailUrl(sticker.imageUrl);
       const fullResUrl = getFullQualityImageUrl(sticker.imageUrl);
       const fallbackAttr = sticker.fallbackUrl ? `data-fallback="${sticker.fallbackUrl}" onerror="if(this.dataset.fallback && !this.dataset.fallbackApplied){this.dataset.fallbackApplied='1';this.src=this.dataset.fallback;}"` : '';
       const featuredBadgeHtml = sticker.featured ? `<div class="featured-badge">⭐ Top Pick</div>` : "";
+      const gifBadgeHtml = isGif ? `<div class="pin-gif-badge"><span class="gif-pulse-dot"></span>GIF</div>` : "";
       const isEager = index < 12;
       const srcAttr = isEager
         ? `src="${lowResThumb}" fetchpriority="high"`
-        : `src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3C/svg%3E" data-src="${lowResThumb}" loading="lazy"`;
+        : `src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 240'%3E%3C/svg%3E" data-src="${lowResThumb}" loading="lazy"`;
 
       const packEmoji = getPackEmoji(sticker.pack);
       const packName = sticker.pack || "Curated Pack";
-      const platformBadge = (sticker.platforms && sticker.platforms.length)
+      const platformBadge = isGif ? "GIF" : ((sticker.platforms && sticker.platforms.length)
         ? (sticker.platforms.includes("whatsapp") ? "WhatsApp" : sticker.platforms[0].charAt(0).toUpperCase() + sticker.platforms[0].slice(1))
-        : "HD PNG";
+        : "HD PNG");
 
       return `
-        <article class="sticker-card" data-id="${sticker.id}" onclick="window.openStickerModal('${sticker.id}')" style="cursor: pointer;">
+        <article class="sticker-card ${isGif ? 'card-is-gif' : 'card-is-sticker'}" data-id="${sticker.id}" onclick="window.openStickerModal('${sticker.id}')" style="cursor: pointer;">
           ${featuredBadgeHtml}
-          <div class="sticker-preview-box" title="Click to view details & download HD">
+          ${gifBadgeHtml}
+          <div class="sticker-preview-box" title="Click to view details & download ${isGif ? 'GIF' : 'HD'}">
+            <button type="button" class="pin-mobile-copy-btn" onclick="event.stopPropagation(); window.copyStickerImage('${sticker.id}', event)" title="${isGif ? '1-Click Copy GIF' : '1-Click Copy Sticker'}" aria-label="Copy sticker">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
             <div class="sticker-skeleton" style="--card-color: ${cardColor};">
               <div class="skeleton-shimmer"></div>
             </div>
@@ -500,22 +562,24 @@ document.addEventListener("DOMContentLoaded", () => {
               alt="${sticker.title} sticker" 
               class="sticker-img" 
               decoding="async" 
-              width="160" 
-              height="160" 
-              onload="this.classList.add('loaded');" 
-              onerror="if(this.dataset.fallback && !this.dataset.fallbackApplied){this.dataset.fallbackApplied='1';this.src=this.dataset.fallback;}else{this.classList.add('loaded');}" 
+              onload="this.classList.add('loaded'); const s = this.parentElement.querySelector('.sticker-skeleton'); if (s) s.classList.add('hidden');" 
+              onerror="if(this.dataset.fallback && !this.dataset.fallbackApplied){this.dataset.fallbackApplied='1';this.src=this.dataset.fallback;}else{this.classList.add('loaded'); const s = this.parentElement.querySelector('.sticker-skeleton'); if (s) s.classList.add('hidden');}" 
             />
             <div class="pin-hover-overlay" onclick="event.stopPropagation()">
               <div class="pin-top-actions">
-                <button class="pin-btn-copy" onclick="window.copyStickerImage('${sticker.id}', event)" title="1-Click Copy Image">
+                <span class="pin-overlay-tag">${platformBadge}</span>
+                <button class="pin-btn-copy" onclick="window.copyStickerImage('${sticker.id}', event)" title="${isGif ? '1-Click Copy Animated GIF' : '1-Click Copy Image'}">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                   <span>Copy</span>
                 </button>
               </div>
               <div class="pin-bottom-bar">
-                <span class="pin-overlay-tag">${platformBadge}</span>
+                <div class="pin-overlay-details">
+                  <span class="pin-overlay-title" title="${escapeHtml(sticker.title)}">${escapeHtml(sticker.title)}</span>
+                  <span class="pin-overlay-pack">${packEmoji} ${escapeHtml(packName)}</span>
+                </div>
                 <div class="pin-bottom-actions">
-                  <button class="pin-btn-icon" onclick="window.downloadSticker('${sticker.id}', event)" title="Download Transparent PNG">
+                  <button class="pin-btn-icon" onclick="window.downloadSticker('${sticker.id}', event)" title="${isGif ? 'Download Animated GIF (.gif)' : 'Download Transparent PNG'}">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                   </button>
                   <a href="sticker-maker.html?sticker=${encodeURIComponent(sticker.id)}" class="pin-btn-icon" title="Animate & Edit in Studio" onclick="event.stopPropagation()">
@@ -525,54 +589,47 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           </div>
-          <!-- Pinterest Card Details Footer -->
-          <div class="pin-card-info">
-            <h3 class="pin-card-title" title="${sticker.title}">${sticker.title}</h3>
-            <div class="pin-card-meta">
-              <span class="pin-pack-badge"><span class="pin-pack-icon">${packEmoji}</span> <span class="pin-pack-name">${packName}</span></span>
-              <span class="pin-chip">${platformBadge}</span>
-            </div>
-          </div>
         </article>
       `;
     }
+
+    const loadMoreContainer = document.getElementById("loadMoreContainer");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
 
     if (resetPaging) {
       visibleCount = INITIAL_BATCH;
       const visibleItems = items.slice(0, visibleCount);
       const cardsHtml = visibleItems.map((sticker, index) => buildCardHtml(sticker, index)).join("");
 
-      let loadMoreHtml = "";
-      if (visibleCount < items.length) {
-        loadMoreHtml = `
-          <div class="load-more-container" id="loadMoreContainer">
-            <button class="btn-sketch btn-sketch-primary" id="loadMoreBtn" onclick="window.loadMoreStickers()">
-              Load More Stickers (${visibleItems.length.toLocaleString()} of ${items.length.toLocaleString()})
-            </button>
-          </div>
-        `;
-      }
+      stickersGrid.innerHTML = cardsHtml;
 
-      stickersGrid.innerHTML = cardsHtml + loadMoreHtml;
+      if (loadMoreContainer) {
+        if (visibleCount < items.length) {
+          loadMoreContainer.style.display = "flex";
+          if (loadMoreBtn) {
+            loadMoreBtn.innerHTML = `<span>Explore More Stickers</span> <span class="btn-arrow">↓</span>`;
+          }
+        } else {
+          loadMoreContainer.style.display = "none";
+        }
+      }
     } else {
-      // Incremental append: ONLY append the new cards, preserving existing loaded cards and GPU state!
+      // Incremental append: Directly append cards to stickersGrid without touching multi-column flow!
       const prevCount = visibleCount - APPEND_BATCH;
       const newItems = items.slice(prevCount, visibleCount);
       if (newItems.length > 0) {
         const newCardsHtml = newItems.map((sticker, idx) => buildCardHtml(sticker, prevCount + idx)).join("");
-        const trigger = document.getElementById("loadMoreContainer");
-        if (trigger) {
-          trigger.insertAdjacentHTML("beforebegin", newCardsHtml);
+        stickersGrid.insertAdjacentHTML("beforeend", newCardsHtml);
+
+        if (loadMoreContainer) {
           if (visibleCount >= items.length) {
-            trigger.remove();
+            loadMoreContainer.style.display = "none";
           } else {
-            const btn = document.getElementById("loadMoreBtn");
-            if (btn) {
-              btn.textContent = `Load More Stickers (${Math.min(visibleCount, items.length).toLocaleString()} of ${items.length.toLocaleString()})`;
+            loadMoreContainer.style.display = "flex";
+            if (loadMoreBtn) {
+              loadMoreBtn.innerHTML = `<span>Explore More Stickers</span> <span class="btn-arrow">↓</span>`;
             }
           }
-        } else {
-          stickersGrid.insertAdjacentHTML("beforeend", newCardsHtml);
         }
       }
     }
@@ -726,31 +783,40 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // GIPHY-Style Segmented Filter Button (Stickers active reset)
+    // GIPHY-Style Segmented Filter Buttons (Stickers vs GIFs)
     const segStickersBtn = document.getElementById("segStickersBtn");
+    const segGifsBtn = document.getElementById("segGifsBtn");
+
     if (segStickersBtn) {
       segStickersBtn.addEventListener("click", () => {
-        currentCategory = "all";
-        currentPlatform = "all";
-        currentSearchQuery = "";
-        if (searchInput) searchInput.value = "";
-        if (searchClearBtn) searchClearBtn.style.display = "none";
-        platformButtons.forEach(b => {
-          if (b.dataset.platform === "all") b.classList.add("active");
-          else b.classList.remove("active");
-        });
-        if (categoryFilter) categoryFilter.value = "all";
-        const catValue = document.getElementById("categoryDropdownValue");
-        if (catValue) {
-          catValue.innerHTML = `<span class="dropdown-icon-pill">🎨</span><span class="dropdown-label-text">All Categories</span>`;
-        }
-        document.querySelectorAll("#categoryDropdownPanel .custom-dropdown-item").forEach(el => {
-          const isAll = el.getAttribute("data-value") === "all";
-          el.classList.toggle("active", isAll);
-          el.setAttribute("aria-selected", isAll);
-        });
+        currentContentType = "all";
+        segStickersBtn.classList.add("active");
+        if (segGifsBtn) segGifsBtn.classList.remove("active");
+        const feedTitle = document.getElementById("feedTitle");
+        if (feedTitle) feedTitle.textContent = "Trending Now";
         renderStickers(true);
-        showToast("✨ Showing all stickers", "⭐");
+        showToast("✨ Showing all stickers & memes", "⭐");
+      });
+    }
+
+    if (segGifsBtn) {
+      segGifsBtn.addEventListener("click", () => {
+        if (currentContentType === "gif") {
+          currentContentType = "all";
+          segGifsBtn.classList.remove("active");
+          if (segStickersBtn) segStickersBtn.classList.add("active");
+          const feedTitle = document.getElementById("feedTitle");
+          if (feedTitle) feedTitle.textContent = "Trending Now";
+          showToast("✨ Showing all stickers", "⭐");
+        } else {
+          currentContentType = "gif";
+          segGifsBtn.classList.add("active");
+          if (segStickersBtn) segStickersBtn.classList.remove("active");
+          const feedTitle = document.getElementById("feedTitle");
+          if (feedTitle) feedTitle.textContent = "Trending GIFs & Reactions";
+          showToast("🎬 Filtered to Animated GIFs & Memes", "🔥");
+        }
+        renderStickers(true);
       });
     }
 
@@ -891,6 +957,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const lowResThumb = getLowResThumbnailUrl(sticker.imageUrl);
     const fullQualityUrl = getFullQualityImageUrl(sticker.imageUrl);
+    const isGif = typeof isGifSticker === "function" ? isGifSticker(sticker) : false;
 
     // 1. Immediately show cached thumbnail for instant 0ms popup
     modalImg.onerror = () => {
@@ -914,7 +981,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (qualityBadge) {
       qualityBadge.className = "modal-quality-badge loading";
-      qualityBadge.innerHTML = `<span class="badge-dot pulse"></span> Loading Full HD...`;
+      qualityBadge.innerHTML = isGif
+        ? `<span class="badge-dot pulse" style="background:#00f0ff;"></span> Loading Animated GIF...`
+        : `<span class="badge-dot pulse"></span> Loading Full HD...`;
     }
 
     // 3. Preload full quality original image
@@ -928,7 +997,9 @@ document.addEventListener("DOMContentLoaded", () => {
         modalImg.classList.add("full-quality-loaded");
         if (qualityBadge) {
           qualityBadge.className = "modal-quality-badge ready";
-          qualityBadge.innerHTML = `<span class="badge-dot ready"></span> ✨ 100% Full HD Quality`;
+          qualityBadge.innerHTML = isGif
+            ? `<span class="badge-dot ready" style="background:#00f0ff;box-shadow:0 0 6px #00f0ff;"></span> 🎬 Animated GIF (Original Frames)`
+            : `<span class="badge-dot ready"></span> ✨ 100% Full HD Quality`;
         }
       }
     };
@@ -939,14 +1010,27 @@ document.addEventListener("DOMContentLoaded", () => {
         modalImg.classList.add("full-quality-loaded");
         if (qualityBadge) {
           qualityBadge.className = "modal-quality-badge ready";
-          qualityBadge.innerHTML = `<span class="badge-dot ready"></span> ✨ 100% Full HD Quality`;
+          qualityBadge.innerHTML = isGif
+            ? `<span class="badge-dot ready" style="background:#00f0ff;box-shadow:0 0 6px #00f0ff;"></span> 🎬 Animated GIF (Original Frames)`
+            : `<span class="badge-dot ready"></span> ✨ 100% Full HD Quality`;
         }
       }
     };
 
     modalTitle.textContent = sticker.title;
-    modalCategory.textContent = sticker.category || "Meme";
+    modalCategory.textContent = isGif ? "Animated GIF" : (sticker.category || "Meme");
     modalPack.textContent = sticker.pack ? `📦 Pack: ${sticker.pack}` : "";
+
+    if (modalDownloadBtn) {
+      modalDownloadBtn.innerHTML = isGif
+        ? `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download Animated GIF (.gif)</span>`
+        : `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download Full HD (PNG)</span>`;
+    }
+    if (modalCopyBtn) {
+      modalCopyBtn.innerHTML = isGif
+        ? `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy Animated GIF</span>`
+        : `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>1-Click Copy Image</span>`;
+    }
 
     const modalPlatforms = document.getElementById("modalPlatforms");
     if (modalPlatforms) {
@@ -991,19 +1075,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * 1-Click Clipboard Copy Image (Full HD Original PNG)
+   * 1-Click Clipboard Copy Image (Full HD Original PNG or Animated GIF)
    */
   window.copyStickerImage = async function (id, e) {
     if (e) e.stopPropagation();
     const sticker = allStickers.find(s => s.id === id);
     if (!sticker) return;
 
+    const isGif = typeof isGifSticker === "function" ? isGifSticker(sticker) : false;
+
     try {
-      showToast("⏳ Fetching full quality sticker...", "📋");
+      showToast(`⏳ Fetching ${isGif ? 'animated GIF' : 'full quality sticker'}...`, "📋");
 
       const fullQualityUrl = getFullQualityImageUrl(sticker.imageUrl);
 
-      if (sticker.imageUrl.startsWith("data:image/svg+xml") || sticker.imageUrl.endsWith(".svg")) {
+      if (isGif) {
+        // Handle Animated GIF (Do not flatten to canvas!)
+        let copied = false;
+        try {
+          const response = await fetch(fullQualityUrl, { mode: "cors" });
+          const gifBlob = await response.blob();
+          try {
+            await navigator.clipboard.write([
+              new ClipboardItem({ "image/gif": gifBlob })
+            ]);
+            copied = true;
+            showToast("🎬 Animated GIF copied! Ready to paste into your chats!", "🎉");
+          } catch (clipErr) {
+            // Rich HTML embed fallback for WhatsApp Web, Discord, Teams, Slack
+            const htmlBlob = new Blob([`<img src="${fullQualityUrl}" alt="${sticker.title}">`], { type: "text/html" });
+            const textBlob = new Blob([fullQualityUrl], { type: "text/plain" });
+            await navigator.clipboard.write([
+              new ClipboardItem({
+                "text/html": htmlBlob,
+                "text/plain": textBlob
+              })
+            ]);
+            copied = true;
+            showToast("🎬 Animated GIF copied! Paste into WhatsApp or Discord!", "🎉");
+          }
+        } catch (gifErr) {
+          await navigator.clipboard.writeText(fullQualityUrl);
+          copied = true;
+          showToast("🔗 Animated GIF link copied to clipboard!", "✨");
+        }
+      } else if (sticker.imageUrl.startsWith("data:image/svg+xml") || sticker.imageUrl.endsWith(".svg")) {
         const pngBlob = await svgToPngBlob(sticker.imageUrl);
         await navigator.clipboard.write([
           new ClipboardItem({ "image/png": pngBlob })
@@ -1082,20 +1198,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * 1-Click Sticker Download (Full HD Original PNG)
+   * 1-Click Sticker Download (Full HD Original PNG or Animated GIF)
    */
   window.downloadSticker = async function (id, e) {
     if (e) e.stopPropagation();
     const sticker = allStickers.find(s => s.id === id);
     if (!sticker) return;
 
+    const isGif = typeof isGifSticker === "function" ? isGifSticker(sticker) : false;
+    const ext = isGif ? ".gif" : ".png";
     const filename = (sticker.title || "sticker")
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "") + ".png";
+      .replace(/^-|-$/g, "") + ext;
 
     try {
-      showToast(`📥 Downloading full quality ${sticker.title}...`, "⏳");
+      showToast(`📥 Downloading ${isGif ? 'animated GIF' : 'full quality sticker'}...`, "⏳");
 
       const fullQualityUrl = getFullQualityImageUrl(sticker.imageUrl);
       let downloadUrl = fullQualityUrl;
@@ -1127,7 +1245,7 @@ document.addEventListener("DOMContentLoaded", () => {
       a.click();
       document.body.removeChild(a);
 
-      showToast(`✅ Saved ${filename} (Full HD)!`, "🎉");
+      showToast(`✅ Saved ${filename}!`, "🎉");
       sticker.downloads = (sticker.downloads || 0) + 1;
       updateSticker(sticker.id, { downloads: sticker.downloads });
     } catch (err) {
@@ -1139,7 +1257,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      showToast(`✅ Full quality download initiated!`, "🎉");
+      showToast(`✅ Download initiated!`, "🎉");
     }
   };
 
