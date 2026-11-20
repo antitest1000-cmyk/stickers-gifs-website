@@ -147,6 +147,7 @@ body:not(.sketch-dark-mode) {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  min-width: 0;
 }
 
 html {
@@ -155,6 +156,8 @@ html {
   -webkit-text-size-adjust: 100%;
   background-color: var(--bg-main);
   color: var(--text-primary);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -166,10 +169,18 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Flex child safety rule: direct children of body must never overflow viewport width */
+body > * {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* REMOVE OLD SCRAPBOOK DECORATIONS COMPLETELY */
@@ -3058,11 +3069,14 @@ body:not(.sketch-dark-mode) .toast-item {
    -------------------------------------------------------------------------- */
 .packs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 16px;
+  width: 100%;
   max-width: 1400px;
+  min-width: 0;
   margin: 0 auto 50px;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .categories-grid {
@@ -3524,9 +3538,17 @@ body:not(.sketch-dark-mode) .toast-item {
   }
 
   .packs-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
     padding: 0 10px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  @media (max-width: 350px) {
+    .packs-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   .categories-grid {
@@ -3707,17 +3729,31 @@ body:not(.sketch-dark-mode) .toast-item {
 
 /* Article Reading Sheet & Editorial Content */
 .article-wrapper {
+  width: 100%;
   max-width: 920px;
+  min-width: 0;
   margin: 40px auto 80px;
   padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .article-sheet {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: var(--paper-card);
   border: 1px solid var(--border-subtle);
   border-radius: 24px;
   padding: 48px 44px;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+}
+
+.article-body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 @media (max-width: 640px) {
@@ -3818,11 +3854,17 @@ body:not(.sketch-dark-mode) .toast-item {
 }
 
 .comparison-table-wrapper {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin: 32px 0;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
   background: var(--paper-bg);
+  box-sizing: border-box;
 }
 
 .sketch-comparison-table {

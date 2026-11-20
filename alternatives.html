@@ -36,13 +36,18 @@
 
   <style>
     .alt-hero {
+      width: 100%;
       max-width: 960px;
+      min-width: 0;
       margin: 40px auto 24px;
       padding: 0 20px;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .alt-card {
+      width: 100%;
+      min-width: 0;
       background: var(--paper-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
@@ -50,6 +55,7 @@
       margin-bottom: 28px;
       box-shadow: var(--shadow-md);
       position: relative;
+      box-sizing: border-box;
     }
 
     body.sketch-dark-mode .alt-card {
@@ -335,7 +341,7 @@
   <!-- Washi Tape Divider -->
   
 
-  <main style="max-width: 960px; margin: 0 auto 60px; padding: 0 20px;">
+  <main style="width: 100%; max-width: 960px; min-width: 0; margin: 0 auto 60px; padding: 0 20px; box-sizing: border-box;">
 
     <!-- Head-to-Head Comparison Table -->
     <div class="comparison-table-wrapper">

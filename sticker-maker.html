@@ -48,11 +48,13 @@
     }
 
     .studio-container {
+      width: 100%;
       max-width: 1360px;
+      min-width: 0;
       margin: 0 auto 60px;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 24px;
       box-sizing: border-box;
     }
@@ -65,24 +67,36 @@
         order: 2;
       }
       .studio-container {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
         padding: 0 12px;
         gap: 16px;
       }
       .studio-stage-card, .studio-toolbar-card {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
         padding: 14px;
+      }
+      .canvas-checkerboard-wrapper {
+        max-width: 100%;
       }
     }
 
     @media (min-width: 960px) {
       .studio-container {
-        grid-template-columns: 380px 1fr;
+        grid-template-columns: 380px minmax(0, 1fr);
         align-items: start;
       }
       .studio-stage-card {
         order: 2;
+        min-width: 0;
       }
       .studio-toolbar-card {
         order: 1;
+        min-width: 0;
       }
     }
 
@@ -98,6 +112,9 @@
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
       margin-bottom: 16px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
     .studio-tab-bar::-webkit-scrollbar {
       display: none;
@@ -156,6 +173,10 @@
       padding: 20px;
       box-shadow: var(--shadow-md);
       position: relative;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .tool-group-title {
@@ -244,6 +265,11 @@
       flex-direction: column;
       align-items: center;
       position: relative;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     /* Stage Header bar */
@@ -271,13 +297,17 @@
     /* Quick Layer Selector Strip on Stage */
     .stage-quick-layers-strip {
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
       display: flex;
       align-items: center;
       gap: 8px;
       margin-bottom: 12px;
       overflow-x: auto;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
       padding-bottom: 4px;
+      box-sizing: border-box;
     }
     .stage-quick-layers-strip::-webkit-scrollbar { display: none; }
     .quick-layer-label {
