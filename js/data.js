@@ -108,7 +108,7 @@ function getOptimizedImageUrl(url, options = {}) {
   if (typeof url === "string" && url.includes("res.cloudinary.com")) {
     if (url.includes("/image/upload/")) {
       const parts = url.split("/image/upload/");
-      const cleanPath = parts[1].replace(/^(?:(?:[a-z]_[^/]+|v\d+),?)+\//, "");
+      const cleanPath = parts[1].replace(/^(?:(?:[a-z]{1,3}_[^/]+|v\d+),?)+\//i, "");
       if (isGif || cleanPath.toLowerCase().endsWith(".gif")) {
         return `${parts[0]}/image/upload/w_${width},c_limit,fl_animated/${cleanPath}`;
       }
@@ -147,7 +147,7 @@ function getLowResThumbnailUrl(url) {
 
   if (typeof url === "string" && url.includes("res.cloudinary.com") && url.includes("/image/upload/")) {
     const parts = url.split("/image/upload/");
-    const cleanPath = parts[1].replace(/^(?:(?:[a-z]_[^/]+|v\d+),?)+\//, "");
+    const cleanPath = parts[1].replace(/^(?:(?:[a-z]{1,3}_[^/]+|v\d+),?)+\//i, "");
     if (isGif || cleanPath.toLowerCase().endsWith(".gif")) {
       // Keep animation alive on thumbnail with lightweight eco frames
       return `${parts[0]}/image/upload/w_300,c_limit,q_auto:eco,fl_animated/${cleanPath}`;
@@ -176,7 +176,7 @@ function getFullQualityImageUrl(url) {
   if (typeof url === "string" && url.includes("res.cloudinary.com") && url.includes("/image/upload/")) {
     const parts = url.split("/image/upload/");
     // Strip any downscaling transformations (like q_auto,w_400/ or v1234/)
-    const cleanPath = parts[1].replace(/^(?:(?:[a-z]_[^/]+|v\d+),?)+\//, "");
+    const cleanPath = parts[1].replace(/^(?:(?:[a-z]{1,3}_[^/]+|v\d+),?)+\//i, "");
     if (isGif || cleanPath.toLowerCase().endsWith(".gif")) {
       // Deliver untouched original animated GIF with 100% frame fidelity
       return `${parts[0]}/image/upload/fl_animated/${cleanPath}`;
@@ -281,6 +281,14 @@ const STICKER_PACKS = [
     icon: "💅",
     color: "#f472b6",
     slug: "for-divas-queens"
+  },
+  {
+    id: "pack-trending-viral-gifs",
+    name: "Trending Viral GIFs",
+    description: "Massive curated collection of 843 animated reaction GIFs for WhatsApp, Discord, Instagram & Telegram.",
+    icon: "🔥",
+    color: "#a855f7",
+    slug: "trending-viral-gifs"
   }
 ];
 
