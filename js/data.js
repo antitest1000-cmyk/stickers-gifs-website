@@ -10,7 +10,7 @@ const CLOUDINARY_CONFIG = {
   defaultApiKey: "Eych-n4uQDcapk5gfcGsqDM3f8Y",
   
   // Storage keys (v10 adds full animated GIF extension support & CDN auto-handling)
-  STORAGE_KEY_STICKERS: "stickerpencil_stickers_v10",
+  STORAGE_KEY_STICKERS: "stickerpencil_stickers_v11",
   STORAGE_KEY_CONFIG: "stickerpencil_config_v1",
   STORAGE_KEY_AUTH: "stickerpencil_auth_v1",
   STORAGE_KEY_CUSTOM_PACKS: "stickerpencil_custom_packs_v1"
@@ -442,58 +442,14 @@ const INITIAL_STICKERS = getAllBuiltInStickers();
  * Storage Helpers
  */
 function getStickers() {
-  // Purge older storage versions
+  // Purge legacy storage versions
   try {
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 12; i++) {
       localStorage.removeItem(`stickerpencil_stickers_v${i}`);
     }
   } catch (e) {}
 
-  const allBuiltIn = getAllBuiltInStickers();
-  let stored = localStorage.getItem(CLOUDINARY_CONFIG.STORAGE_KEY_STICKERS);
-
-  if (stored) {
-    try {
-      const parsed = JSON.parse(stored);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        // Sanitize: filter out any demo SVGs or legacy paths
-        const sanitized = parsed.filter(s => {
-          if (!s || !s.imageUrl) return false;
-          if (typeof s.imageUrl === "string" && s.imageUrl.startsWith("data:image/svg+xml")) {
-            return false;
-          }
-          if (typeof s.imageUrl === "string" && s.imageUrl.includes("res.cloudinary.com/demo/")) {
-            return false;
-          }
-          return true;
-        });
-
-        // Automatically merge any newly uploaded Cloudinary stickers not in local cache
-        const existingIds = new Set(sanitized.map(s => s.id));
-        const existingUrls = new Set(sanitized.map(s => s.imageUrl));
-        let addedCount = 0;
-        for (const s of allBuiltIn) {
-          if (!existingIds.has(s.id) && !existingUrls.has(s.imageUrl)) {
-            sanitized.push(s);
-            existingIds.add(s.id);
-            existingUrls.add(s.imageUrl);
-            addedCount++;
-          }
-        }
-
-        if (addedCount > 0 || sanitized.length !== parsed.length) {
-          saveStickers(sanitized);
-        }
-        return sanitized;
-      }
-    } catch (e) {
-      console.error("Failed to parse stickers from localStorage:", e);
-    }
-  }
-
-  // Initialize with pure Cloudinary user uploads
-  saveStickers(allBuiltIn);
-  return allBuiltIn;
+  return getAllBuiltInStickers();
 }
 
 function saveStickers(stickers) {

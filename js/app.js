@@ -532,7 +532,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const fullResUrl = getFullQualityImageUrl(sticker.imageUrl);
       const fallbackAttr = sticker.fallbackUrl ? `data-fallback="${sticker.fallbackUrl}" onerror="if(this.dataset.fallback && !this.dataset.fallbackApplied){this.dataset.fallbackApplied='1';this.src=this.dataset.fallback;}"` : '';
       const featuredBadgeHtml = sticker.featured ? `<div class="featured-badge">⭐ Top Pick</div>` : "";
-      const gifBadgeHtml = isGif ? `<div class="pin-gif-badge"><span class="gif-pulse-dot"></span>GIF</div>` : "";
+      const gifBadgeHtml = "";
       const isEager = index < 8;
       const loadingAttrs = isEager
         ? `src="${lowResThumb}" fetchpriority="high" loading="eager"`
@@ -982,7 +982,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (qualityBadge) {
       qualityBadge.className = "modal-quality-badge loading";
       qualityBadge.innerHTML = isGif
-        ? `<span class="badge-dot pulse" style="background:#00f0ff;"></span> Loading Animated GIF...`
+        ? `<span class="badge-dot pulse"></span> Loading Preview...`
         : `<span class="badge-dot pulse"></span> Loading Full HD...`;
     }
 
@@ -998,7 +998,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (qualityBadge) {
           qualityBadge.className = "modal-quality-badge ready";
           qualityBadge.innerHTML = isGif
-            ? `<span class="badge-dot ready" style="background:#00f0ff;box-shadow:0 0 6px #00f0ff;"></span> 🎬 Animated GIF (Original Frames)`
+            ? `<span class="badge-dot ready"></span> ✨ Original HD Quality`
             : `<span class="badge-dot ready"></span> ✨ 100% Full HD Quality`;
         }
       }
@@ -1011,24 +1011,24 @@ document.addEventListener("DOMContentLoaded", () => {
         if (qualityBadge) {
           qualityBadge.className = "modal-quality-badge ready";
           qualityBadge.innerHTML = isGif
-            ? `<span class="badge-dot ready" style="background:#00f0ff;box-shadow:0 0 6px #00f0ff;"></span> 🎬 Animated GIF (Original Frames)`
+            ? `<span class="badge-dot ready"></span> ✨ Original HD Quality`
             : `<span class="badge-dot ready"></span> ✨ 100% Full HD Quality`;
         }
       }
     };
 
     modalTitle.textContent = sticker.title;
-    modalCategory.textContent = isGif ? "Animated GIF" : (sticker.category || "Meme");
+    modalCategory.textContent = sticker.category || "Reactions";
     modalPack.textContent = sticker.pack ? `📦 Pack: ${sticker.pack}` : "";
 
     if (modalDownloadBtn) {
       modalDownloadBtn.innerHTML = isGif
-        ? `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download Animated GIF (.gif)</span>`
+        ? `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download</span>`
         : `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download Full HD (PNG)</span>`;
     }
     if (modalCopyBtn) {
       modalCopyBtn.innerHTML = isGif
-        ? `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy Animated GIF</span>`
+        ? `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>1-Click Copy Image</span>`
         : `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>1-Click Copy Image</span>`;
     }
 

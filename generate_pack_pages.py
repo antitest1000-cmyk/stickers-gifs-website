@@ -263,7 +263,7 @@ def build_static_pack_page(pack, all_stickers, all_packs):
         cards_html.append(f"""
         <article class="sticker-card {'card-is-gif' if is_gif else 'card-is-sticker'}" data-id="{s_id}" onclick="window.location.href='index.html?sticker={s_id}'" style="cursor: pointer;">
           <div class="sticker-preview-box">
-            {f'<div class="pin-gif-badge"><span class="gif-pulse-dot"></span>GIF</div>' if is_gif else ''}
+            
             <img 
               src="{thumb_url}" 
               alt="{s_title} transparent sticker" 

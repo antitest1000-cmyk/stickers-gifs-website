@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=49">
+  <link rel="stylesheet" href="css/style.css?v=50">
 
   <style>
     .trending-hero {
@@ -525,8 +525,8 @@
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
   <!-- SCRIPTS -->
-  <script src="js/cloudinary-stickers.js?v=43"></script>
-  <script src="js/data.js?v=43"></script>
+  <script src="js/cloudinary-stickers.js?v=44"></script>
+  <script src="js/data.js?v=44"></script>
   <script src="js/nav-common.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -595,7 +595,7 @@
         const giphyColors = ['#00ccff', '#fff35c', '#9933ff', '#00ff99', '#ff2e83', '#ff6600'];
         const cardColor = giphyColors[idx % giphyColors.length];
         const isGif = typeof isGifSticker === "function" ? isGifSticker(s) : (s.imageUrl && s.imageUrl.toLowerCase().endsWith(".gif"));
-        const gifBadgeHtml = isGif ? `<div class="pin-gif-badge"><span class="gif-pulse-dot"></span>GIF</div>` : "";
+        const gifBadgeHtml = isGif ? `` : "";
         const lowResThumb = getLowResThumbnailUrl(s.imageUrl);
         const isEager = idx < 12;
         const srcAttr = isEager
