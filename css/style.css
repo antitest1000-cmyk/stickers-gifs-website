@@ -1954,6 +1954,16 @@ body:not(.sketch-dark-mode) .sticker-card:not(.card-is-gif) .sticker-img {
 
 .sticker-card:hover .pin-hover-overlay {
   opacity: 1;
+  pointer-events: none; /* Non-blocking so clicks on image/card pass directly to open modal */
+}
+
+/* Ensure interactive buttons inside overlay receive direct clicks */
+.pin-top-actions,
+.pin-bottom-bar,
+.pin-btn-copy,
+.pin-btn-icon,
+.pin-overlay-pack,
+.pin-mobile-copy-btn {
   pointer-events: auto;
 }
 

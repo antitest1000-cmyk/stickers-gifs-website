@@ -261,7 +261,7 @@ def build_static_pack_page(pack, all_stickers, all_packs):
             thumb_url = re.sub(r"/image/upload/(?:(?:[a-z]_[^/]+|v\d+),?)+/", "/image/upload/w_400,q_75,f_auto,c_limit/", s_url)
 
         cards_html.append(f"""
-        <article class="sticker-card {'card-is-gif' if is_gif else 'card-is-sticker'}" data-id="{s_id}">
+        <article class="sticker-card {'card-is-gif' if is_gif else 'card-is-sticker'}" data-id="{s_id}" onclick="window.location.href='index.html?sticker={s_id}'" style="cursor: pointer;">
           <div class="sticker-preview-box">
             {f'<div class="pin-gif-badge"><span class="gif-pulse-dot"></span>GIF</div>' if is_gif else ''}
             <img 
@@ -271,7 +271,7 @@ def build_static_pack_page(pack, all_stickers, all_packs):
               loading="lazy" 
               decoding="async" 
             />
-            <div class="pin-hover-overlay" onclick="event.stopPropagation()">
+            <div class="pin-hover-overlay">
               <div class="pin-top-actions">
                 <button type="button" class="pin-action-btn pin-copy-btn" onclick="copySingleSticker('{s_url}', '{s_title}')" title="Copy Sticker">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><rect width="13" height="13" x="9" y="9" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>

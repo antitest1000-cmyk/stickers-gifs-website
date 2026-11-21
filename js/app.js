@@ -564,7 +564,7 @@ document.addEventListener("DOMContentLoaded", () => {
               class="sticker-img loaded" 
               decoding="async" 
             />
-            <div class="pin-hover-overlay" onclick="event.stopPropagation()">
+            <div class="pin-hover-overlay">
               <div class="pin-top-actions">
                 <span class="pin-overlay-tag">${platformBadge}</span>
                 <button class="pin-btn-copy" onclick="window.copyStickerImage('${sticker.id}', event)" title="${isGif ? '1-Click Copy Animated GIF' : '1-Click Copy Image'}">
